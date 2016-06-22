@@ -1,0 +1,151 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+.footer-header {
+	background-color: #05293a;
+	box-shadow: 0px 10px 40px #101623;
+	margin-top: 50px;
+	padding-top: 10px;
+}
+
+.footer-header a:hover {
+	text-decoration: none;
+}
+
+.footer-link {
+	color: white;
+	text-transform: uppercase;
+	font-weight: 700;
+	font-family: "Open Sans", sans-serif;
+}
+
+.display-table {
+	display: table;
+}
+
+.table-cell {
+	vertical-align: middle;
+	display: table-cell;
+}
+
+.footer-icon {
+	font-size: 40px;
+	margin: 10px 10px 0px 0px;
+}
+
+.footer-body {
+	background-color: rgba(5, 41, 58, 0.98);
+	padding: 20px 10px 15px 10px;
+}
+
+.fbody-head, .fbody-head ul li, fbody-content ul, li {
+	color: white;
+}
+
+.footer-footer {
+	background-color: #05293a;
+	padding: 30px 15px 30px 15px;
+	box-shadow: 0px -1px 40px #101623;
+}
+
+.input-group-fix-color {
+	box-shadow: none !important;
+	border-color: #303757 !important;
+	background-color: rgba(40, 47, 63, 0) !important;
+}
+
+.input-group-fix-border-right {
+	border-right: 0px !important;
+	height: 45px !important;
+}
+
+.input-group-fix-border-left {
+	border-left: 0px !important;
+	height: 45px !important;
+}
+
+.input-group-size {
+	border: 5px !important;
+	margin: 5px 0px 5px 0px;
+	width: 70%;
+}
+
+.ft-img img {
+	vertical-align: middle;
+	background-color: rgba(24, 32, 51, 0.95);
+	border-radius: 5px;
+	width: 50px;
+	height: 50px;
+}
+
+.ftft-left{margin-left: 15px;}
+.ftft-left, .ftft-right {
+	vertical-align : middle;
+	color: white;
+	vertical-align: middle;
+}
+
+.social-media-fix{
+	margin-top: 5px;
+	width: 100px;
+	height: 50px;
+}
+
+.sm-facebook a,
+.sm-google-plus a
+{
+	color:white !important;
+	width:40px;
+	height:40px;
+	float: left;
+	border: 1px solid #337ab7;
+	background-color: rgba(51, 122, 183, 0);
+  	border-radius: 50%;
+  	text-align:center;
+	vertical-align: middle;
+	font-size: 20pt;
+	margin-right: 5px;
+}
+
+.sm-facebook a:HOVER
+ {
+	color: white;
+	background-color: #3b5998;
+	border-color: #3b5998;
+}
+
+.sm-google-plus a:HOVER
+ {
+	color: white;
+	background-color: #c53929;
+	border-color: #c53929;
+}
+
+.flag-vn img,
+.flag-en img{
+	margin-top:5px;
+	width:30px;
+	height:20px;
+	float: left;
+  	border-radius: 2px;
+	margin-right: 5px;
+}
+
+.our-links,
+.input-email{
+	margin-top: 10px;
+}
+.our-links li{
+	list-style-type: none;
+	margin-left: -40px !important;
+}
+
+.our-links li a,
+.address{
+	text-decoration: none !important;
+}
+
+.input-group-size button:hover {
+	background-color:#303757 !important;
+	color: white !important;
+}
+

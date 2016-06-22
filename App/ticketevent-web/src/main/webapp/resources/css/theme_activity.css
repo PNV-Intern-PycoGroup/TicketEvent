@@ -1,0 +1,52 @@
+article {
+	background-image: url("http://4.bp.blogspot.com/-cFrX94jbehk/UQgQyh66j3I/AAAAAAAAAk4/qFaJ1jjlMV8/s1600/9b516f4441a7bfb5174b33ebf74fc1d6_49102622.freebackgrounds5.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	padding-bottom: 40px;
+}
+
+.banner > figure{
+	width: 600px;
+	margin: auto;
+	padding: 50px;
+}
+
+.banner > h3 {
+	text-align: center;
+	color: white;
+	padding-bottom: 40px;
+}
+
+.img-cover {
+	object-fit: cover;
+	width: 100%;
+}
+
+.content {
+	width: 80%;
+	margin: auto;
+}
+
+section h1 {
+	text-align: center;
+	padding-bottom: 40px;
+}
+
+.content-description {
+	box-shadow: 0px 0px 40px black;
+	overflow: auto;
+}
+
+.content-description p {
+	color: white;
+	text-align: justify;
+}
+
+.content-description span {
+	font-size: 16px;
+	margin: 10px auto;
+}
+
+.content-description > div {
+	padding: 10px;
+}
