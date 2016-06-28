@@ -3,9 +3,9 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@tag pageEncoding="UTF-8"%>
 
-<link rel="stylesheet" href="resources/css/footer.css" />
+<!-- <link rel="stylesheet" href="resources/css/footer.css" />
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css"> -->
 
 <footer class="footer">
 	<section class="footer-header clearfix">

@@ -7,17 +7,14 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
-import org.springframework.ui.context.support.ResourceBundleThemeSource;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
-import org.springframework.web.servlet.theme.CookieThemeResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
@@ -61,24 +58,4 @@ public class ResourceConfig extends WebMvcConfigurerAdapter{
 	    registry.addInterceptor(interceptor);
 	}
     // Demo Locale end
-	
-    @Bean(name = "themeSource")
-    public ResourceBundleThemeSource resourceBundleThemeSource() {
-        return new ResourceBundleThemeSource();
-    }
-
-    @Bean(name = "themeResolver")
-    public CookieThemeResolver themeResolver() {
-        CookieThemeResolver themeResolver = new CookieThemeResolver();
-        themeResolver.setCookieName("theme");
-        themeResolver.setDefaultThemeName("default");
-        return themeResolver;
-    }
-    
-    @Override
-    public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/home").setViewName("index");
-        registry.addViewController("/").setViewName("index");
-        registry.addViewController("/403").setViewName("403");
-    }
 }
