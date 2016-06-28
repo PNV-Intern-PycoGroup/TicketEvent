@@ -29,7 +29,7 @@ i {
 	color: #30aee8;
 }
 
-.input-group-addon {
+.cus-icon-input-group-addon {
 	width: 40px !important;
 }
 
@@ -39,7 +39,7 @@ i {
 	font-weight: bold;
 }
 
-.navbar-nav > li > a:FOCUS, .navbar-nav > li > a:HOVER, .fix-on-top > li > a:HOVER, .fix-on-top > li > a:FOCUS {
+.navbar-nav > .active > a, .navbar-nav > li > a:HOVER, .fix-on-top > li > a:HOVER {
 	background-color: #05293a !important;
 	color: #30aee8 !important;
 	border-color: #05293a !important;
@@ -60,18 +60,18 @@ i {
 	border-radius: 4px !important;
 }
 
-.btn-default {
+.btn-ticket {
 	background-color: #30aee8 !important;
 	color: white !important;
 	font-weight: bold !important;
 }
 
-.btn-default:HOVER, .btn-default:FOCUS{
+.btn-ticket:HOVER, .btn-ticket:FOCUS{
 	background-color: #19a5e6 !important;
 }
 
 #btn-add-event,
-.btn-default {
+.btn-ticket {
     border: 1px solid #30aee8 !important;
 }
 
@@ -133,11 +133,11 @@ i {
 	margin: 10px auto !important;
 }
 
-.nav a {
+.login-logout-content a {
 	color: #30aee8 !important;
 }
 
-.nav .active a {
+.login-logout-content .active a {
 	background-color: #30aee8 !important;
 	color: white !important;
 }

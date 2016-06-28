@@ -122,7 +122,7 @@
 				<img class="img-cover" alt=""
 					src="https://az810058.vo.msecnd.net/static-page/img/365-seatmap.png">
 			</figure>
-			<button class="btn btn-default btn-large">Đặt vé ngay</button>
+			<button class="btn btn-default btn-large btn-ticket">Đặt vé ngay</button>
 		</div>
 	</section>
 	<section id="organizer">
@@ -141,7 +141,3 @@
 		</div>
 	</section>
 </article>
-
-<script src="/ticketevent-web/resources/js/scroll_effect.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>

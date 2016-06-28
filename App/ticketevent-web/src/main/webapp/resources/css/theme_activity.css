@@ -11,7 +11,8 @@ article {
 	padding: 50px;
 }
 
-.banner > h3 {
+.banner > h3,
+.banner > h4 {
 	text-align: center;
 	color: white;
 	padding-bottom: 40px;
@@ -49,4 +50,10 @@ section h1 {
 
 .content-description > div {
 	padding: 10px;
+}
+
+i[class*="quote"] {
+	font-size: 30px !important;
+	color: white !important;
+	padding: 20px;
 }

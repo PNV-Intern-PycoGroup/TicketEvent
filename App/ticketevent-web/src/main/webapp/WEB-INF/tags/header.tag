@@ -36,7 +36,7 @@
 					<li>
 						<form role="search">
 							<div class="input-group">
-								<a href="#" class="input-group-addon"><i class="fa fa-search" aria-hidden="true"></i></a>
+								<a href="#" class="input-group-addon cus-icon-input-group-addon"><i class="fa fa-search" aria-hidden="true"></i></a>
 								<input type="text" class="form-control"
 									placeholder="<spring:message code="label.findEvent"/>" aria-describedby="basic-addon1">
 							</div>
@@ -51,7 +51,7 @@
 				
 			<!-- --------------- -->
 
-				<button class="btn btn-default" id="btn-add-event"><spring:message code="label.createEvent"/></button>
+				<button class="btn btn-default btn-ticket" id="btn-add-event"><spring:message code="label.createEvent"/></button>
 
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
@@ -105,31 +105,31 @@
 					    <div role="tabpanel" class="tab-pane fade in active" id="login">
 					    	<form action="" method="post">
 						    	<div class="input-group center">
-									<span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
+									<span class="input-group-addon cus-icon-input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
 									<input class="form-control" type="text" placeholder="<spring:message code="label.form.username"/>"/>
 								</div>
 					    		<div class="input-group center">
-									<span class="input-group-addon"><i class="fa fa-lock" aria-hidden="true"></i></span>
+									<span class="input-group-addon cus-icon-input-group-addon"><i class="fa fa-lock" aria-hidden="true"></i></span>
 					    			<input class="form-control" type="password" placeholder="<spring:message code="label.form.pass"/>"/>
 								</div>
-					    		<button class="btn btn-default btn-submit" type="submit"><spring:message code="label.login"/></button>
+					    		<button class="btn btn-default btn-submit btn-ticket" type="submit"><spring:message code="label.login"/></button>
 					    	</form>
 					    </div>
 					    <div role="tabpanel" class="tab-pane fade in" id="logout">
 					    	<form action="" method="post">
 					    		<div class="input-group center">
-									<span class="input-group-addon"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
+									<span class="input-group-addon cus-icon-input-group-addon"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
 					    			<input class="form-control" type="text" placeholder="<spring:message code="label.form.email"/>"/>
 								</div>
 								<div class="input-group center">
-									<span class="input-group-addon"><i class="fa fa-lock" aria-hidden="true"></i></span>
+									<span class="input-group-addon cus-icon-input-group-addon"><i class="fa fa-lock" aria-hidden="true"></i></span>
 					    			<input class="form-control" type="password" placeholder="<spring:message code="label.form.pass"/>"/>
 								</div>
 					    		<div class="input-group center">
-									<span class="input-group-addon"><i class="fa fa-key" aria-hidden="true"></i></span>
+									<span class="input-group-addon cus-icon-input-group-addon"><i class="fa fa-key" aria-hidden="true"></i></span>
 					    			<input class="form-control" type="password" placeholder="<spring:message code="label.form.confirmpass"/>"/>
 								</div>
-					    		<button class="btn btn-default btn-submit" type="submit"><spring:message code="label.register"/></button>
+					    		<button class="btn btn-default btn-submit btn-ticket" type="submit"><spring:message code="label.register"/></button>
 					    	</form>
 					    </div>
 					</div>
