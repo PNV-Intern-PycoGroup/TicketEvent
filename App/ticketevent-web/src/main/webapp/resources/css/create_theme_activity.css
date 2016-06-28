@@ -1,0 +1,109 @@
+/* header */
+.a-header {
+	color: white;
+	font-weight: bold;
+	background-color: #05293a;
+}
+
+.a-header:HOVER, .a-header:FOCUS {
+	color: #30aee8 !important;
+	font-weight: bold;
+	background-color: #05293a !important;
+	text-decoration: none;
+}
+
+.nav-pills > .active > a {
+	color: #30aee8 !important;
+	background-color: #05293a !important;
+}
+
+.language {
+	margin: -30px 20px !important;
+}
+
+.language .dropdown-menu {
+	margin-top: 30px !important;
+	border: 0 !important;
+	border-radius: 4px !important;
+}
+
+/* end header */
+
+.content {
+	width: 80%;
+	margin: 40px auto;
+	overflow-x: auto;
+}
+
+.content h1, .content h2, .content h3 {
+	text-align: center;
+	margin: 20px auto;
+}
+
+/* event info */
+
+.cus-input-group-col-md[class*=col-] {
+    float: left !important;
+    padding: 15px !important;
+}
+
+.cus-input-group-addon {
+	padding: 0 !important;
+	border: none !important;
+}
+
+.hidden-file {
+	opacity: 0;
+}
+
+.upload-file-bg {
+	background-image: url("https://az810058.vo.msecnd.net/Images/vi-default-logo-event.png");
+	background-repeat: no-repeat;
+	background-size: cover;
+	width: 100px;
+	height:100px;
+	margin: 15px auto;
+}
+
+.logo-file-organization {
+	width: 100%;
+	height: 100%;
+}
+
+.province-select {
+	width: 30% !important;
+}
+
+.event-info {
+	padding: 15px;
+}
+
+.label-event-info {
+	text-align: center;
+	background-color: #eee;
+    border-top: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    padding: 10px;
+    display: inline-block;
+    width: 100%;
+}
+
+.textarea-event-info {
+	resize: none;
+	border: 1px solid #ccc;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+    padding: 15px;
+    width: 100%;
+}
+
+.cus-input-group-addon-create-event {
+	color: #30aee8 !important;
+	font-weight: bold !important;
+}
+
+/* end event info */
+

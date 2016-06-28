@@ -15,11 +15,16 @@
 				src="https://az810058.vo.msecnd.net/static-page/img/escapeRave-logo.png">
 		</figure>
 		<h3>09:00 10.10.2010 tp Hồ Chí Minh</h3>
+		<h4><i class="fa fa-quote-left" aria-hidden="true"></i> Sologan của sự kiện <i class="fa fa-quote-right" aria-hidden="true"></i></h4>
 		<div class="content content-description">
-			<div class="col-md-3">
-				<p>Miêu tả sự kiện của bạn ở đây. Đây chính là nơi bạn miêu tả sự kiện của bạn cho mọi người có thể hình dung ra được.</p>
+			<div class="col-md-4">
+				<p>Miêu tả sự kiện của bạn ở đây. Đây chính là nơi bạn miêu tả sự kiện của bạn cho mọi người có thể hình dung ra được.
+				Miêu tả sự kiện của bạn ở đây. Đây chính là nơi bạn miêu tả sự kiện của bạn cho mọi người có thể hình dung ra được.
+				Miêu tả sự kiện của bạn ở đây. Đây chính là nơi bạn miêu tả sự kiện của bạn cho mọi người có thể hình dung ra được.</p>
+				<p>Giá vé: <label>400.000 vnđ</label></p>
+				<button class="btn btn-default" >Mua vé ngay</button>
 			</div>
-			<div id="slide-event" class="carousel slide col-md-6" data-ride="carousel">
+			<div id="slide-event" class="carousel slide col-md-8" data-ride="carousel">
 				<!-- Indicators -->
 				<ol class="carousel-indicators">
 					<li data-target="#slide-event" data-slide-to="0" class="active"></li>
@@ -41,11 +46,6 @@
 						<img class="img-cover" src="http://placehold.it/600x400&amp;text=Third+Slide" alt="">
 					</div>
 				</div>
-			</div>
-			<div class="col-md-3">
-				<p><label>09:00 Ngày 20.11.2015 tại TP Hồ Chí Minh</label></p>
-				<p>Giá vé: <label>400.000 vnđ</label></p>
-				<button class="btn btn-default" >Mua vé ngay</button>
 			</div>
 		</div>
 	</section>

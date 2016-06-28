@@ -35,7 +35,7 @@
 			<h2>Bình Luận của bạn</h2>
 			<form action="" class="comment-box">
 				<textarea rows="6" id="autosize-textarea"></textarea>
-				<button class="btn btn-default" type="submit">Bình luận</button>
+				<button class="btn btn-default btn-ticket" type="submit">Bình luận</button>
 			</form>
 		</div>
 	</div>

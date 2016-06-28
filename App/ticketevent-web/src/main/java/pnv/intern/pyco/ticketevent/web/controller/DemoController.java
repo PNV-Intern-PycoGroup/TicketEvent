@@ -71,4 +71,11 @@ public class DemoController {
 		
 		return "event_detail_theme_activity";
 	}
+	
+	@RequestMapping(value = "/create-event-theme-activity", method = RequestMethod.GET)
+	public String createEventThemeActivity(Model model) {
+		model.addAttribute("languageUrl", "");
+		
+		return "create_theme_activity";
+	}
 }

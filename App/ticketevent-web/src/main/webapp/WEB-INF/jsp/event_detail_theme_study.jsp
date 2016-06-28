@@ -11,13 +11,21 @@
 <title>event detail</title>
 
 <link rel="shortcut icon" href="/ticketevent-web/resources/icon/logo.svg"/>
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" href="/ticketevent-web/resources/css/header_style.css">
+
 </head>
-<body>
+<body data-spy="scroll" data-target="#scroll-page" data-offset="100">
 	<layout:header_theme_study></layout:header_theme_study>
 	<layout:body_theme_study></layout:body_theme_study>
 	<layout:comment></layout:comment>
 	<layout:footer></layout:footer>
+	
+	<!-- Script -->
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+	<script src="/ticketevent-web/resources/js/scroll_effect.js"></script>
 </body>
 </html>
