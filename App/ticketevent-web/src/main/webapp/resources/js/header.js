@@ -5,3 +5,9 @@ window.onscroll = function() {hideElement(btnAddEvent)};
 var hideElement = function(element){
 //	btnAddEvent.
 }
+
+$(document).ready(function () {
+	if($('.login-fail').length){
+		$('#login-logout').modal();
+	}
+})

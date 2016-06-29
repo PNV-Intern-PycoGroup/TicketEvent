@@ -3,8 +3,8 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@tag pageEncoding="UTF-8" %>
 
-<link rel="stylesheet" href="/ticketevent-web/resources/css/header_style.css">
-<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+<!-- <link rel="stylesheet" href="/ticketevent-web/resources/css/header_style.css">
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css"> -->
 <header>
 	<nav class="navbar navbar-default navbar-fixed-top">
 		<div>
@@ -68,17 +68,25 @@
 							</li>
 						</ul>
 					</li>
-					<li><a href="#" data-toggle="modal" data-target="#login-logout"><spring:message code="label.login"/> | <spring:message code="label.register"/></a></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
+					<c:if test="${account == null}">
+						<li><a href="#" data-toggle="modal" data-target="#login-logout"><spring:message code="label.login"/> | <spring:message code="label.register"/></a></li>
+					</c:if>
+					
+					<c:if test="${account != null}">
+						<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false"><c:out value="${user.name}"/> <span class="caret"></span></a>
+						aria-expanded="false"><c:out value="${account.user_name}"/> <span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href="#"><spring:message code="label.account"/></a></li>
 							<li><a href="#"><spring:message code="label.myTicket"/></a></li>
 							<li><a href="#"><spring:message code="label.myEvent"/></a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="#"><spring:message code="label.logout"/></a></li>
-						</ul></li>
+							<li>
+								<a href="logout"><spring:message code="label.logout"/></a>
+							</li>
+						</ul>
+					</li>
+					</c:if>
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->
@@ -95,7 +103,7 @@
 						<!-- Nav tabs -->
 						<ul class="nav nav-pills" role="tablist">
 							<li role="presentation" class="active"><a href="#login" aria-controls="login" role="tab" data-toggle="tab"><spring:message code="label.login"/></a></li>
-							<li role="presentation"><a href="#logout" aria-controls="logout" role="tab" data-toggle="tab"><spring:message code="label.register"/></a></li>
+							<li role="presentation"><a href="#register" aria-controls="logout" role="tab" data-toggle="tab"><spring:message code="label.register"/></a></li>
 						</ul>
 					</div>
 		        </div>
@@ -104,18 +112,24 @@
 					<div class="tab-content login-logout-content">
 					    <div role="tabpanel" class="tab-pane fade in active" id="login">
 					    	<form action="" method="post">
+					    		<c:if test="${param.error ne null}">
+									<div class="alert-danger login-fail">Invalid username and password.</div>
+								</c:if>
+					    	
 						    	<div class="input-group center">
 									<span class="input-group-addon cus-icon-input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
-									<input class="form-control" type="text" placeholder="<spring:message code="label.form.username"/>"/>
+									<input class="form-control" type="text" name="user_name" placeholder="<spring:message code="label.form.username"/>"/>
 								</div>
 					    		<div class="input-group center">
 									<span class="input-group-addon cus-icon-input-group-addon"><i class="fa fa-lock" aria-hidden="true"></i></span>
-					    			<input class="form-control" type="password" placeholder="<spring:message code="label.form.pass"/>"/>
+					    			<input class="form-control" type="password" name="password" placeholder="<spring:message code="label.form.pass"/>"/>
 								</div>
 					    		<button class="btn btn-default btn-submit btn-ticket" type="submit"><spring:message code="label.login"/></button>
+					    		<input type="hidden" name="${_csrf.parameterName}"
+									value="${_csrf.token}" />
 					    	</form>
 					    </div>
-					    <div role="tabpanel" class="tab-pane fade in" id="logout">
+					    <div role="tabpanel" class="tab-pane fade in" id="register">
 					    	<form action="" method="post">
 					    		<div class="input-group center">
 									<span class="input-group-addon cus-icon-input-group-addon"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
@@ -142,10 +156,10 @@
 	
 <!-- Script -->
 
-<!-- jQuery library -->
+<!-- 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-<!-- Latest compiled JavaScript -->
+Latest compiled JavaScript
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<script src="/ticketevent-web/resources/js/header.js"></script>
+<script src="/ticketevent-web/resources/js/header.js"></script> -->

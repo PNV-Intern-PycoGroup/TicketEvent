@@ -24,6 +24,10 @@ public class AccountService {
 		return accountReponsitoty.findOne(id);
 	}
 	
+	public AccountEntity getAccountbyUserName(String userName){
+		return accountReponsitoty.findAccountByUserName(userName);
+	}
+	
 	public List<AccountEntity> getAllAccount(){
 		return accountReponsitoty.findAll();
 	}

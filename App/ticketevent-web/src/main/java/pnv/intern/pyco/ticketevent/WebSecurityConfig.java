@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebMvcSecurity
@@ -21,9 +22,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		auth.jdbcAuthentication().dataSource(dataSource)
 		.usersByUsernameQuery(
-			"select username,password, enabled from users where username=?")
+			"select user_name, password, isActive from accounts where user_name=?")
 		.authoritiesByUsernameQuery(
-			"select username, role from user_roles where username=?");
+			"select a.user_name, u.role from user_roles u, accounts a where u.id = a.role_id and a.user_name=?");
 	}	
 	
 	@Override
@@ -31,13 +32,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	  http.authorizeRequests()
 		.antMatchers("/","/home").permitAll()
-		.antMatchers("/admin-page").access("hasRole('ROLE_ADMIN')")		
-		.anyRequest().permitAll()
+		.antMatchers("/admin-page", "/user-management").access("hasRole('ROLE_ADMIN')")		
 		.and()
-		  .formLogin().loginPage("/")
+		.formLogin()
+                .defaultSuccessUrl("/")
+                .loginPage("/")
+                .permitAll()
 		  .usernameParameter("user_name").passwordParameter("password")
 		.and()
-		  .logout().logoutSuccessUrl("/login?logout")	
+		 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/")
 		 .and()
 		 .exceptionHandling().accessDeniedPage("/403")
 		.and()

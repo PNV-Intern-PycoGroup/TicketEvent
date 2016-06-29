@@ -14,7 +14,7 @@ public class DatabaseConfig {
 
 	private final String DB_PASSWORD = "";
 
-	private final String DB_URL = "jdbc:mysql://localhost:3306/userdb"; // put
+	private final String DB_URL = "jdbc:mysql://localhost:3306/ticket_event_schema"; // put
 																				// database
 
 	private final String DB_USERNAME = "root";

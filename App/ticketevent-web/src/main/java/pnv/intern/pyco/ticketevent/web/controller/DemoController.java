@@ -14,14 +14,14 @@ import pnv.intern.pyco.ticketevent.services.model.UserModel;
 @Controller
 public class DemoController {
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String helloWorld(@ModelAttribute("user") UserModel users, Model model) {
-		//UserModel user = demoService.getUser();
-		model.addAttribute("languageUrl", "");
-		model.addAttribute("user", users);
-		
-		return "index";
-	}
+//	@RequestMapping(value = "/", method = RequestMethod.GET)
+//	public String helloWorld(@ModelAttribute("user") UserModel users, Model model) {
+//		//UserModel user = demoService.getUser();
+//		model.addAttribute("languageUrl", "");
+//		model.addAttribute("user", users);
+//		
+//		return "index";
+//	}
 	
 	@RequestMapping(value = "/get-user/{name}", method = RequestMethod.GET)
 	public String getAnUser(@PathVariable String name, Model model) {
