@@ -38,4 +38,25 @@ public class EmailServices {
 		
 	}
 	
+	
+	public void sentEmailRegister(String emailTo){
+		try {
+			email = new SimpleEmail();
+			email.setCharset("utf-8");
+			email.setHostName(EmailConstant.MAIL_HOST);
+			email.setSmtpPort(EmailConstant.MAIL_POST);
+			email.setSSLOnConnect(true);
+			email.setAuthentication(EmailConstant.MY_EMAIL, EmailConstant.MY_PASSWORD);
+			email.setFrom(EmailConstant.MY_EMAIL);
+			
+			email.addTo(emailTo);
+			email.setSubject(EmailConstant.MAIL_SUBJECT_REGISTER);
+			email.setMsg(EmailConstant.MAIL_MES_REGISTER);
+			email.send();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+	}
+	
 }

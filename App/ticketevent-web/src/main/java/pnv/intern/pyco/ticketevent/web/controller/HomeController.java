@@ -1,36 +1,48 @@
 package pnv.intern.pyco.ticketevent.web.controller;
 
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import pnv.intern.pyco.ticketevent.entity.AccountEntity;
+import pnv.intern.pyco.ticketevent.services.AccountService;
+import pnv.intern.pyco.ticketevent.services.EmailServices;
 import pnv.intern.pyco.ticketevent.services.model.UserModel;
 
 @Controller
-public class DemoController {
+public class HomeController {
+	@Autowired
+	private EmailServices email;
 	
-//	@RequestMapping(value = "/", method = RequestMethod.GET)
-//	public String helloWorld(@ModelAttribute("user") UserModel users, Model model) {
-//		//UserModel user = demoService.getUser();
-//		model.addAttribute("languageUrl", "");
-//		model.addAttribute("user", users);
-//		
-//		return "index";
-//	}
-	
-	@RequestMapping(value = "/get-user/{name}", method = RequestMethod.GET)
-	public String getAnUser(@PathVariable String name, Model model) {
-		UserModel user = new UserModel(name, 22, "Da Nang");
-		
-		model.addAttribute("user", user);
-		
-		return "header_layout";
+	@Autowired
+	private AccountService accountService;
+
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String test(ModelMap model) {
+		AccountEntity account = accountService.getAccountbyUserName(SecurityContextHolder.getContext().getAuthentication().getName());
+		model.put("account", account);
+		return "index";
 	}
+
+	@RequestMapping(value = "sentEmail", method = RequestMethod.POST)
+	public String sentTest(String emailTo) {
+		email.sentEmailCreateEvent("phamyqb@gmail.com");
+		return "index";
+	}
+	
+//	@RequestMapping(value = "accountapi", method = RequestMethod.GET)
+//	public AccountEntity getAccount() {
+//		return accountService.getAccount(1);
+//	}
 	
 	@RequestMapping(value = "add-user", method = RequestMethod.GET)
 	public String addAnUserGet(Model model){
@@ -53,29 +65,32 @@ public class DemoController {
 	
 	@RequestMapping(value = "/view-event", method = RequestMethod.GET)
 	public String viewEvent(Model model) {
-		model.addAttribute("languageUrl", "");
-		
 		return "event_detail_theme_music";
 	}
 	
 	@RequestMapping(value = "/view-event-theme-study", method = RequestMethod.GET)
 	public String viewEventThemeStudy(Model model) {
-		model.addAttribute("languageUrl", "");
-		
 		return "event_detail_theme_study";
 	}
 	
 	@RequestMapping(value = "/view-event-theme-activity", method = RequestMethod.GET)
 	public String viewEventThemeActivity(Model model) {
-		model.addAttribute("languageUrl", "");
-		
 		return "event_detail_theme_activity";
 	}
 	
 	@RequestMapping(value = "/create-event-theme-activity", method = RequestMethod.GET)
 	public String createEventThemeActivity(Model model) {
-		model.addAttribute("languageUrl", "");
-		
 		return "create_theme_activity";
+	}
+	
+	@RequestMapping(value = "/register", method= RequestMethod.POST)
+	public String register(@Valid AccountEntity accountEntity, BindingResult result){
+		if(result.hasErrors()){
+			return "index";
+		}else{
+			accountService.Save(accountEntity);
+			return "index";
+		}
+		
 	}
 }

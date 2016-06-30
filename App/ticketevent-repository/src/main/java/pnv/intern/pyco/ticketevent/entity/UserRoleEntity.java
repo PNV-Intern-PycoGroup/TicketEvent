@@ -14,7 +14,7 @@ public class UserRoleEntity {
 	@Id
 	@Column(name = "ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private long id;
 	
 	@Column(name ="ROLE")
 	private String role;
@@ -24,7 +24,7 @@ public class UserRoleEntity {
 	public UserRoleEntity() {
 	}
 
-	public UserRoleEntity(Long id, String role) {
+	public UserRoleEntity(long id, String role) {
 		this.id = id;
 		this.role = role;
 	}
@@ -33,7 +33,7 @@ public class UserRoleEntity {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

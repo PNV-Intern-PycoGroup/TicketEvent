@@ -1,11 +1,13 @@
 package pnv.intern.pyco.ticketevent.services;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import pnv.intern.pyco.ticketevent.entity.AccountEntity;
+import pnv.intern.pyco.ticketevent.entity.UserRoleEntity;
 import pnv.intern.pyco.ticketevent.repository.AccountReponsitoty;
 
 @Service
@@ -13,6 +15,9 @@ public class AccountService {
 	
 	@Autowired
 	private AccountReponsitoty accountReponsitoty;
+	
+	@Autowired
+	private EmailServices emailService;
 	
 	public AccountService(){}
 
@@ -30,6 +35,14 @@ public class AccountService {
 	
 	public List<AccountEntity> getAllAccount(){
 		return accountReponsitoty.findAll();
+	}
+	
+	public void Save(AccountEntity account){
+		account.setActive_date(new Date());
+		account.setIsActive(1);
+		account.setUser_role(new UserRoleEntity(1, "ROLE_USER"));
+		emailService.sentEmailRegister(account.getEmail());
+		accountReponsitoty.save(account);
 	}
 	
 }

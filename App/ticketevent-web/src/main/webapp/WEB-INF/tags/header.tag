@@ -118,7 +118,7 @@
 					    	
 						    	<div class="input-group center">
 									<span class="input-group-addon cus-icon-input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
-									<input class="form-control" type="text" name="user_name" placeholder="<spring:message code="label.form.username"/>"/>
+									<input class="form-control" type="text" name="user_name" placeholder="<spring:message code="label.form.login.username"/>"/>
 								</div>
 					    		<div class="input-group center">
 									<span class="input-group-addon cus-icon-input-group-addon"><i class="fa fa-lock" aria-hidden="true"></i></span>
@@ -130,21 +130,25 @@
 					    	</form>
 					    </div>
 					    <div role="tabpanel" class="tab-pane fade in" id="register">
-					    	<form action="" method="post">
+					    	<form:form action="register" method="post" modelAttribute="account">
 					    		<div class="input-group center">
 									<span class="input-group-addon cus-icon-input-group-addon"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
-					    			<input class="form-control" type="text" placeholder="<spring:message code="label.form.email"/>"/>
+					    			<input class="form-control" type="text" name="user_name" placeholder="<spring:message code="label.form.register.username"/>"/>
+								</div>
+								<div class="input-group center">
+									<span class="input-group-addon cus-icon-input-group-addon"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
+					    			<input class="form-control" type="email" name="email" placeholder="<spring:message code="label.form.email"/>"/>
 								</div>
 								<div class="input-group center">
 									<span class="input-group-addon cus-icon-input-group-addon"><i class="fa fa-lock" aria-hidden="true"></i></span>
-					    			<input class="form-control" type="password" placeholder="<spring:message code="label.form.pass"/>"/>
+					    			<input class="form-control" type="password" name="password" placeholder="<spring:message code="label.form.pass"/>"/>
 								</div>
 					    		<div class="input-group center">
 									<span class="input-group-addon cus-icon-input-group-addon"><i class="fa fa-key" aria-hidden="true"></i></span>
-					    			<input class="form-control" type="password" placeholder="<spring:message code="label.form.confirmpass"/>"/>
+					    			<input class="form-control" type="password" name="passConfirm" placeholder="<spring:message code="label.form.confirmpass"/>"/>
 								</div>
 					    		<button class="btn btn-default btn-submit btn-ticket" type="submit"><spring:message code="label.register"/></button>
-					    	</form>
+					    	</form:form>
 					    </div>
 					</div>
 		        </div>
