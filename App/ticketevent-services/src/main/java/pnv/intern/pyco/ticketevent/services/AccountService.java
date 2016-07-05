@@ -1,5 +1,6 @@
 package pnv.intern.pyco.ticketevent.services;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -35,6 +36,14 @@ public class AccountService {
 	
 	public List<AccountEntity> getAllAccount(){
 		return accountReponsitoty.findAll();
+	}
+	
+	public List<String> getAllUserName(){
+		List<String> allUserName = new ArrayList<String>();
+		for (AccountEntity ac : getAllAccount()) {
+			allUserName.add(ac.getUser_name());
+		}
+		return allUserName;
 	}
 	
 	public void Save(AccountEntity account){

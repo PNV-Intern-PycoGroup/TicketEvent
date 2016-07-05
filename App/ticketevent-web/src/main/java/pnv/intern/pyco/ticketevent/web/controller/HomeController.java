@@ -1,5 +1,7 @@
 package pnv.intern.pyco.ticketevent.web.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import pnv.intern.pyco.ticketevent.entity.AccountEntity;
 import pnv.intern.pyco.ticketevent.services.AccountService;
@@ -29,8 +33,15 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String test(ModelMap model) {
 		AccountEntity account = accountService.getAccountbyUserName(SecurityContextHolder.getContext().getAuthentication().getName());
+		List<String> allUserName = accountService.getAllUserName();
 		model.put("account", account);
+		model.put("allUserName", allUserName);
 		return "index";
+	}
+	
+	@RequestMapping(value = "/api", method = RequestMethod.GET)
+	public @ResponseBody List<String> getAll(){
+		return accountService.getAllUserName();
 	}
 
 	@RequestMapping(value = "sentEmail", method = RequestMethod.POST)
@@ -38,6 +49,7 @@ public class HomeController {
 		email.sentEmailCreateEvent("phamyqb@gmail.com");
 		return "index";
 	}
+	
 	
 //	@RequestMapping(value = "accountapi", method = RequestMethod.GET)
 //	public AccountEntity getAccount() {
@@ -84,13 +96,20 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/register", method= RequestMethod.POST)
-	public String register(@Valid AccountEntity accountEntity, BindingResult result){
+	public String register(@Valid AccountEntity accountEntity, BindingResult result, 
+			final RedirectAttributes redirectAttributes){
 		if(result.hasErrors()){
-			return "index";
+			return "redirect: register.html?error";
 		}else{
-			accountService.Save(accountEntity);
-			return "index";
+			//accountService.Save(accountEntity);
+			redirectAttributes.addFlashAttribute("message","Added successfully.");
+			return "redirect: ?sucessful";
 		}
 		
+	}
+	
+	@RequestMapping(value = "/register", method = RequestMethod.GET)
+	public String Register(){
+		return "index";
 	}
 }

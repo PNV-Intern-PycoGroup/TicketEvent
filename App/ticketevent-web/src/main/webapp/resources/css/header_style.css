@@ -176,3 +176,8 @@ i {
 .display-none {
 	display: none;
 }
+
+
+.ip_username_rg{
+	z-index: 10;
+}

@@ -7,12 +7,37 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="resources/css/index.css" />
-	<link rel="stylesheet" href="resources/css/footer.css" />
-	<link rel="stylesheet" href="resources/css/header_style.css">
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/index.css" />
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/footer.css" />
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/header_style.css">
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.1/ui-bootstrap-tpls.min.js"></script>
 <title>Welcome</title>
+<script>
+    	function Hello($scope, $http) {
+    	    $http.get('http://http://localhost:8080/ticketevent-web/api').
+    	        success(function(data) {
+    	            $scope.user = data;
+    	        });
+    	}
+    	</script>
+    	<script type="text/javascript">
+    	var app = angular.module('myApp', ['ui.bootstrap']);
+    	</script>
+    	<script type="text/javascript">
+					   		function checkUserName(username){
+					   			var varcheck;
+					   			if(username.length <= 0){
+					   				varcheck = "Username is required";
+					   			}else if(username.length < 4 || username.length > 10){
+					   				varcheck = "Min 4 character Max 10 character";
+					   			}
+					   			return varcheck;
+					   		}
+					    </script>
 </head>
-<body>
+<body ng-app="myApp">
+
 	<layout:header></layout:header>
 	<section id="myCarousel" class="carousel slide" data-ride="carousel">
 		<ol class="carousel-indicators">
@@ -158,21 +183,21 @@
 		<div class="row">
 			<div class="col-sm-4 center-position">
 				<a href = "#">
-				<img class="hidden-xs" src="resources/icon/course_category.png"></img>
+				<img class="hidden-xs" src="<%=request.getContextPath()%>/resources/icon/course_category.png"></img>
 				<div class="event-category-title"><spring:message code="index.eventEntertaiment" /></div>
 				<div class="event-link">50 <spring:message code="index.eventCount"/></div>
 				</a>
 			</div>
 			<div class="col-sm-4 center-position">
 				<a href = "#">
-				<img class="hidden-xs" src="resources/icon/course_category.png"></img>
+				<img class="hidden-xs" src="<%=request.getContextPath()%>/resources/icon/course_category.png"></img>
 				<div class="event-category-title"><spring:message code="index.eventCourse" /></div>
 				<div class="event-link">100 <spring:message code="index.eventCount"/></div>
 				</a>
 			</div>
 			<div class="col-sm-4 center-position">
 				<a href = "#">
-				<img class="hidden-xs" src="resources/icon/course_category.png"></img>
+				<img class="hidden-xs" src="<%=request.getContextPath()%>/resources/icon/course_category.png"></img>
 				<div class="event-category-title"><spring:message code="index.eventElse"/></div>
 				<div class="event-link">1000 <spring:message code="index.eventCount"/></div>
 				</a>
@@ -184,8 +209,9 @@
 	<layout:footer></layout:footer>
 
 	<script	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-	<script	src="resources/js/scroll_index.js"></script>
-	<script src="/ticketevent-web/resources/js/header.js"></script>
+	<script	src="<%=request.getContextPath()%>/resources/js/scroll_index.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/js/header.js"></script>
 	<script	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	
 </body>
 </html>
