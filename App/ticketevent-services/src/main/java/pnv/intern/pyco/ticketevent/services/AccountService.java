@@ -38,12 +38,11 @@ public class AccountService {
 		return accountReponsitoty.findAll();
 	}
 	
-	public List<String> getAllUserName(){
-		List<String> allUserName = new ArrayList<String>();
-		for (AccountEntity ac : getAllAccount()) {
-			allUserName.add(ac.getUser_name());
-		}
-		return allUserName;
+	public boolean findUser(String username){
+		if(getAccountbyUserName(username) != null){
+			return false; 
+		}else
+			return true;
 	}
 	
 	public void Save(AccountEntity account){

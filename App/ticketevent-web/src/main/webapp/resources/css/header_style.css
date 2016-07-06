@@ -181,3 +181,10 @@ i {
 .ip_username_rg{
 	z-index: 10;
 }
+
+
+ .form-register-error.ng-touched.ng-invalid {
+   border-color: red;
+   box-shadow : 0px 0px 2px red;
+   border-radius : 2px !important;
+ }

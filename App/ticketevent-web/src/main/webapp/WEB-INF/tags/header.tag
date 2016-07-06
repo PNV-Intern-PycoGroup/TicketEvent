@@ -128,32 +128,33 @@
 									value="${_csrf.token}" />
 					    	</form>
 					    </div>
+					    
+
 					    <div role="tabpanel" class="tab-pane fade in" id="register">
-					    	<form:form id="registerForm" name="myForm" action="register" method="post" modelAttribute="account" ng-control="abc">
+					    	<form:form id="registerForm" name="myForm" action="register" method="post" modelAttribute="account">
 					    		<div class="input-group center">
-									<span class="input-group-addon cus-icon-input-group-addon"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
-					    			<input class="form-control has-feedback" type="text" name="user_name" id="username" placeholder="<spring:message code="label.form.register.username"/>"
-					    				ng-model="user_name" required
+									<span class="input-group-addon cus-icon-input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
+					    			<input class="form-control has-feedback form-register-error" type="text" name="user_name" id="username" placeholder="<spring:message code="label.form.register.username"/>"
+					    				ng-model="user_name" required username-available
 					    				ng-minlength="4" ng-maxlength = "10"
-								        tooltip="{{(myForm.user_name.$touched && myForm.user_name.$invalid) ? ((!myForm.user_name.$viewValue.length) ?'Username is required':'Min 4 character Max 10') :''}}"
-								      
-								        tooltip-placement="right" ng-change="change()"/>
+								        tooltip="{{(myForm.user_name.$touched && myForm.user_name.$invalid) ? (!myForm.user_name.$viewValue.length) ?'Username is required':'Min 4 character Max 10' :''}}"
+								        tooltip-placement="right"/>
 					    			<span class="glyphicon glyphicon-ok-sign text-success form-control-feedback ip_username_rg" aria-hidden="true" ng-show="myForm.user_name.$valid"></span>
 								</div>
-								<!-- tooltip="{{(!myForm.user_name.$viewValue.length && myForm.user_name.$invalid) ? 'Username is required' : 'Min 4 character Max 10'}}" -->
+								
 								<div class="input-group center">
 									<span class="input-group-addon cus-icon-input-group-addon"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
-					    			<input class="form-control" type="email" name="email" id="email" placeholder="<spring:message code="label.form.email"/>"
+					    			<input class="form-control form-register-error" type="email" name="email" id="email" placeholder="<spring:message code="label.form.email"/>"
 					    				ng-model="email" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/"
 					    			 	required
-								        tooltip="{{(myForm.email.$invalid && myForm.email.$touched) ? 'Email is invalid' : ''}}" 
+								        tooltip="{{(myForm.email.$invalid && myForm.email.$touched) ? (!myForm.email.$viewValue.length) ? 'Email is required' : 'Email is invalid' : ''}}" 
 								        tooltip-placement="right"
 					    			/>
 					    			<span class="glyphicon glyphicon-ok-sign text-success form-control-feedback ip_username_rg" aria-hidden="true" ng-show="myForm.email.$valid"></span>
 								</div>
 								<div class="input-group center">
 									<span class="input-group-addon cus-icon-input-group-addon"><i class="fa fa-lock" aria-hidden="true"></i></span>
-					    			<input class="form-control" type="password" name="password"  placeholder="<spring:message code="label.form.pass"/>"
+					    			<input class="form-control form-register-error" type="password" name="password"  placeholder="<spring:message code="label.form.pass"/>"
 					    			ng-model="password"
 					    			 required
 								        tooltip="{{(myForm.password.$invalid && myForm.password.$touched) ? 'Password is required' : ''}}" 
@@ -163,15 +164,15 @@
 								</div>
 					    		<div class="input-group center">
 									<span class="input-group-addon cus-icon-input-group-addon"><i class="fa fa-key" aria-hidden="true"></i></span>
-					    			<input class="form-control" type="password" name="passConfirm"  placeholder="<spring:message code="label.form.confirmpass"/>"
+					    			<input class="form-control form-register-error" type="password" name="passConfirm" password-match="password" placeholder="<spring:message code="label.form.confirmpass"/>"
 					    			ng-model="passConfirm"
 					    			 required
 					    			 tooltip="{{(myForm.passConfirm.$invalid && myForm.passConfirm.$touched) ? 'Confirm password is not match' : ''}}" 
 								        tooltip-placement="right" ng-match="password"
 					    			/>
-					    			<span class="glyphicon glyphicon-ok-sign text-success form-control-feedback ip_username_rg" aria-hidden="true" ng-show="myForm.password.$valid && myForm.passConfirm.$modelValue === myForm.password.$modelValue"></span>
+					    			<span class="glyphicon glyphicon-ok-sign text-success form-control-feedback ip_username_rg" aria-hidden="true" ng-show="myForm.passConfirm.$valid"></span>
 								</div>
-					    		<button ng-disabled="myForm.$invalid || myForm.passConfirm.$modelValue !== myForm.password.$modelValue" class="btn btn-default btn-submit btn-ticket" type="submit" id="btRegister"><spring:message code="label.register"/></button>
+					    		<button ng-disabled="myForm.$invalid" class="btn btn-default btn-submit btn-ticket" type="submit" id="btRegister"><spring:message code="label.register"/></button>
 					    	</form:form>
 					    </div>
 					</div>

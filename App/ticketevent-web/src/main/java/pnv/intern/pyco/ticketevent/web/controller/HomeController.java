@@ -1,7 +1,5 @@
 package pnv.intern.pyco.ticketevent.web.controller;
 
-import java.util.List;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +10,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -33,15 +32,13 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String test(ModelMap model) {
 		AccountEntity account = accountService.getAccountbyUserName(SecurityContextHolder.getContext().getAuthentication().getName());
-		List<String> allUserName = accountService.getAllUserName();
 		model.put("account", account);
-		model.put("allUserName", allUserName);
 		return "index";
 	}
 	
-	@RequestMapping(value = "/api", method = RequestMethod.GET)
-	public @ResponseBody List<String> getAll(){
-		return accountService.getAllUserName();
+	@RequestMapping(value = "/api/{name}", method = RequestMethod.GET)
+	public @ResponseBody boolean getAll(@PathVariable("name") String username){
+		return accountService.findUser(username);
 	}
 
 	@RequestMapping(value = "sentEmail", method = RequestMethod.POST)
@@ -50,11 +47,6 @@ public class HomeController {
 		return "index";
 	}
 	
-	
-//	@RequestMapping(value = "accountapi", method = RequestMethod.GET)
-//	public AccountEntity getAccount() {
-//		return accountService.getAccount(1);
-//	}
 	
 	@RequestMapping(value = "add-user", method = RequestMethod.GET)
 	public String addAnUserGet(Model model){

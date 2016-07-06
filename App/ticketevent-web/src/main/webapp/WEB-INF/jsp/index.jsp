@@ -15,28 +15,14 @@
 <title>Welcome</title>
 <script>
     	function Hello($scope, $http) {
-    	    $http.get('http://http://localhost:8080/ticketevent-web/api').
+    	    $http.get('http://localhost:8080/ticketevent-web/api/phamyqb').
     	        success(function(data) {
     	            $scope.user = data;
     	        });
     	}
-    	</script>
-    	<script type="text/javascript">
-    	var app = angular.module('myApp', ['ui.bootstrap']);
-    	</script>
-    	<script type="text/javascript">
-					   		function checkUserName(username){
-					   			var varcheck;
-					   			if(username.length <= 0){
-					   				varcheck = "Username is required";
-					   			}else if(username.length < 4 || username.length > 10){
-					   				varcheck = "Min 4 character Max 10 character";
-					   			}
-					   			return varcheck;
-					   		}
-					    </script>
+    	</script>   
 </head>
-<body ng-app="myApp">
+<body ng-app="myApp" ng-controller = "MainCtrl">
 
 	<layout:header></layout:header>
 	<section id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -60,9 +46,9 @@
 			</div>
 		</div>
 
-		<a class="left carousel-control" href="#myCarousel" data-slide="prev">
+		<a class="left carousel-control" ng-non-bindable href="#myCarousel" data-slide="prev">
 			<span class="icon-prev"></span>
-		</a> <a class="right carousel-control" href="#myCarousel"
+		</a> <a class="right carousel-control" ng-non-bindable href="#myCarousel"
 			data-slide="next"> <span class="icon-next"></span>
 		</a>
 	</section>
@@ -209,7 +195,6 @@
 	<layout:footer></layout:footer>
 
 	<script	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-	<script	src="<%=request.getContextPath()%>/resources/js/scroll_index.js"></script>
 	<script src="<%=request.getContextPath()%>/resources/js/header.js"></script>
 	<script	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	
