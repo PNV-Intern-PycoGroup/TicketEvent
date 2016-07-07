@@ -74,9 +74,17 @@
 					<c:if test="${account != null}">
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false"><c:out value="${account.user_name}"/> <span class="caret"></span></a>
+						aria-expanded="false">
+						<c:choose>
+						<c:when test="${account.userInfor.name == null || account.userInfor.name.equals('')}">
+							<c:out value="${account.user_name}"/>
+						</c:when>
+						<c:otherwise>
+							<c:out value="${account.userInfor.name}"/>
+						</c:otherwise>
+						</c:choose><span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="#"><spring:message code="label.account"/></a></li>
+							<li><a href="#" data-toggle="modal" data-target="#accountInfor"><spring:message code="label.account"/></a></li>
 							<li><a href="#"><spring:message code="label.myTicket"/></a></li>
 							<li><a href="#"><spring:message code="label.myEvent"/></a></li>
 							<li role="separator" class="divider"></li>
@@ -176,6 +184,82 @@
 					    	</form:form>
 					    </div>
 					</div>
+		        </div>
+	    	</div>
+	    </div>
+	</div>
+	
+	
+	<div class="modal fade" id="accountInfor" role="dialog">
+		<div class="modal-dialog modal-register">
+	    	<!-- Modal content-->
+	    	<div class="modal-content">
+	        	<div class="modal-header">
+	        		<button type="button" class="close" data-dismiss="modal">&times;</button>
+		        	<div class="login-logout-content">
+		        	Thông Tin Tài Khoản
+					</div>
+		        </div>
+		        <div class="modal-body fix-padding">
+		        	<!-- Tab panes -->
+					    <div role="tabpanel" class="tab-pane fade in active">
+								<form class="text-center" action="#" method="post" enctype="multipart/form-data">
+									<input type="file" id="avataUpload" style="display: none;"/>
+									<div class="kv-avatar">
+										<table>
+											<tr>
+												<td>
+													<div class="file-input">
+												    	<div id="fileupload" tabindex="-1">
+												    		<img id="avatar" src="http://plugins.krajee.com/uploads/default_avatar_male.jpg" alt="Your Avatar" style="width:160px; height: 160px;"/><h6 class="text-muted">Click to select</h6>
+												    	</div>
+												 	</div>
+												</td>
+												<td>
+													<div class="user-infor">
+									 		<table class="user-table">
+									 			<tr>
+									 				<td><i class="fa fa-user"></i> </td>
+									 				<td><label for="name"><c:out value="${account.user_name}"></c:out></label></td>
+									 				<td><a id="buttonid" name="buttonid" data-label="name" href="#"><i class="fa fa-pencil"></i></a></td>
+									 			</tr>
+									 		</table>
+									 		<table class="user-table">
+									 			<tr><td><i class="fa fa-envelope"></i> </td>
+									 				<td><label for="email"><c:out value="${account.email}"></c:out></label></td>
+									 				<td><a id="buttonid" name="buttonid" data-label="email" href="#"><i class="fa fa-pencil"></i></a></td>
+									 			</tr>
+									 		</table>
+									 		<table class="user-table">
+									 			<tr>
+									 				<td><i class="fa fa-map-marker"></i> </td>
+									 				<td><label for="address"><c:out value="${account.userInfor.address}"></c:out></label></td>
+									 				<td><a id="buttonid" name="buttonid" data-label="address" href="#"><i class="fa fa-pencil"></i></a></td>
+									 			</tr>
+									 		</table>
+									 		<table class="user-table">
+									 			<tr>
+									 				<td><i class="fa fa-phone"></i> </td>
+									 				<td><label for="phone"><c:out value="${account.userInfor.phone}"></c:out></label></td>
+									 				<td><a id="buttonid" name="buttonid" data-label="phone" href="#"><i class="fa fa-pencil"></i></a></td>
+									 			</tr>
+									 		</table>
+									 	</div>
+												</td>
+											</tr>
+										</table>
+										<a href="" data-toggle="collapse" data-target="#demo">More information <i class="fa fa-caret-down"></i></a>
+										<div id="demo" class="collapse">
+											    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+											    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+											    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+  										</div>
+										<hr>
+										<button class="btn btn-primary btn-sm">Lưu lại</button>
+									</div>
+								</form>
+					    </div>
+					
 		        </div>
 	    	</div>
 	    </div>

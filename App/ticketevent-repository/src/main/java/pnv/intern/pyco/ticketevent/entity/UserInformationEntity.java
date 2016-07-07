@@ -38,18 +38,22 @@ public class UserInformationEntity {
 
 	@Column(name = "BIRTHDAY")
 	private Date birthday;
+	
+	@Column(name = "AVATAR")
+	private String avatar;
 
 	public UserInformationEntity() {
 
 	}
 
 	public UserInformationEntity(String name, String address, String phone,
-			String gender, Date birthday) {
+			String gender, Date birthday, String avatar) {
 		this.name = name;
 		this.address = address;
 		this.phone = phone;
 		this.gender = gender;
 		this.birthday = birthday;
+		this.avatar = avatar;
 	}
 
 	public AccountEntity getAccount() {
@@ -100,4 +104,20 @@ public class UserInformationEntity {
 		this.birthday = birthday;
 	}
 
+	public String getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
 }

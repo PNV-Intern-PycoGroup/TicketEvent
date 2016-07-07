@@ -8,8 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,7 +17,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pnv.intern.pyco.ticketevent.entity.AccountEntity;
 import pnv.intern.pyco.ticketevent.services.AccountService;
 import pnv.intern.pyco.ticketevent.services.EmailServices;
-import pnv.intern.pyco.ticketevent.services.model.UserModel;
 
 @Controller
 public class HomeController {
@@ -47,25 +44,6 @@ public class HomeController {
 		return "index";
 	}
 	
-	
-	@RequestMapping(value = "add-user", method = RequestMethod.GET)
-	public String addAnUserGet(Model model){
-		UserModel user = new UserModel();
-		model.addAttribute("user", user);
-		return "input";
-	}
-	
-	@RequestMapping(value = "/add-user", consumes = "application/x-www-form-urlencoded", method = RequestMethod.POST)
-	public String addAnUser(@ModelAttribute @Validated UserModel user, BindingResult result, Model model) {
-		System.out.print("Abc");
-		if (result.hasErrors()) {
-			model.addAttribute("error", "Error form");
-			return "input";
-		}
-		model.addAttribute("user", user);
-		
-		return "header_layout";
-	}
 	
 	@RequestMapping(value = "/view-event", method = RequestMethod.GET)
 	public String viewEvent(Model model) {

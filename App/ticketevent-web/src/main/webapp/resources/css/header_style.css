@@ -183,8 +183,43 @@ i {
 }
 
 
+///////// Ý sửa ở đây
  .form-register-error.ng-touched.ng-invalid {
    border-color: red;
    box-shadow : 0px 0px 2px red;
    border-radius : 2px !important;
  }
+ 
+.kv-avatar {
+	width: 100%;
+	margin: auto;
+}
+.file-input{
+	cursor:pointer;
+}
+.user-table{
+	border-spacing: 10px;
+    border-collapse: separate;
+}
+.user-infor{
+	margin-left: 20px;
+}
+
+
+.user-infor .user-table input{
+    border: 1px solid #30aee8;
+    padding-left: 10px;
+    border-radius: 2px;
+}
+
+.fix-padding{
+	padding: 15px !important;
+	margin: auto !important;
+}
+
+@media screen and (min-width: 768px){
+	.modal-register {
+	    width: 600px !important;
+	}
+}
+ 
