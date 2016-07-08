@@ -7,11 +7,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
-@EnableWebMvcSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
@@ -22,9 +20,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		auth.jdbcAuthentication().dataSource(dataSource)
 		.usersByUsernameQuery(
-			"select user_name, password, isActive from accounts where user_name=?")
+			"select user_name, password, is_active from account where is_active = 1 and user_name=?")
 		.authoritiesByUsernameQuery(
-			"select a.user_name, u.role from user_roles u, accounts a where u.id = a.role_id and a.user_name=?");
+			"select a.user_name, u.role from user_role u, account a where u.id = a.role_id and a.user_name=?");
 	}	
 	
 	@Override

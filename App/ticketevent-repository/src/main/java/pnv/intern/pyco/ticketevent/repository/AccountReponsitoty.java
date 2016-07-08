@@ -8,6 +8,6 @@ import pnv.intern.pyco.ticketevent.repository.entity.AccountEntity;
 
 
 public interface AccountReponsitoty extends JpaRepository<AccountEntity, Long>{
-	 @Query("SELECT u FROM AccountEntity u WHERE u.user_name = ?1")
+	 @Query("SELECT u FROM AccountEntity u WHERE u.userName = ?1")
 	 AccountEntity findAccountByUserName(final String user_name);
 }

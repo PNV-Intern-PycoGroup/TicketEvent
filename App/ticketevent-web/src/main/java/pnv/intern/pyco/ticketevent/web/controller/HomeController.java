@@ -17,13 +17,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import pnv.intern.pyco.ticketevent.repository.entity.AccountEntity;
 import pnv.intern.pyco.ticketevent.services.AccountService;
-import pnv.intern.pyco.ticketevent.services.EmailServices;
 import pnv.intern.pyco.ticketevent.web.util.FileUtil;
 
 @Controller
 public class HomeController {
-	@Autowired
-	private EmailServices email;
 	
 	@Autowired
 	private AccountService accountService;
@@ -42,13 +39,6 @@ public class HomeController {
 	public @ResponseBody boolean getAll(@PathVariable("name") String username){
 		return accountService.findUser(username);
 	}
-
-	@RequestMapping(value = "sentEmail", method = RequestMethod.POST)
-	public String sentTest(String emailTo) {
-		email.sentEmailCreateEvent("phamyqb@gmail.com");
-		return "index";
-	}
-	
 	
 	@RequestMapping(value = "/view-event", method = RequestMethod.GET)
 	public String viewEvent(Model model) {

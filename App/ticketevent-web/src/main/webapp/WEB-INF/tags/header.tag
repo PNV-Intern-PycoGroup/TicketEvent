@@ -77,7 +77,7 @@
 						aria-expanded="false">
 						<c:choose>
 						<c:when test="${account.userInfor.name == null || account.userInfor.name.equals('')}">
-							<c:out value="${account.user_name}"/>
+							<c:out value="${account.userName}"/>
 						</c:when>
 						<c:otherwise>
 							<c:out value="${account.userInfor.name}"/>
@@ -142,12 +142,12 @@
 					    	<form:form id="registerForm" name="myForm" action="register" method="post" modelAttribute="account">
 					    		<div class="input-group center">
 									<span class="input-group-addon cus-icon-input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
-					    			<input class="form-control has-feedback form-register-error" type="text" name="user_name" id="username" placeholder="<spring:message code="label.form.register.username"/>"
-					    				ng-model="user_name" required username-available
+					    			<input class="form-control has-feedback form-register-error" type="text" name="userName" id="username" placeholder="<spring:message code="label.form.register.username"/>"
+					    				ng-model="userName" required username-available
 					    				ng-minlength="4" ng-maxlength = "10"
-								        tooltip="{{(myForm.user_name.$touched && myForm.user_name.$invalid) ? (!myForm.user_name.$viewValue.length) ?'Username is required':'Min 4 character Max 10' :''}}"
+								        tooltip="{{(myForm.userName.$touched && myForm.userName.$invalid) ? (!myForm.userName.$viewValue.length) ?'Username is required':'Min 4 character Max 10' :''}}"
 								        tooltip-placement="right"/>
-					    			<span class="glyphicon glyphicon-ok-sign text-success form-control-feedback ip_username_rg" aria-hidden="true" ng-show="myForm.user_name.$valid"></span>
+					    			<span class="glyphicon glyphicon-ok-sign text-success form-control-feedback ip_username_rg" aria-hidden="true" ng-show="myForm.userName.$valid"></span>
 								</div>
 								
 								<div class="input-group center">
@@ -220,7 +220,7 @@
 									 		<table class="user-table">
 									 			<tr>
 									 				<td><i class="fa fa-user"></i> </td>
-									 				<td><label for="name"><c:out value="${account.user_name}"></c:out></label></td>
+									 				<td><label for="name"><c:out value="${account.userName}"></c:out></label></td>
 									 				<td><a id="buttonid" name="buttonid" data-label="name" href="#"><i class="fa fa-pencil"></i></a></td>
 									 			</tr>
 									 		</table>
