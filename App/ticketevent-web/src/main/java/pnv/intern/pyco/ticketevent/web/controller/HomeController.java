@@ -1,5 +1,6 @@
 package pnv.intern.pyco.ticketevent.web.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +15,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import pnv.intern.pyco.ticketevent.entity.AccountEntity;
+import pnv.intern.pyco.ticketevent.repository.entity.AccountEntity;
 import pnv.intern.pyco.ticketevent.services.AccountService;
 import pnv.intern.pyco.ticketevent.services.EmailServices;
+import pnv.intern.pyco.ticketevent.web.util.FileUtil;
 
 @Controller
 public class HomeController {
@@ -25,6 +27,9 @@ public class HomeController {
 	
 	@Autowired
 	private AccountService accountService;
+
+	@Autowired
+    private HttpServletRequest request;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String test(ModelMap model) {
@@ -82,4 +87,37 @@ public class HomeController {
 	public String Register(){
 		return "index";
 	}
+	
+	@RequestMapping(value = "/upload-file", method = RequestMethod.POST)
+	public void createUploadFile(String file) {
+		
+		if (file == null) {
+			return;
+		}
+
+		String base64Img = file.split(",")[1];
+		String filePath = request.getServletContext().getRealPath("/resources/");
+		String expectPath = filePath + "/images";
+		
+        String fullPath = FileUtil.getRealPath(expectPath);
+		FileUtil.saveImageOndisk(base64Img, fullPath);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/upload-file-free-style", method = RequestMethod.POST)
+	public String createUploadFileFreeStyle(String file) {
+		
+		if (file == null) {
+			return "error";
+		}
+		
+		String base64Img = file.split(",")[1];
+		String filePath = request.getServletContext().getRealPath("/resources");
+		String expectPath = filePath + "/images";
+        String fullPath = FileUtil.getRealPath(expectPath);
+		FileUtil.saveImageOndisk(base64Img, fullPath);
+		
+		return "http://localhost:8080/ticketevent-web" + fullPath.split("ticketevent-web")[1];
+	}
+	
 }

@@ -1,4 +1,4 @@
-package pnv.intern.pyco.ticketevent.entity;
+package pnv.intern.pyco.ticketevent.repository.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

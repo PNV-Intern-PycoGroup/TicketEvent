@@ -1,0 +1,53 @@
+.upload-file-free-style {
+	margin: 10px auto;
+	padding: 10px;
+	text-align: center;
+}
+
+.output-image {
+	height: 100px;
+	margin: 10px;
+	padding: 10px;
+	background-color: #e6e6e6;
+	box-shadow: 0px 0px 10px #bfbfbf;
+}
+
+.output-image:HOVER {
+	box-shadow: 0px 0px 10px #30aee8;
+}
+
+.output-image > img,
+.output-image > .info-link-image {
+	object-fit: contain;
+	height: 100%;
+}
+
+.output-image > .info-link-image > span,
+.output-image > .info-link-image > a {
+	height: 50%;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.clear {
+    clear: both;
+}
+
+.upload-file-free-style > a {
+	position: relative;
+	padding: 10px 20px 10px 20px;
+}
+
+.input-image {
+	float: left;
+	position: absolute;
+	top: 0;
+    left: 0;
+}
+
+.disabled,
+.disabled:HOVER,
+.disabled:ACTIVE,
+.disabled:FOCUS {
+	background-color: #e6e6e6 !important;
+}

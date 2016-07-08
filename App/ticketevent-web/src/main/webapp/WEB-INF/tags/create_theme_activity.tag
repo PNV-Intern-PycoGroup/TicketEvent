@@ -4,9 +4,12 @@
 <%@taglib uri="pnv.intern.pyco/tags" prefix="layout"%>
 <%@tag pageEncoding="UTF-8"%>
 
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
 <link rel="stylesheet" href="/ticketevent-web/resources/css/header_style.css">
 <link rel="stylesheet" href="/ticketevent-web/resources/css/create_theme_activity.css">
+<link rel="stylesheet" href="/ticketevent-web/resources/css/cropper.min.css">
+<link rel="stylesheet" href="/ticketevent-web/resources/css/create_theme_free_style.css">
 <article>
 	<header>
 		<nav class="navbar navbar-default navbar-fixed-top">
@@ -103,7 +106,7 @@
 			</form>
 		</div>
 		<div role="tabpanel" class="tab-pane fade in" id="ticket-layout">
-			<layout:create_theme_study></layout:create_theme_study>
+			<layout:create_theme_free_style></layout:create_theme_free_style>
 		</div>
 		<div role="tabpanel" class="tab-pane fade in" id="ticket-setting">
 			<h2>Đường đẫn đến sự kiện</h2>
@@ -142,4 +145,7 @@
 <!-- Latest compiled and minified JavaScript -->
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
+<!-- <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script> -->
 <script src="/ticketevent-web/resources/js/create_theme_activity.js"></script>
+<script src="/ticketevent-web/resources/js/cropper.min.js"></script>
+<script src="/ticketevent-web/resources/js/upload_image.js"></script>

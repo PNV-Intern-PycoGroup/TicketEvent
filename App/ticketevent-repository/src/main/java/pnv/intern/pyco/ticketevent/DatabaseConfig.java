@@ -1,10 +1,14 @@
 package pnv.intern.pyco.ticketevent;
 
+import java.util.Properties;
+
 import javax.sql.DataSource;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.orm.hibernate4.HibernateTransactionManager;
+import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
@@ -19,13 +23,13 @@ public class DatabaseConfig {
 
 	private final String DB_USERNAME = "root";
 
-/*	private final String HIBERNATE_DIALECT = "org.hibernate.dialect.MySQL5Dialect";
+	private final String HIBERNATE_DIALECT = "org.hibernate.dialect.MySQL5Dialect";
 
 	private final String HIBERNATE_SHOW_SQL = "true";
 
-	private final String ENTITYMANAGER_PACKAGES_TO_SCAN = ""; // put packages to
+	private final String ENTITYMANAGER_PACKAGES_TO_SCAN = "pnv.intern.pyco.ticketevent"; // put packages to
 																// scan
-*/
+
 	@Bean
 	public DataSource dataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
@@ -36,7 +40,7 @@ public class DatabaseConfig {
 		return dataSource;
 	}
 
-/*	@Bean
+	@Bean
 	public LocalSessionFactoryBean sessionFactory() {
 		LocalSessionFactoryBean sessionFactoryBean = new LocalSessionFactoryBean();
 		sessionFactoryBean.setDataSource(dataSource());
@@ -47,12 +51,12 @@ public class DatabaseConfig {
 		sessionFactoryBean.setHibernateProperties(hibernateProperties);
 
 		return sessionFactoryBean;
-	}*/
+	}
 
-/*	@Bean
+	@Bean
 	public HibernateTransactionManager transactionManager() {
 		HibernateTransactionManager transactionManager = new HibernateTransactionManager();
 		transactionManager.setSessionFactory(sessionFactory().getObject());
 		return transactionManager;
-	}*/
+	}
 }

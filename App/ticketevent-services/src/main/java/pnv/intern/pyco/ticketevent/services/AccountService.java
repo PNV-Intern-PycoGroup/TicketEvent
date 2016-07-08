@@ -7,9 +7,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import pnv.intern.pyco.ticketevent.entity.AccountEntity;
-import pnv.intern.pyco.ticketevent.entity.UserRoleEntity;
 import pnv.intern.pyco.ticketevent.repository.AccountReponsitoty;
+import pnv.intern.pyco.ticketevent.repository.entity.AccountEntity;
+import pnv.intern.pyco.ticketevent.repository.entity.UserRoleEntity;
 
 @Service
 public class AccountService {
