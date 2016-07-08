@@ -1,6 +1,5 @@
 package pnv.intern.pyco.ticketevent.services;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -46,9 +45,9 @@ public class AccountService {
 	}
 	
 	public void Save(AccountEntity account){
-		account.setActive_date(new Date());
+		account.setActiveDate(new Date());
 		account.setIsActive(1);
-		account.setUser_role(new UserRoleEntity(1, "ROLE_USER"));
+		account.setUserRole(new UserRoleEntity(1, "ROLE_USER"));
 		emailService.sentEmailRegister(account.getEmail());
 		accountReponsitoty.save(account);
 	}

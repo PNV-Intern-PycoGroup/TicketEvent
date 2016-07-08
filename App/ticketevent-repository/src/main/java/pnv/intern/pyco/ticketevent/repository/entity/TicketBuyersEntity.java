@@ -7,73 +7,72 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import pnv.intern.pyco.ticketevent.repository.util.DatabaseConstantUtil;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
-@Table(name = DatabaseConstantUtil.USER_INFORMATION_TABLE)
-public class UserInformationEntity {
-
+@Table(name = DatabaseConstantUtil.TICKET_BUYER_TABLE)
+public class TicketBuyersEntity {
 	@Id
-	@Column(name = DatabaseConstantUtil.USER_INFORMATION_FIELD_ID)
+	@Column(name = DatabaseConstantUtil.TICKET_BUYER_FIELD_ID)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
-	@JsonIgnore
-	@OneToOne(mappedBy = "userInfor")
+	
+	@ManyToOne
+	@JoinColumn(name = DatabaseConstantUtil.TICKET_BUYER_FIELD_TICKET_ID)
+	private TicketsEntity ticket;
+	
+	@ManyToOne
+	@JoinColumn(name = DatabaseConstantUtil.TICKET_BUYER_FIELD_ACCOUNT_ID)
 	private AccountEntity account;
-
-	@Column(name = DatabaseConstantUtil.USER_INFORMATION_FIELD_NAME)
+	
+	@Column(name = DatabaseConstantUtil.TICKET_BUYER_FIELD_NAME)
 	private String name;
 
-	@Column(name = DatabaseConstantUtil.USER_INFORMATION_FIELD_ADDRESS)
+	@Column(name = DatabaseConstantUtil.TICKET_BUYER_FIELD_ADDRESS)
 	private String address;
 
-	@Column(name = DatabaseConstantUtil.USER_INFORMATION_FIELD_PHONE)
+	@Column(name = DatabaseConstantUtil.TICKET_BUYER_FIELD_PHONE)
 	private String phone;
 
-	@Column(name = DatabaseConstantUtil.USER_INFORMATION_FIELD_GENDER)
+	@Column(name = DatabaseConstantUtil.TICKET_BUYER_FIELD_GENDER)
 	private String gender;
 
-	@Column(name = DatabaseConstantUtil.USER_INFORMATION_FIELD_DATE_OF_BIRTH)
+	@Column(name = DatabaseConstantUtil.TICKET_BUYER_FIELD_DATE_OF_BIRTH)
 	private Date dateOfBirth;
-	
-	@Column(name = DatabaseConstantUtil.USER_INFORMATION_FIELD_AVATAR)
-	private String avatar;
 
-	public UserInformationEntity() {
-		super();
-	}
-
-	public UserInformationEntity(AccountEntity account, String name,
-			String address, String phone, String gender, Date dateOfBirth,
-			String avatar) {
-		super();
-		this.account = account;
-		this.name = name;
-		this.address = address;
-		this.phone = phone;
-		this.gender = gender;
-		this.dateOfBirth = dateOfBirth;
-		this.avatar = avatar;
-	}
-
-	public UserInformationEntity(Long id, AccountEntity account, String name,
-			String address, String phone, String gender, Date dateOfBirth,
-			String avatar) {
+	public TicketBuyersEntity(Long id, TicketsEntity ticket,
+			AccountEntity account, String name, String address, String phone,
+			String gender, Date dateOfBirth) {
 		super();
 		this.id = id;
+		this.ticket = ticket;
 		this.account = account;
 		this.name = name;
 		this.address = address;
 		this.phone = phone;
 		this.gender = gender;
 		this.dateOfBirth = dateOfBirth;
-		this.avatar = avatar;
+	}
+
+	public TicketBuyersEntity(TicketsEntity ticket, AccountEntity account,
+			String name, String address, String phone, String gender,
+			Date dateOfBirth) {
+		super();
+		this.ticket = ticket;
+		this.account = account;
+		this.name = name;
+		this.address = address;
+		this.phone = phone;
+		this.gender = gender;
+		this.dateOfBirth = dateOfBirth;
+	}
+
+	public TicketBuyersEntity() {
+		super();
 	}
 
 	public Long getId() {
@@ -82,6 +81,14 @@ public class UserInformationEntity {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public TicketsEntity getTicket() {
+		return ticket;
+	}
+
+	public void setTicket(TicketsEntity ticket) {
+		this.ticket = ticket;
 	}
 
 	public AccountEntity getAccount() {
@@ -131,13 +138,5 @@ public class UserInformationEntity {
 	public void setDateOfBirth(Date dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
-
-	public String getAvatar() {
-		return avatar;
-	}
-
-	public void setAvatar(String avatar) {
-		this.avatar = avatar;
-	}
-
+	
 }

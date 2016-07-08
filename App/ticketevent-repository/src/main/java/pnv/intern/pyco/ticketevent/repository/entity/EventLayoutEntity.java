@@ -10,47 +10,47 @@ import javax.persistence.Table;
 import pnv.intern.pyco.ticketevent.repository.util.DatabaseConstantUtil;
 
 @Entity
-@Table(name = DatabaseConstantUtil.USER_ROLE_TABLE)
-public class UserRoleEntity {
-	
+@Table(name = DatabaseConstantUtil.EVENT_LAYOUT_TABLE)
+public class EventLayoutEntity {
 	@Id
-	@Column(name = DatabaseConstantUtil.USER_ROLE_FIELD_ID)
+	@Column(name = DatabaseConstantUtil.EVENT_LAYOUT_FIELD_ID)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	
-	@Column(name = DatabaseConstantUtil.USER_ROLE_FIELD_ROLE)
-	private String role;
+	@Column(name = DatabaseConstantUtil.EVENT_LAYOUT_FIELD_NAME)
+	private String name;
 
-	public UserRoleEntity() {
+	public EventLayoutEntity() {
 		super();
 	}
 
-	public UserRoleEntity(String role) {
+	public EventLayoutEntity(String name) {
 		super();
-		this.role = role;
+		this.name = name;
 	}
 
-	public UserRoleEntity(long id, String role) {
+	public EventLayoutEntity(Long id, String name) {
 		super();
 		this.id = id;
-		this.role = role;
+		this.name = name;
 	}
 
 	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public String getRole() {
-		return role;
+	public String getName() {
+		return name;
 	}
 
-	public void setRole(String role) {
-		this.role = role;
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 	
+
 }

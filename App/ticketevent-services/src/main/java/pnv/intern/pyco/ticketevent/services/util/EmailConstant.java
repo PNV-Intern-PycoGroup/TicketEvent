@@ -1,4 +1,4 @@
-package pnv.intern.pyco.ticketevent.services.constants;
+package pnv.intern.pyco.ticketevent.services.util;
 
 public class EmailConstant {
 	  public static final String MY_EMAIL = "phamyqb@gmail.com";

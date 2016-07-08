@@ -13,51 +13,68 @@ import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
+import pnv.intern.pyco.ticketevent.repository.util.DatabaseConstantUtil;
+
 @Entity
-@Table(name = "ACCOUNTS")
+@Table(name = DatabaseConstantUtil.ACCOUNT_TABLE)
 public class AccountEntity{
 	
 	@Id
-	@Column(name = "ID")
+	@Column(name = DatabaseConstantUtil.ACCOUNT_FIELD_ID)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(name ="USER_NAME")
-	private String user_name;
+	@Column(name = DatabaseConstantUtil.ACCOUNT_FIELD_USER_NAME)
+	private String userName;
 	
-	@Column(name = "PASSWORD")
+	@Column(name = DatabaseConstantUtil.ACCOUNT_FIELD_PASSWORD)
 	private String password;
 	
-	@Column(name = "EMAIL")
+	@Column(name = DatabaseConstantUtil.ACCOUNT_FIELD_EMAIL)
 	private String email;
 	
 	@ManyToOne
-	@JoinColumn(name = "ROLE_ID")
-	private UserRoleEntity user_role;
+	@JoinColumn(name = DatabaseConstantUtil.ACCOUNT_FIELD_ROLE_ID)
+	private UserRoleEntity userRole;
 	
-	@Column(name = "ISACTIVE")
+	@Column(name = DatabaseConstantUtil.ACCOUNT_FIELD_IS_ACTIVE)
 	private int isActive;
 	
-	@Column(name = "ACTIVE_DATE")
-	private Date active_date;
+	@Column(name = DatabaseConstantUtil.ACCOUNT_FIELD_ACTIVE_DATE)
+	private Date activeDate;
 
 	@OneToOne
 	@PrimaryKeyJoinColumn
 	private UserInformationEntity userInfor;
 
 	public AccountEntity() {
+		super();
 	}
 
-	public AccountEntity(Long id, String user_name, String password,
-			String email, UserRoleEntity user_role, int isActive,
-			Date active_date, UserInformationEntity userInfor) {
-		this.id = id;
-		this.user_name = user_name;
+	public AccountEntity(String userName, String password, String email,
+			UserRoleEntity userRole, int isActive, Date activeDate,
+			UserInformationEntity userInfor) {
+		super();
+		this.userName = userName;
 		this.password = password;
 		this.email = email;
-		this.user_role = user_role;
+		this.userRole = userRole;
 		this.isActive = isActive;
-		this.active_date = active_date;
+		this.activeDate = activeDate;
+		this.userInfor = userInfor;
+	}
+
+	public AccountEntity(Long id, String userName, String password,
+			String email, UserRoleEntity userRole, int isActive,
+			Date activeDate, UserInformationEntity userInfor) {
+		super();
+		this.id = id;
+		this.userName = userName;
+		this.password = password;
+		this.email = email;
+		this.userRole = userRole;
+		this.isActive = isActive;
+		this.activeDate = activeDate;
 		this.userInfor = userInfor;
 	}
 
@@ -69,12 +86,12 @@ public class AccountEntity{
 		this.id = id;
 	}
 
-	public String getUser_name() {
-		return user_name;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setUser_name(String user_name) {
-		this.user_name = user_name;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	public String getPassword() {
@@ -93,12 +110,12 @@ public class AccountEntity{
 		this.email = email;
 	}
 
-	public UserRoleEntity getUser_role() {
-		return user_role;
+	public UserRoleEntity getUserRole() {
+		return userRole;
 	}
 
-	public void setUser_role(UserRoleEntity user_role) {
-		this.user_role = user_role;
+	public void setUserRole(UserRoleEntity userRole) {
+		this.userRole = userRole;
 	}
 
 	public int getIsActive() {
@@ -109,12 +126,12 @@ public class AccountEntity{
 		this.isActive = isActive;
 	}
 
-	public Date getActive_date() {
-		return active_date;
+	public Date getActiveDate() {
+		return activeDate;
 	}
 
-	public void setActive_date(Date active_date) {
-		this.active_date = active_date;
+	public void setActiveDate(Date activeDate) {
+		this.activeDate = activeDate;
 	}
 
 	public UserInformationEntity getUserInfor() {
@@ -125,8 +142,4 @@ public class AccountEntity{
 		this.userInfor = userInfor;
 	}
 
-
-	
-	
-	
 }
