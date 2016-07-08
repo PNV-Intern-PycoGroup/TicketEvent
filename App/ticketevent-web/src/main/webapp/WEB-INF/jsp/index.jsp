@@ -10,6 +10,7 @@
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/index.css" />
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/footer.css" />
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/header_style.css">
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/datepicker.css">
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.1/ui-bootstrap-tpls.min.js"></script>
 <title>Welcome</title>
@@ -197,6 +198,7 @@
 	<script	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 	<script src="<%=request.getContextPath()%>/resources/js/header.js"></script>
 	<script	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/js/boostrap-datepicker.js"></script>
 	
 </body>
 </html>
