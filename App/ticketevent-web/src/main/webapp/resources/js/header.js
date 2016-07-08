@@ -85,8 +85,9 @@ function readURL(input) {
 $("#avataUpload").change(function(){
     readURL(this);
 });
+///////////////////////////////////////
 
-
+// Change label to input
 $('#edit').click(function() {
 	 var text = $('.text-info').text();
 	 var input = $('<input id="attribute" type="text" value="' + text + '" />')
@@ -109,3 +110,29 @@ $(document).ready(function() {
 	    tar.replaceWith("<input type='text' name='"+tar_id+"' id='"+tar_id+"' value='"+val+"' />");
 	  });
 	});
+/////////////////////////////////////
+
+// Date Pịker
+$(document).ready(function () {
+    
+    $('#example1').datepicker({
+        format: "dd/mm/yyyy"
+    });  
+
+});
+
+$(document).ready(function () {
+	var show = 0;
+	$('#userIf-more-hide').click(function () {
+		if(show === 0){
+			$('#caret-change').removeClass('fa fa-caret-down').addClass('fa fa-caret-up');
+			show = 1;
+		}else{
+			$('#caret-change').removeClass('fa fa-caret-up').addClass('fa fa-caret-down');
+			show = 0;
+		}
+	})
+})
+
+
+

@@ -77,7 +77,7 @@
 						aria-expanded="false">
 						<c:choose>
 						<c:when test="${account.userInfor.name == null || account.userInfor.name.equals('')}">
-							<c:out value="${account.userName}"/>
+							<c:out value="${account.user_name}"/>
 						</c:when>
 						<c:otherwise>
 							<c:out value="${account.userInfor.name}"/>
@@ -142,12 +142,12 @@
 					    	<form:form id="registerForm" name="myForm" action="register" method="post" modelAttribute="account">
 					    		<div class="input-group center">
 									<span class="input-group-addon cus-icon-input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
-					    			<input class="form-control has-feedback form-register-error" type="text" name="userName" id="username" placeholder="<spring:message code="label.form.register.username"/>"
-					    				ng-model="userName" required username-available
+					    			<input class="form-control has-feedback form-register-error" type="text" name="user_name" id="username" placeholder="<spring:message code="label.form.register.username"/>"
+					    				ng-model="user_name" required username-available
 					    				ng-minlength="4" ng-maxlength = "10"
-								        tooltip="{{(myForm.userName.$touched && myForm.userName.$invalid) ? (!myForm.userName.$viewValue.length) ?'Username is required':'Min 4 character Max 10' :''}}"
+								        tooltip="{{(myForm.user_name.$touched && myForm.user_name.$invalid) ? (!myForm.user_name.$viewValue.length) ?'Username is required':'Min 4 character Max 10' :''}}"
 								        tooltip-placement="right"/>
-					    			<span class="glyphicon glyphicon-ok-sign text-success form-control-feedback ip_username_rg" aria-hidden="true" ng-show="myForm.userName.$valid"></span>
+					    			<span class="glyphicon glyphicon-ok-sign text-success form-control-feedback ip_username_rg" aria-hidden="true" ng-show="myForm.user_name.$valid"></span>
 								</div>
 								
 								<div class="input-group center">
@@ -197,21 +197,22 @@
 	        	<div class="modal-header">
 	        		<button type="button" class="close" data-dismiss="modal">&times;</button>
 		        	<div class="login-logout-content">
-		        	Thông Tin Tài Khoản
+		        	<spring:message code="label.form.profile.tittle"></spring:message>
 					</div>
 		        </div>
 		        <div class="modal-body fix-padding">
 		        	<!-- Tab panes -->
 					    <div role="tabpanel" class="tab-pane fade in active">
-								<form class="text-center" action="#" method="post" enctype="multipart/form-data">
-									<input type="file" id="avataUpload" style="display: none;"/>
+								<form:form class="text-center" action="#" method="post" enctype="multipart/form-data" modelAttribute="account">
+									<input type="file" name = "file" id="avataUpload"/>
 									<div class="kv-avatar">
 										<table>
 											<tr>
 												<td>
 													<div class="file-input">
 												    	<div id="fileupload" tabindex="-1">
-												    		<img id="avatar" src="http://plugins.krajee.com/uploads/default_avatar_male.jpg" alt="Your Avatar" style="width:160px; height: 160px;"/><h6 class="text-muted">Click to select</h6>
+												    		<img id="avatar" src="http://plugins.krajee.com/uploads/default_avatar_male.jpg" alt="Your Avatar" style="width:160px; height: 160px;"/>
+												    		<h6 class="text-muted"><spring:message code="label.form.profile.avatar.direct"></spring:message></h6>
 												    	</div>
 												 	</div>
 												</td>
@@ -220,46 +221,57 @@
 									 		<table class="user-table">
 									 			<tr>
 									 				<td><i class="fa fa-user"></i> </td>
-									 				<td><label for="name"><c:out value="${account.userName}"></c:out></label></td>
-									 				<td><a id="buttonid" name="buttonid" data-label="name" href="#"><i class="fa fa-pencil"></i></a></td>
+									 				<td><label for="name"><c:out value="${account.userInfor.name}"></c:out></label></td>
+									 				<td><a   data-label="name" href="#"><i class="fa fa-pencil"></i></a></td>
 									 			</tr>
 									 		</table>
 									 		<table class="user-table">
 									 			<tr><td><i class="fa fa-envelope"></i> </td>
 									 				<td><label for="email"><c:out value="${account.email}"></c:out></label></td>
-									 				<td><a id="buttonid" name="buttonid" data-label="email" href="#"><i class="fa fa-pencil"></i></a></td>
+									 				<td><a  data-label="email" href="#"><i class="fa fa-pencil"></i></a></td>
 									 			</tr>
 									 		</table>
 									 		<table class="user-table">
 									 			<tr>
 									 				<td><i class="fa fa-map-marker"></i> </td>
 									 				<td><label for="address"><c:out value="${account.userInfor.address}"></c:out></label></td>
-									 				<td><a id="buttonid" name="buttonid" data-label="address" href="#"><i class="fa fa-pencil"></i></a></td>
+									 				<td><a data-label="address" href="#"><i class="fa fa-pencil"></i></a></td>
 									 			</tr>
 									 		</table>
 									 		<table class="user-table">
 									 			<tr>
 									 				<td><i class="fa fa-phone"></i> </td>
 									 				<td><label for="phone"><c:out value="${account.userInfor.phone}"></c:out></label></td>
-									 				<td><a id="buttonid" name="buttonid" data-label="phone" href="#"><i class="fa fa-pencil"></i></a></td>
+									 				<td><a data-label="phone" href="#"><i class="fa fa-pencil"></i></a></td>
 									 			</tr>
 									 		</table>
 									 	</div>
 												</td>
 											</tr>
 										</table>
-										<a href="" data-toggle="collapse" data-target="#demo">More information <i class="fa fa-caret-down"></i></a>
-										<div id="demo" class="collapse">
-											    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-											    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-											    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+										<a href="#" data-toggle="collapse" data-target="#demo" id="userIf-more-hide"><span><spring:message code = "label.form.userProfile.hideShow"></spring:message></span> <i id="caret-change" class="fa fa-caret-down"></i></a>
+										<div id="demo" class="collapse collapse-user-infor row">
+											<div class="col-sm-6">
+												<spring:message code="label.form.profile.genderTitle"></spring:message>
+												<select class="select-gender" name="gender">
+													<option>Nam</option>
+													<option>Nu</option>
+													<%-- <c:forEach var="enum" items="${}">
+												    	<option value="${enum}"><spring:message code="${enum}" /></option>
+													</c:forEach> --%>
+												</select>
+											</div>
+											<div class="col-sm-6">
+												<div class="userif-birthday">
+									                <spring:message code = "label.form.profile.birthday"></spring:message> <input type="text" placeholder='<spring:message code = "label.form.profile.plholderBirthday"></spring:message>'  id="example1" name="birthday">
+									            </div>
+											</div>
   										</div>
 										<hr>
-										<button class="btn btn-primary btn-sm">Lưu lại</button>
+										<button type = "submit" class="btn btn-primary btn-sm"><spring:message code = "label.form.profile.btnSave"></spring:message></button>
 									</div>
-								</form>
+								</form:form>
 					    </div>
-					
 		        </div>
 	    	</div>
 	    </div>
