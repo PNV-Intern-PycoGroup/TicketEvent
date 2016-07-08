@@ -71,7 +71,7 @@ public class HomeController {
 		if(result.hasErrors()){
 			return "redirect: register.html?error";
 		}else{
-			//accountService.Save(accountEntity);
+			accountService.Save(accountEntity);
 			redirectAttributes.addFlashAttribute("message","Added successfully.");
 			return "redirect: ?sucessful";
 		}

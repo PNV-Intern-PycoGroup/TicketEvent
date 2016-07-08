@@ -1,6 +1,5 @@
 package pnv.intern.pyco.ticketevent.services;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
