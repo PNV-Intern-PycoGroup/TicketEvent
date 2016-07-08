@@ -1,4 +1,4 @@
-package pnv.intern.pyco.ticketevent.entity;
+package pnv.intern.pyco.ticketevent.repository.entity;
 
 import java.util.Date;
 
@@ -10,13 +10,16 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import pnv.intern.pyco.ticketevent.repository.util.DatabaseConstantUtil;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "USER_INFORMATION")
+@Table(name = DatabaseConstantUtil.USER_INFORMATION_TABLE)
 public class UserInformationEntity {
 
 	@Id
+	@Column(name = DatabaseConstantUtil.USER_INFORMATION_FIELD_ID)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
@@ -24,36 +27,61 @@ public class UserInformationEntity {
 	@OneToOne(mappedBy = "userInfor")
 	private AccountEntity account;
 
-	@Column(name = "NAME")
+	@Column(name = DatabaseConstantUtil.USER_INFORMATION_FIELD_NAME)
 	private String name;
 
-	@Column(name = "ADDRESS")
+	@Column(name = DatabaseConstantUtil.USER_INFORMATION_FIELD_ADDRESS)
 	private String address;
 
-	@Column(name = "PHONE")
+	@Column(name = DatabaseConstantUtil.USER_INFORMATION_FIELD_PHONE)
 	private String phone;
 
-	@Column(name = "GENDER")
+	@Column(name = DatabaseConstantUtil.USER_INFORMATION_FIELD_GENDER)
 	private String gender;
 
-	@Column(name = "BIRTHDAY")
-	private Date birthday;
+	@Column(name = DatabaseConstantUtil.USER_INFORMATION_FIELD_DATE_OF_BIRTH)
+	private Date dateOfBirth;
 	
-	@Column(name = "AVATAR")
+	@Column(name = DatabaseConstantUtil.USER_INFORMATION_FIELD_AVATAR)
 	private String avatar;
 
 	public UserInformationEntity() {
-
+		super();
 	}
 
-	public UserInformationEntity(String name, String address, String phone,
-			String gender, Date birthday, String avatar) {
+	public UserInformationEntity(AccountEntity account, String name,
+			String address, String phone, String gender, Date dateOfBirth,
+			String avatar) {
+		super();
+		this.account = account;
 		this.name = name;
 		this.address = address;
 		this.phone = phone;
 		this.gender = gender;
-		this.birthday = birthday;
+		this.dateOfBirth = dateOfBirth;
 		this.avatar = avatar;
+	}
+
+	public UserInformationEntity(Long id, AccountEntity account, String name,
+			String address, String phone, String gender, Date dateOfBirth,
+			String avatar) {
+		super();
+		this.id = id;
+		this.account = account;
+		this.name = name;
+		this.address = address;
+		this.phone = phone;
+		this.gender = gender;
+		this.dateOfBirth = dateOfBirth;
+		this.avatar = avatar;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public AccountEntity getAccount() {
@@ -96,12 +124,12 @@ public class UserInformationEntity {
 		this.gender = gender;
 	}
 
-	public Date getBirthday() {
-		return birthday;
+	public Date getDateOfBirth() {
+		return dateOfBirth;
 	}
 
-	public void setBirthday(Date birthday) {
-		this.birthday = birthday;
+	public void setDateOfBirth(Date dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
 	}
 
 	public String getAvatar() {
@@ -112,12 +140,4 @@ public class UserInformationEntity {
 		this.avatar = avatar;
 	}
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-	
 }
