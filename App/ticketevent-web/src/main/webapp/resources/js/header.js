@@ -88,26 +88,25 @@ $("#avataUpload").change(function(){
 ///////////////////////////////////////
 
 // Change label to input
-$('#edit').click(function() {
-	 var text = $('.text-info').text();
-	 var input = $('<input id="attribute" type="text" value="' + text + '" />')
-	 $('.text-info').text('').append(input);
-	 input.select();
-
-	 input.blur(function() {
-	   var text = $('#attribute').val();
-	   $('#attribute').parent().text(text);
-	   $('#attribute').remove();
-	 });
-	});
 
 
 $(document).ready(function() {
-	  $("a").click(function() {
+	 $('#name').hide();
+	 $('#emails').hide();
+	 $('#phone').hide();
+	 $('#address').hide();
+	  $("#key a").click(function() {
 	    var tar_id = $(this).attr("data-label");
-	    var tar = $("label[for='"+tar_id+"']");
-	    var val = tar.text();
-	    tar.replaceWith("<input type='text' name='"+tar_id+"' id='"+tar_id+"' value='"+val+"' />");
+	    $('#'+tar_id).show();
+	    $("#dis label[for='"+tar_id+"']").hide();
+	    
+	    
+	    $('#'+tar_id+' input').blur(function() {
+	 	   var abc = $('#'+tar_id+' input').val();
+	 	   $('#'+tar_id).hide();
+	 	   $("#dis label[for='"+tar_id+"']").text(abc);
+	 	   $("#dis label[for='"+tar_id+"']").show();
+	 	 });
 	  });
 	});
 /////////////////////////////////////

@@ -77,7 +77,7 @@
 						aria-expanded="false">
 						<c:choose>
 						<c:when test="${account.userInfor.name == null || account.userInfor.name.equals('')}">
-							<c:out value="${account.user_name}"/>
+							<c:out value="${account.userName}"/>
 						</c:when>
 						<c:otherwise>
 							<c:out value="${account.userInfor.name}"/>
@@ -125,7 +125,7 @@
 					    	
 						    	<div class="input-group center">
 									<span class="input-group-addon cus-icon-input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
-									<input class="form-control" type="text" name="user_name" placeholder="<spring:message code="label.form.login.username"/>"/>
+									<input class="form-control" type="text" name="userName" placeholder="<spring:message code="label.form.login.username"/>"/>
 								</div>
 					    		<div class="input-group center">
 									<span class="input-group-addon cus-icon-input-group-addon"><i class="fa fa-lock" aria-hidden="true"></i></span>
@@ -142,12 +142,12 @@
 					    	<form:form id="registerForm" name="myForm" action="register" method="post" modelAttribute="account">
 					    		<div class="input-group center">
 									<span class="input-group-addon cus-icon-input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
-					    			<input class="form-control has-feedback form-register-error" type="text" name="user_name" id="username" placeholder="<spring:message code="label.form.register.username"/>"
-					    				ng-model="user_name" required username-available
+					    			<input class="form-control has-feedback form-register-error" type="text" name="userName" id="username" placeholder="<spring:message code="label.form.register.username"/>"
+					    				ng-model="userName" required username-available
 					    				ng-minlength="4" ng-maxlength = "10"
-								        tooltip="{{(myForm.user_name.$touched && myForm.user_name.$invalid) ? (!myForm.user_name.$viewValue.length) ?'Username is required':'Min 4 character Max 10' :''}}"
+								        tooltip="{{(myForm.userName.$touched && myForm.userName.$invalid) ? (!myForm.userName.$viewValue.length) ?'Username is required':'Min 4 character Max 10' :''}}"
 								        tooltip-placement="right"/>
-					    			<span class="glyphicon glyphicon-ok-sign text-success form-control-feedback ip_username_rg" aria-hidden="true" ng-show="myForm.user_name.$valid"></span>
+					    			<span class="glyphicon glyphicon-ok-sign text-success form-control-feedback ip_username_rg" aria-hidden="true" ng-show="myForm.userName.$valid"></span>
 								</div>
 								
 								<div class="input-group center">
@@ -203,7 +203,8 @@
 		        <div class="modal-body fix-padding">
 		        	<!-- Tab panes -->
 					    <div role="tabpanel" class="tab-pane fade in active">
-								<form:form class="text-center" action="#" method="post" enctype="multipart/form-data" modelAttribute="account">
+								<form:form class="text-center" action="editProfile" method="post" enctype="multipart/form-data" modelAttribute="account">
+									<input type="hidden" name = "id" value="${account.id}">
 									<input type="file" name = "file" id="avataUpload"/>
 									<div class="kv-avatar">
 										<table>
@@ -221,28 +222,32 @@
 									 		<table class="user-table">
 									 			<tr>
 									 				<td><i class="fa fa-user"></i> </td>
-									 				<td><label for="name"><c:out value="${account.userInfor.name}"></c:out></label></td>
-									 				<td><a   data-label="name" href="#"><i class="fa fa-pencil"></i></a></td>
+									 				<td id="name"><input type="text" name="name" value="${account.userInfor.name}"/></td>
+									 				<td id="dis"><label for="name"><c:out value="${account.userInfor.name}"></c:out></label></td>
+									 				<td id="key"><a data-label="name" href="#"><i class="fa fa-pencil"></i></a></td>
 									 			</tr>
 									 		</table>
 									 		<table class="user-table">
 									 			<tr><td><i class="fa fa-envelope"></i> </td>
-									 				<td><label for="email"><c:out value="${account.email}"></c:out></label></td>
-									 				<td><a  data-label="email" href="#"><i class="fa fa-pencil"></i></a></td>
+									 				<td id="emails"><input type="text" name="emails" value="${account.email}"/></td>
+									 				<td id="dis"><label for="emails"><c:out value="${account.email}"></c:out></label></td>
+									 				<td id="key"><a data-label="emails" href="#"><i class="fa fa-pencil"></i></a></td>
 									 			</tr>
 									 		</table>
 									 		<table class="user-table">
 									 			<tr>
 									 				<td><i class="fa fa-map-marker"></i> </td>
-									 				<td><label for="address"><c:out value="${account.userInfor.address}"></c:out></label></td>
-									 				<td><a data-label="address" href="#"><i class="fa fa-pencil"></i></a></td>
+									 				<td id="address"><input type="text" name="address" value="${account.userInfor.address}"/></td>
+									 				<td id="dis"><label for="address"><c:out value="${account.userInfor.address}"></c:out></label></td>
+									 				<td id="key"><a data-label="address" href="#"><i class="fa fa-pencil"></i></a></td>
 									 			</tr>
 									 		</table>
 									 		<table class="user-table">
 									 			<tr>
 									 				<td><i class="fa fa-phone"></i> </td>
-									 				<td><label for="phone"><c:out value="${account.userInfor.phone}"></c:out></label></td>
-									 				<td><a data-label="phone" href="#"><i class="fa fa-pencil"></i></a></td>
+									 				<td id="phone"><input type="text" name="phone" value="${account.userInfor.phone}"/></td>
+									 				<td id="dis"><label for="phone"><c:out value="${account.userInfor.phone}"></c:out></label></td>
+									 				<td id="key"><a data-label="phone" href="#"><i class="fa fa-pencil"></i></a></td>
 									 			</tr>
 									 		</table>
 									 	</div>
@@ -270,6 +275,8 @@
 										<hr>
 										<button type = "submit" class="btn btn-primary btn-sm"><spring:message code = "label.form.profile.btnSave"></spring:message></button>
 									</div>
+									<input type="hidden" name="${_csrf.parameterName}"
+									value="${_csrf.token}" />
 								</form:form>
 					    </div>
 		        </div>

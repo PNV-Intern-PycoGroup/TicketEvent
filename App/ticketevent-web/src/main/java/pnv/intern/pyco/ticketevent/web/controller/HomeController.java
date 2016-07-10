@@ -1,6 +1,14 @@
 package pnv.intern.pyco.ticketevent.web.controller;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,10 +17,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import pnv.intern.pyco.ticketevent.repository.entity.AccountEntity;
@@ -108,6 +119,53 @@ public class HomeController {
 		FileUtil.saveImageOndisk(base64Img, fullPath);
 		
 		return "http://localhost:8080/ticketevent-web" + fullPath.split("ticketevent-web")[1];
+	}
+	
+	@RequestMapping(value = "/editProfile", method = RequestMethod.POST)
+	public String editProfile(@ModelAttribute("account") AccountEntity account, Model model, @RequestParam("file") MultipartFile file
+			,@RequestParam("name") String name
+			,@RequestParam("emails") String email
+			,@RequestParam("phone") String phone) throws IOException{
+
+        if (!file.isEmpty()) {
+            HttpSession session = request.getSession();
+            ServletContext sc = session.getServletContext();
+            String imagePath = sc.getRealPath("/") + "resources/images/";
+
+            File theDir = new File(imagePath);
+            if (!theDir.exists()) {
+                boolean isCreated = false;
+
+                try {
+                    theDir.mkdir();
+                    isCreated = true;
+                } catch (SecurityException se) {
+                }
+                if (isCreated) {
+                }
+            }
+            InputStream inputStream = null;
+            OutputStream outputStream = null;
+            if (file.getSize() > 0) {
+                inputStream = file.getInputStream();
+                File newFile = new File(imagePath + file.getOriginalFilename());
+                if (!newFile.exists()) {
+                    newFile.createNewFile();
+                }
+                outputStream = new FileOutputStream(imagePath
+                        + file.getOriginalFilename());
+                int readBytes = 0;
+                byte[] buffer = new byte[8192];
+                while ((readBytes = inputStream.read(buffer, 0, 8192)) != -1) {
+                    outputStream.write(buffer, 0, readBytes);
+                }
+                outputStream.close();
+                inputStream.close();
+        
+            }
+        }
+		return "index";
+        
 	}
 	
 }
