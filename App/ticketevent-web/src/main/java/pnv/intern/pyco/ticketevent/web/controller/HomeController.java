@@ -28,7 +28,10 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import pnv.intern.pyco.ticketevent.repository.entity.AccountEntity;
+import pnv.intern.pyco.ticketevent.repository.entity.UserInformationEntity;
 import pnv.intern.pyco.ticketevent.services.AccountService;
+import pnv.intern.pyco.ticketevent.services.UserInformationService;
+import pnv.intern.pyco.ticketevent.services.model.AccountUserInfor;
 import pnv.intern.pyco.ticketevent.web.util.FileUtil;
 
 @Controller
@@ -36,6 +39,8 @@ public class HomeController {
 	
 	@Autowired
 	private AccountService accountService;
+	@Autowired
+	private UserInformationService userInfoService;
 
 	@Autowired
     private HttpServletRequest request;
@@ -43,7 +48,18 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String test(ModelMap model) {
 		AccountEntity account = accountService.getAccountbyUserName(SecurityContextHolder.getContext().getAuthentication().getName());
-		model.put("account", account);
+		if(account != null){
+		AccountUserInfor acc = new AccountUserInfor();
+		acc.setId(account.getId());
+		acc.setEmail(account.getEmail());
+		acc.setUsername(account.getUserName());
+		acc.setName(account.getUserInfor().getName());
+		acc.setAddress(account.getUserInfor().getAddress());
+		acc.setPhone(account.getUserInfor().getPhone());
+		//acc.setBirthday(account.getUserInfor().getDateOfBirth().toString());
+		acc.setAvatar(account.getUserInfor().getAvatar());		
+		model.put("account", acc);
+		}
 		return "index";
 	}
 	
@@ -124,11 +140,9 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/editProfile", method = RequestMethod.POST)
-	public String editProfile(@ModelAttribute("account") AccountEntity account, Model model, @RequestParam("file") MultipartFile file
-			,@RequestParam("name") String name
-			,@RequestParam("emails") String email
-			,@RequestParam("phone") String phone) throws IOException{
+	public String editProfile(@ModelAttribute("account") AccountUserInfor account, Model model, @RequestParam("file") MultipartFile file) throws IOException{
 
+		UserInformationEntity userInfor = userInfoService.handleBeforeEditProfile(account);
         if (!file.isEmpty()) {
             HttpSession session = request.getSession();
             ServletContext sc = session.getServletContext();
@@ -163,9 +177,10 @@ public class HomeController {
                 }
                 outputStream.close();
                 inputStream.close();
-        
+                userInfor.setAvatar(file.getOriginalFilename());
             }
         }
+        userInfoService.saveUserInfor(userInfor);
 		return "index";
         
 	}

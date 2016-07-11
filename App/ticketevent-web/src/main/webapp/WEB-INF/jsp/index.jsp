@@ -1,5 +1,8 @@
 <%@ include file="./include_tag_lib.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+       request.setCharacterEncoding("UTF-8");
+   %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,15 +16,7 @@
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/datepicker.css">
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.1/ui-bootstrap-tpls.min.js"></script>
-<title>Welcome</title>
-<script>
-    	function Hello($scope, $http) {
-    	    $http.get('http://localhost:8080/ticketevent-web/api/phamyqb').
-    	        success(function(data) {
-    	            $scope.user = data;
-    	        });
-    	}
-    	</script>   
+<title>Welcome</title> 
 </head>
 <body ng-app="myApp" ng-controller = "MainCtrl">
 

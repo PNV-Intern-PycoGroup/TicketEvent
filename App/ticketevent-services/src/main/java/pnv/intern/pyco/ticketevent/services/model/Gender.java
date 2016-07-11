@@ -1,4 +1,4 @@
-package pnv.intern.pyco.ticketevent.repository.entity;
+package pnv.intern.pyco.ticketevent.services.model;
 
 public enum Gender {
 	MALE("Male"),
