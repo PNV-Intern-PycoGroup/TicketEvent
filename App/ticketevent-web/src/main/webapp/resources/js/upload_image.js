@@ -4,11 +4,6 @@
 // https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js
 // resources/js/cropper.min.js
 
-var token = $("meta[name='_csrf']").attr("content");
-var header = $("meta[name='_csrf_header']").attr("content");
-$(document).ajaxSend(function(e, xhr, options) {
-	xhr.setRequestHeader(header, token);
-});
 // Upload image
 var uploadImageAndCrop = function(image, inputImage, outputImage,
 		defaultCanvasImage, modal, cropWidth, cropHeight, postImage) {

@@ -167,5 +167,17 @@ public class HomeController {
 		return "index";
         
 	}
-	
+
+	@RequestMapping(value = "/create-event-theme-activity", method = RequestMethod.POST)
+	public String createEventThemeActivityPost(String layout, Model model) {
+		if ("free".equals(layout)) {
+			return "create_theme_free_style";
+		}else if ("music".equals(layout)) {
+			return "create_theme_music";
+		}else if ("study".equals(layout)) {
+			return "create_theme_study";
+		}
+		
+		return "Hãy chọn đúng giao diện.";
+	}
 }

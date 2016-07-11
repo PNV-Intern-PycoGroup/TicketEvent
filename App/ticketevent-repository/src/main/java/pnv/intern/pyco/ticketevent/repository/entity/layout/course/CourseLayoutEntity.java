@@ -1,10 +1,13 @@
 package pnv.intern.pyco.ticketevent.repository.entity.layout.course;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import pnv.intern.pyco.ticketevent.repository.entity.EventsEntity;
@@ -26,6 +29,12 @@ public class CourseLayoutEntity {
 	
 	@Column(name = DatabaseConstantUtil.COURSE_LAYOUT_FIELD_PLACE_IMAGE)
 	private String placeImage;
+	
+	@OneToMany(mappedBy = "courseLayout")
+	private Set<CourseLayoutContentEntity> listCourseLayoutContent;
+	
+	@OneToMany(mappedBy = "courseLayout")
+	private Set<CourseLayoutSpeakerEntity> listCourseLayoutSpeaker;
 
 	public CourseLayoutEntity() {
 		super();

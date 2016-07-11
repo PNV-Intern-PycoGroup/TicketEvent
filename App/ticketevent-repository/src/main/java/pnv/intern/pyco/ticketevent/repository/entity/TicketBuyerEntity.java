@@ -15,7 +15,7 @@ import pnv.intern.pyco.ticketevent.repository.util.DatabaseConstantUtil;
 
 @Entity
 @Table(name = DatabaseConstantUtil.TICKET_BUYER_TABLE)
-public class TicketBuyersEntity {
+public class TicketBuyerEntity {
 	@Id
 	@Column(name = DatabaseConstantUtil.TICKET_BUYER_FIELD_ID)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,7 +23,7 @@ public class TicketBuyersEntity {
 	
 	@ManyToOne
 	@JoinColumn(name = DatabaseConstantUtil.TICKET_BUYER_FIELD_TICKET_ID)
-	private TicketsEntity ticket;
+	private TicketEntity ticket;
 	
 	@ManyToOne
 	@JoinColumn(name = DatabaseConstantUtil.TICKET_BUYER_FIELD_ACCOUNT_ID)
@@ -44,7 +44,7 @@ public class TicketBuyersEntity {
 	@Column(name = DatabaseConstantUtil.TICKET_BUYER_FIELD_DATE_OF_BIRTH)
 	private Date dateOfBirth;
 
-	public TicketBuyersEntity(Long id, TicketsEntity ticket,
+	public TicketBuyerEntity(Long id, TicketEntity ticket,
 			AccountEntity account, String name, String address, String phone,
 			String gender, Date dateOfBirth) {
 		super();
@@ -58,7 +58,7 @@ public class TicketBuyersEntity {
 		this.dateOfBirth = dateOfBirth;
 	}
 
-	public TicketBuyersEntity(TicketsEntity ticket, AccountEntity account,
+	public TicketBuyerEntity(TicketEntity ticket, AccountEntity account,
 			String name, String address, String phone, String gender,
 			Date dateOfBirth) {
 		super();
@@ -71,7 +71,7 @@ public class TicketBuyersEntity {
 		this.dateOfBirth = dateOfBirth;
 	}
 
-	public TicketBuyersEntity() {
+	public TicketBuyerEntity() {
 		super();
 	}
 
@@ -83,11 +83,11 @@ public class TicketBuyersEntity {
 		this.id = id;
 	}
 
-	public TicketsEntity getTicket() {
+	public TicketEntity getTicket() {
 		return ticket;
 	}
 
-	public void setTicket(TicketsEntity ticket) {
+	public void setTicket(TicketEntity ticket) {
 		this.ticket = ticket;
 	}
 

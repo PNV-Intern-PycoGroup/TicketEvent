@@ -1,10 +1,13 @@
 package pnv.intern.pyco.ticketevent.repository.entity.layout.activity;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import pnv.intern.pyco.ticketevent.repository.entity.EventsEntity;
@@ -29,6 +32,9 @@ public class ActivityLayoutEntity {
 	
 	@Column(name = DatabaseConstantUtil.ACTIVITY_LAYOUT_FIELD_SOLOGAN)
 	private String losogan;
+	
+	@OneToMany(mappedBy = "activityLayout")
+	private Set<ActivityLayoutImageLibraryEntity> listActivityLayoutImageLibrary;
 
 	public ActivityLayoutEntity() {
 		super();

@@ -1,10 +1,13 @@
 package pnv.intern.pyco.ticketevent.repository.entity.layout.free;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import pnv.intern.pyco.ticketevent.repository.entity.EventsEntity;
@@ -23,6 +26,9 @@ public class FreeLayoutEntity {
 	
 	@Column(name = DatabaseConstantUtil.FREE_LAYOUT_FIELD_CONTENT)
 	private String content;
+	
+	@OneToMany(mappedBy = "freeLayout")
+	private Set<FreeLayoutImageLibraryEntity> listFreeLayoutImageLibrary;
 
 	public FreeLayoutEntity() {
 		super();

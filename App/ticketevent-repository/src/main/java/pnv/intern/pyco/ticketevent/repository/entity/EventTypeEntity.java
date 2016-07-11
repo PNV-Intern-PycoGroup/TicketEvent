@@ -1,10 +1,13 @@
 package pnv.intern.pyco.ticketevent.repository.entity;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import pnv.intern.pyco.ticketevent.repository.util.DatabaseConstantUtil;
@@ -19,6 +22,9 @@ public class EventTypeEntity {
 
 	@Column(name = DatabaseConstantUtil.EVENT_TYPE_FIELD_NAME)
 	private String name;
+	
+	@OneToMany(mappedBy = "eventType")
+	private Set<EventsEntity> listEvent;
 
 	public EventTypeEntity() {
 		super();
