@@ -106,19 +106,23 @@
 				</div>
 			</form>
 		</div>
-		<div role="tabpanel" class="tab-pane fade in" id="ticket-layout">
-		<c:choose>
-			<c:when test="${layout == null}">
-				<div class="input-group col-md-12 cus-input-group-col-md output-layout">
+		<div role="tabpanel" class="tab-pane fade in output-layout" id="ticket-layout">
+			<div class="col-md-12">
+				<span class="label label-danger create-theme-make-error"></span>
+				<div class="input-group cus-input-group-col-md">
 					<span class="input-group-addon cus-input-group-addon-create-event">Giao diện sự kiện của bạn</span>
-					<select class="selectpicker form-control province-select select-layout" title="Chọn giao diện">
+					<select class="selectpicker form-control province-select select-layout" title="Chọn cách tạo giao diện">
 						<option value="free">Tự tạo giao diện</option>
 						<option value="music">Giao diện có sẵn</option>
 					</select>
 				</div>
-				<button class="choose-layout">ok</button>
-			</c:when>
-		</c:choose>
+			</div>
+			<button class="btn btn-default choose-layout">Xác nhận</button>
+			<div>
+				<h2>Giao diện demo của các theme có sẵn</h2>
+				<img class="col-md-6" alt="theme-activity" src="https://az810058.vo.msecnd.net/static-page/img/quest-2016-cover.jpg?v1" title="theme-activity">
+				<img class="col-md-6" alt="theme-music" src="https://az810058.vo.msecnd.net/static-page/img/quest-2016-cover.jpg?v1" title="theme-music">
+			</div>
 		</div>
 		<div role="tabpanel" class="tab-pane fade in" id="ticket-setting">
 			<h2>Đường đẫn đến sự kiện</h2>

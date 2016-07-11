@@ -8,6 +8,7 @@ import java.io.OutputStream;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -68,6 +69,7 @@ public class HomeController {
 	
 	@RequestMapping(value = "/create-event-theme-activity", method = RequestMethod.GET)
 	public String createEventThemeActivity(Model model) {
+		model.addAttribute("layout", "none");
 		return "create_theme_activity";
 	}
 	
@@ -169,7 +171,7 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/create-event-theme-activity", method = RequestMethod.POST)
-	public String createEventThemeActivityPost(String layout, Model model) {
+	public String createEventThemeActivityPost(String layout, Model model, HttpServletResponse response) {
 		if ("free".equals(layout)) {
 			return "create_theme_free_style";
 		}else if ("music".equals(layout)) {
@@ -177,7 +179,7 @@ public class HomeController {
 		}else if ("study".equals(layout)) {
 			return "create_theme_study";
 		}
-		
-		return "Hãy chọn đúng giao diện.";
+		response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+		return "";
 	}
 }
