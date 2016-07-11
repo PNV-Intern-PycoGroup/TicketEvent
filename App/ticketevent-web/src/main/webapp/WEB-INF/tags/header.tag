@@ -76,11 +76,11 @@
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">
 						<c:choose>
-						<c:when test="${account.userInfor.name == null || account.userInfor.name.equals('')}">
-							<c:out value="${account.userName}"/>
+						<c:when test="${account.username == null || account.username.equals('')}">
+							<c:out value="${account.username}"/>
 						</c:when>
 						<c:otherwise>
-							<c:out value="${account.userInfor.name}"/>
+							<c:out value="${account.name}"/>
 						</c:otherwise>
 						</c:choose><span class="caret"></span></a>
 						<ul class="dropdown-menu">
@@ -212,7 +212,15 @@
 												<td>
 													<div class="file-input">
 												    	<div id="fileupload" tabindex="-1">
-												    		<img id="avatar" src="http://plugins.krajee.com/uploads/default_avatar_male.jpg" alt="Your Avatar" style="width:160px; height: 160px;"/>
+												    		<c:choose>
+												    			<c:when test="${account.avatar != null}">
+												    			<img id="avatar" src="<c:url value="/resources/images/${account.avatar}"/>" alt="Your Avatar" style="width: 160px; height: 160px;"/>
+												    			</c:when>
+												    			<c:otherwise>
+												    				<img id="avatar" src="http://plugins.krajee.com/uploads/default_avatar_male.jpg" alt="Your Avatar" style="width: 160px; height: 160px;"/>
+												    			</c:otherwise>
+												    		</c:choose>
+												    		
 												    		<h6 class="text-muted"><spring:message code="label.form.profile.avatar.direct"></spring:message></h6>
 												    	</div>
 												 	</div>
@@ -222,14 +230,14 @@
 									 		<table class="user-table">
 									 			<tr>
 									 				<td><i class="fa fa-user"></i> </td>
-									 				<td id="name"><input type="text" name="name" value="${account.userInfor.name}"/></td>
-									 				<td id="dis"><label for="name"><c:out value="${account.userInfor.name}"></c:out></label></td>
+									 				<td id="name"><input type="text" name="name" value="${account.name}"/></td>
+									 				<td id="dis"><label for="name"><c:out value="${account.name}"></c:out></label></td>
 									 				<td id="key"><a data-label="name" href="#"><i class="fa fa-pencil"></i></a></td>
 									 			</tr>
 									 		</table>
 									 		<table class="user-table">
 									 			<tr><td><i class="fa fa-envelope"></i> </td>
-									 				<td id="emails"><input type="text" name="emails" value="${account.email}"/></td>
+									 				<td id="emails"><input type="text" name="email" value="${account.email}"/></td>
 									 				<td id="dis"><label for="emails"><c:out value="${account.email}"></c:out></label></td>
 									 				<td id="key"><a data-label="emails" href="#"><i class="fa fa-pencil"></i></a></td>
 									 			</tr>
@@ -237,16 +245,16 @@
 									 		<table class="user-table">
 									 			<tr>
 									 				<td><i class="fa fa-map-marker"></i> </td>
-									 				<td id="address"><input type="text" name="address" value="${account.userInfor.address}"/></td>
-									 				<td id="dis"><label for="address"><c:out value="${account.userInfor.address}"></c:out></label></td>
+									 				<td id="address"><input type="text" name="address" value="${account.address}"/></td>
+									 				<td id="dis"><label for="address"><c:out value="${account.address}"></c:out></label></td>
 									 				<td id="key"><a data-label="address" href="#"><i class="fa fa-pencil"></i></a></td>
 									 			</tr>
 									 		</table>
 									 		<table class="user-table">
 									 			<tr>
 									 				<td><i class="fa fa-phone"></i> </td>
-									 				<td id="phone"><input type="text" name="phone" value="${account.userInfor.phone}"/></td>
-									 				<td id="dis"><label for="phone"><c:out value="${account.userInfor.phone}"></c:out></label></td>
+									 				<td id="phone"><input type="text" name="phone" value="${account.phone}"/></td>
+									 				<td id="dis"><label for="phone"><c:out value="${account.phone}"></c:out></label></td>
 									 				<td id="key"><a data-label="phone" href="#"><i class="fa fa-pencil"></i></a></td>
 									 			</tr>
 									 		</table>
@@ -268,7 +276,7 @@
 											</div>
 											<div class="col-sm-6">
 												<div class="userif-birthday">
-									                <spring:message code = "label.form.profile.birthday"></spring:message> <input type="text" placeholder='<spring:message code = "label.form.profile.plholderBirthday"></spring:message>'  id="example1" name="birthday">
+									                <spring:message code = "label.form.profile.birthday"></spring:message> <input type="text" value="${account.birthday}" placeholder='<spring:message code = "label.form.profile.plholderBirthday"></spring:message>'  id="example1" name="birthday">
 									            </div>
 											</div>
   										</div>

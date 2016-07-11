@@ -52,4 +52,8 @@ public class AccountService {
 		accountReponsitoty.save(account);
 	}
 	
+	public void updateAccount(AccountEntity accountEntity){
+		accountReponsitoty.saveAndFlush(accountEntity);
+	}
+	
 }
