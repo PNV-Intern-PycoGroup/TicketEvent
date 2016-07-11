@@ -1,5 +1,7 @@
 package pnv.intern.pyco.ticketevent.repository.entity;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,13 +9,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import pnv.intern.pyco.ticketevent.repository.util.DatabaseConstantUtil;
 
 @Entity
 @Table(name = DatabaseConstantUtil.TICKET_TABLE)
-public class TicketsEntity {
+public class TicketEntity {
 	@Id
 	@Column(name = DatabaseConstantUtil.TICKET_FIELD_ID)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,12 +34,15 @@ public class TicketsEntity {
 	
 	@Column(name = DatabaseConstantUtil.TICKET_FIELD_DESCRIPTION)
 	private String description;
+	
+	@OneToMany(mappedBy = "ticket")
+	private Set<TicketBuyerEntity> listTicketBuyer;
 
-	public TicketsEntity() {
+	public TicketEntity() {
 		super();
 	}
 
-	public TicketsEntity(EventsEntity event, float price, String name,
+	public TicketEntity(EventsEntity event, float price, String name,
 			String description) {
 		super();
 		this.event = event;
@@ -45,7 +51,7 @@ public class TicketsEntity {
 		this.description = description;
 	}
 
-	public TicketsEntity(Long id, EventsEntity event, float price, String name,
+	public TicketEntity(Long id, EventsEntity event, float price, String name,
 			String description) {
 		super();
 		this.id = id;

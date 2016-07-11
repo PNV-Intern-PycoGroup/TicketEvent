@@ -1,3 +1,9 @@
+var token = $("meta[name='_csrf']").attr("content");
+var header = $("meta[name='_csrf_header']").attr("content");
+$(document).ajaxSend(function(e, xhr, options) {
+	xhr.setRequestHeader(header, token);
+});
+
 var timer;
 
 var select = function() {
@@ -45,29 +51,23 @@ tinymce.init({
 		plugin_preview_height: $(window).height() - 100
 });
 
-
-tinymce.init({
-	selector: '#create-event-free-style',
-	plugins: [
-                 'advlist autolink link image lists charmap preview hr anchor',
-                 'searchreplace wordcount visualblocks visualchars media',
-                 'save table contextmenu directionality paste textcolor'
-             ],
-	a_plugin_option: true,
-	language: lang,
-	language_url: '/ticketevent-web/resources/js/vi_VN.js',
-	a_configuration_option: 400,
-	height: 600,
-	toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify '
-		+ '| bullist numlist outdent indent | link image | preview media fullpage | forecolor backcolor',
-	plugin_preview_width: $('section').width(),
-	plugin_preview_height: $(window).height() - 100
-});
-
-var get_editor_content = function () {
-	$('#myrender').html(tinymce.activeEditor.getContent());
-}
-
 $('.contain-radio').on('click', function(e) {
 	$(this).find('input[type=radio]').prop('checked', true);
+});
+
+$('.choose-layout').click(function(e) {
+	var sendInfo = {
+		layout : $('.select-layout').val()
+	};
+	$.ajax({
+	    type: 'POST',
+	    url: "create-event-theme-activity",
+	    data : sendInfo
+    })
+    .done(function(data) {
+    	$('.output-layout').hide().html(data).fadeIn(1000);
+	})
+    .fail(function() {
+    	console.log('Post create-event-theme-activity fail.');
+	});
 });

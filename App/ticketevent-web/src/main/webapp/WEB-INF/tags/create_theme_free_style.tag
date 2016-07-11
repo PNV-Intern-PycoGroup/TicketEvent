@@ -16,7 +16,6 @@
 				</a>
 			</div>
 		</div>
-			
 	</div>
 	<div id="upload" class="upload-file-free-style">
 		<a href="" class="btn btn-default" title="Tải ảnh của bạn tại đây rồi copy đường dẫn">
@@ -27,27 +26,6 @@
 	</div>
 	
 	<p>Để chèn được ảnh từ máy tính của bạn vào khung thiết kế giao diện. Hãy tải ảnh của bạn lên (giới hạn 2Mb). Trang web sẽ cung cấp cho bạn một đường dẫn để copy.</p>
-	
-	<!-- Modal -->
-	<div class="modal fade" id="modal" role="dialog" aria-labelledby="modalLabel" tabindex="-1">
-	  <div class="modal-dialog modal-lg" role="document">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <button type="button" class="close crop-none" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	        <h4 class="modal-title" id="modalLabel">Cropper</h4>
-	      </div>
-	      <div class="modal-body">
-	        <div class="img-container-1000x500">
-	            <img id="image" src=""/>
-	        </div>
-	      </div>
-	      <div class="modal-footer">
-	        <button id="crop" type="button" class="btn btn-default" data-dismiss="modal">Crop</button>
-	        <button type="button" class="btn btn-default crop-none" data-dismiss="modal">Close</button>
-	      </div>
-	    </div>
-	  </div>
-	</div>
 
 	<form method="post">
 		<textarea id="create-event-free-style"></textarea>
@@ -57,3 +35,5 @@
 		<button onclick="get_editor_content()"></button>
 	</div>
 </div>
+<script src="/ticketevent-web/resources/js/upload_image.js"></script>
+<script src="/ticketevent-web/resources/js/create_theme_free_style.js"></script>

@@ -1,10 +1,13 @@
 package pnv.intern.pyco.ticketevent.repository.entity.layout.music;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import pnv.intern.pyco.ticketevent.repository.entity.EventsEntity;
@@ -26,6 +29,12 @@ public class MusicLayoutEntity {
 	
 	@Column(name = DatabaseConstantUtil.MUSIC_LAYOUT_FIELD_PLACE_IMAGE)
 	private String placeImage;
+	
+	@OneToMany(mappedBy = "musicLayout")
+	private Set<MusicLayouFamousPersonEntity> listMusicLayouFamousPerson;
+	
+	@OneToMany(mappedBy = "musicLayout")
+	private Set<MusicLayoutImageLibraryEntity> listMusicLayoutImageLibrary;
 
 	public MusicLayoutEntity() {
 		super();
