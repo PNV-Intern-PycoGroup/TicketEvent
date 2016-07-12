@@ -73,17 +73,32 @@ $(document).ready(function(){
 function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
+       
         
         reader.onload = function (e) {
             $('#avatar').attr('src', e.target.result);
+            $('#imageBase64').val(e.target.result);
         }
         
         reader.readAsDataURL(input.files[0]);
+        
     }
 }
 
 $("#avataUpload").change(function(){
-    readURL(this);
+ 	   var ext = this.value.match(/\.(.+)$/)[1];
+ 	    switch(ext)
+ 	    {
+ 	        case 'jpg':
+ 	        case 'bmp':
+ 	        case 'png':
+ 	        case 'tif':
+ 	        	readURL(this);
+ 	            break;
+ 	        default:
+ 	            alert('This file is not true format');
+ 	            this.value='';
+  }
 });
 ///////////////////////////////////////
 
@@ -154,14 +169,12 @@ $(document).ready(function() {
 		        data[input.attr("name")] = input.val();
 		        delete data["undefined"];
 		    });
-		    console.log(data);
         $.ajax({
-            //contentType : 'application/json; charset=utf-8',
+            contentType : 'application/json; charset=utf-8',
             type: "POST",
             url: frm.attr('action'),
             dataType : 'json',
             data : JSON.stringify(data),
-            data : data,
             success:  function() {
 				debugger;
 			},
