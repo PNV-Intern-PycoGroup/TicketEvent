@@ -79,6 +79,6 @@ public class ResourceConfig extends WebMvcConfigurerAdapter{
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/home").setViewName("index");
         registry.addViewController("/").setViewName("index");
-        registry.addViewController("/403").setViewName("403");
+        registry.addViewController("/403").setViewName("error/403");
     }
 }

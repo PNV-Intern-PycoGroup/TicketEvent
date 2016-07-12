@@ -16,22 +16,17 @@ public class AdminController {
 	
 	@RequestMapping(value = "admin-page", method= RequestMethod.GET)
 	public String displayAdminPage(){
-		return "admin_home_page";
-	}
-	
-	@RequestMapping(value = "mail-inbox", method= RequestMethod.GET)
-	public String mailBoxAdmin(){
-		return "admin_mail_inbox";
+		return "admin/admin_home_page";
 	}
 	
 	@RequestMapping(value = "user-management", method= RequestMethod.GET)
 	public String UserByAdmin(){
-		return "admin_user_manage";
+		return "admin/admin_user_manage";
 	}
 	
 	@RequestMapping(value = "admin-comment-manage", method= RequestMethod.GET)
 	public String commentAdmin(){
-		return "admin_comment_manage";
+		return "admin/admin_comment_manage";
 	}
 	
 	

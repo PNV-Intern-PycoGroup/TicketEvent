@@ -8,66 +8,26 @@
 	<uri>pnv.intern.pyco/tags</uri>
 
 	<tag-file>
-		<name>header</name>
-		<path>/WEB-INF/tags/header.tag</path>
+		<name>user_header</name>
+		<path>/WEB-INF/tags/user/user_header.tag</path>
 	</tag-file>
 
 	<tag-file>
-		<name>footer</name>
-		<path>/WEB-INF/tags/footer.tag</path>
-	</tag-file>
-
-	<tag-file>
-		<name>body</name>
-		<path>/WEB-INF/tags/theme_music.tag</path>
-	</tag-file>
-
-	<tag-file>
-		<name>detail-header</name>
-		<path>/WEB-INF/tags/detail_header.tag</path>
-	</tag-file>
-	
-	<tag-file>
-		<name>header_theme_study</name>
-		<path>/WEB-INF/tags/header_theme_study.tag</path>
-	</tag-file>
-	
-	<tag-file>
-		<name>body_theme_study</name>
-		<path>/WEB-INF/tags/theme_study.tag</path>
-	</tag-file>
-	
-	<tag-file>
-		<name>body_theme_activity</name>
-		<path>/WEB-INF/tags/theme_activity.tag</path>
-	</tag-file>
-	
-	<tag-file>
-		<name>create_theme_activity</name>
-		<path>/WEB-INF/tags/create_theme_activity.tag</path>
-	</tag-file>
-	
-	<tag-file>
-		<name>create_theme_free_style</name>
-		<path>/WEB-INF/tags/create_theme_free_style.tag</path>
-	</tag-file>
-	
-	<tag-file>
-		<name>create_theme_study</name>
-		<path>/WEB-INF/tags/create_theme_study.tag</path>
+		<name>user_footer</name>
+		<path>/WEB-INF/tags/user/user_footer.tag</path>
 	</tag-file>
 	
 	<tag-file>
 		<name>comment</name>
-		<path>/WEB-INF/tags/comment.tag</path>
+		<path>/WEB-INF/tags/user/comment.tag</path>
 	</tag-file>
 	
 	<tag-file>
 		<name>admin_header</name>
-		<path>/WEB-INF/tags/admin_header.tag</path>
+		<path>/WEB-INF/tags/admin/admin_header.tag</path>
 	</tag-file>
 	<tag-file>
 		<name>admin_footer</name>
-		<path>/WEB-INF/tags/admin_footer.tag</path>
+		<path>/WEB-INF/tags/admin/admin_footer.tag</path>
 	</tag-file>
 </taglib>
