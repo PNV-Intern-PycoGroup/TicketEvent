@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import pnv.intern.pyco.ticketevent.repository.AccountReponsitoty;
 import pnv.intern.pyco.ticketevent.repository.entity.AccountEntity;
 import pnv.intern.pyco.ticketevent.repository.entity.UserRoleEntity;
+import pnv.intern.pyco.ticketevent.services.converter.AccountConverter;
+import pnv.intern.pyco.ticketevent.services.model.AccountUserInfoModel;
 
 @Service
 public class AccountService {
@@ -54,6 +56,12 @@ public class AccountService {
 	
 	public void updateAccount(AccountEntity accountEntity){
 		accountReponsitoty.saveAndFlush(accountEntity);
+	}
+	
+	public AccountUserInfoModel getAccInfor(Long id){
+		AccountConverter convert = new AccountConverter();
+		AccountUserInfoModel acc = convert.convertFromAccountEntity(getAccount(id));
+		return acc;
 	}
 	
 }

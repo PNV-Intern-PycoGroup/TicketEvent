@@ -1,6 +1,6 @@
 package pnv.intern.pyco.ticketevent.services.model;
 
-public class AccountUserInfor {
+public class AccountUserInfoModel {
 	private Long id;
 	private String username;
 	private String name;
@@ -11,7 +11,7 @@ public class AccountUserInfor {
 	private String birthday;
 	private String avatar;
 	
-	public AccountUserInfor(Long id, String username, String name, String email, String address,
+	public AccountUserInfoModel(Long id, String username, String name, String email, String address,
 			String phone, String birthday, String avatar) {
 		this.id = id;
 		this.username = username;
@@ -23,7 +23,7 @@ public class AccountUserInfor {
 		this.birthday = birthday;
 		this.avatar = avatar;
 	}
-	public AccountUserInfor() {
+	public AccountUserInfoModel() {
 	}
 	
 	public Long getId() {

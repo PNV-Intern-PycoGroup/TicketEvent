@@ -203,9 +203,9 @@
 		        <div class="modal-body fix-padding">
 		        	<!-- Tab panes -->
 					    <div role="tabpanel" class="tab-pane fade in active">
-								<form:form class="text-center" action="editProfile" method="post" enctype="multipart/form-data" modelAttribute="account">
+								<form:form class="text-center" action="editProfile" method="post" enctype="multipart/form-data" modelAttribute="account" id= "submitForm">
 									<input type="hidden" name = "id" value="${account.id}">
-									<input type="file" name = "file" id="avataUpload"/>
+									<input type="file" name="file" id="avataUpload"/>
 									<div class="kv-avatar">
 										<table>
 											<tr>

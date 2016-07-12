@@ -31,7 +31,7 @@ import pnv.intern.pyco.ticketevent.repository.entity.AccountEntity;
 import pnv.intern.pyco.ticketevent.repository.entity.UserInformationEntity;
 import pnv.intern.pyco.ticketevent.services.AccountService;
 import pnv.intern.pyco.ticketevent.services.UserInformationService;
-import pnv.intern.pyco.ticketevent.services.model.AccountUserInfor;
+import pnv.intern.pyco.ticketevent.services.model.AccountUserInfoModel;
 import pnv.intern.pyco.ticketevent.web.util.FileUtil;
 
 @Controller
@@ -49,16 +49,8 @@ public class HomeController {
 	public String test(ModelMap model) {
 		AccountEntity account = accountService.getAccountbyUserName(SecurityContextHolder.getContext().getAuthentication().getName());
 		if(account != null){
-		AccountUserInfor acc = new AccountUserInfor();
-		acc.setId(account.getId());
-		acc.setEmail(account.getEmail());
-		acc.setUsername(account.getUserName());
-		acc.setName(account.getUserInfor().getName());
-		acc.setAddress(account.getUserInfor().getAddress());
-		acc.setPhone(account.getUserInfor().getPhone());
-		//acc.setBirthday(account.getUserInfor().getDateOfBirth().toString());
-		acc.setAvatar(account.getUserInfor().getAvatar());		
-		model.put("account", acc);
+			AccountUserInfoModel acc = accountService.getAccInfor(account.getId());
+			model.put("account", acc);
 		}
 		return "index";
 	}
@@ -140,7 +132,7 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/editProfile", method = RequestMethod.POST)
-	public String editProfile(@ModelAttribute("account") AccountUserInfor account, Model model, @RequestParam("file") MultipartFile file) throws IOException{
+	public @ResponseBody void editProfile(@ModelAttribute("account") AccountUserInfoModel account, Model model, @RequestParam("file") MultipartFile file, HttpServletRequest request) throws IOException{
 
 		UserInformationEntity userInfor = userInfoService.handleBeforeEditProfile(account);
         if (!file.isEmpty()) {
@@ -181,9 +173,52 @@ public class HomeController {
             }
         }
         userInfoService.saveUserInfor(userInfor);
-		return "index";
-        
 	}
+	
+//	@RequestMapping(value = "/editProfile", method = RequestMethod.POST)
+//	public String editProfile(@ModelAttribute("account") AccountUserInfoModel account, Model model, @RequestParam("file") MultipartFile file, HttpServletRequest request) throws IOException{
+//
+//		UserInformationEntity userInfor = userInfoService.handleBeforeEditProfile(account);
+//        if (!file.isEmpty()) {
+//            HttpSession session = request.getSession();
+//            ServletContext sc = session.getServletContext();
+//            String imagePath = sc.getRealPath("/") + "resources/images/";
+//
+//            File theDir = new File(imagePath);
+//            if (!theDir.exists()) {
+//                boolean isCreated = false;
+//
+//                try {
+//                    theDir.mkdir();
+//                    isCreated = true;
+//                } catch (SecurityException se) {
+//                }
+//                if (isCreated) {
+//                }
+//            }
+//            InputStream inputStream = null;
+//            OutputStream outputStream = null;
+//            if (file.getSize() > 0) {
+//                inputStream = file.getInputStream();
+//                File newFile = new File(imagePath + file.getOriginalFilename());
+//                if (!newFile.exists()) {
+//                    newFile.createNewFile();
+//                }
+//                outputStream = new FileOutputStream(imagePath
+//                        + file.getOriginalFilename());
+//                int readBytes = 0;
+//                byte[] buffer = new byte[8192];
+//                while ((readBytes = inputStream.read(buffer, 0, 8192)) != -1) {
+//                    outputStream.write(buffer, 0, readBytes);
+//                }
+//                outputStream.close();
+//                inputStream.close();
+//                userInfor.setAvatar(file.getOriginalFilename());
+//            }
+//        }
+//        userInfoService.saveUserInfor(userInfor);
+//        return "/";
+//	}
 
 	@RequestMapping(value = "/create-event-theme-activity", method = RequestMethod.POST)
 	public String createEventThemeActivityPost(String layout, Model model, HttpServletResponse response) {

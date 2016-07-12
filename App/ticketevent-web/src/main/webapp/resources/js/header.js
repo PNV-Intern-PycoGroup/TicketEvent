@@ -133,5 +133,43 @@ $(document).ready(function () {
 	})
 })
 
+//////////// Ajax Edit Profile
+var token = $("meta[name='_csrf']").attr("content");
+var header = $("meta[name='_csrf_header']").attr("content");
+$(document).ajaxSend(function(e, xhr, options) {
+ xhr.setRequestHeader(header, token);
+});
+$(document).ready(function() {
+
+		$('#submitForm').submit(function(e) {
+			var frm = $('#submitForm');
+			e.preventDefault();
+
+		    var data = {}
+		    var Form = this;
+//
+//		    //Gather Data also remove undefined keys(buttons)
+		    $.each(this, function(i, v){
+		            var input = $(v);
+		        data[input.attr("name")] = input.val();
+		        delete data["undefined"];
+		    });
+		    console.log(data);
+        $.ajax({
+            //contentType : 'application/json; charset=utf-8',
+            type: "POST",
+            url: frm.attr('action'),
+            dataType : 'json',
+            data : JSON.stringify(data),
+            data : data,
+            success:  function() {
+				debugger;
+			},
+            error: function (callback) {
+                console.log(callback);
+            }
+        });
+		});
+	});
 
 

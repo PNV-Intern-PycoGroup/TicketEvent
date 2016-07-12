@@ -18,17 +18,14 @@ public class DatabaseConfig {
 
 	private final String DB_PASSWORD = "";
 
-	private final String DB_URL = "jdbc:mysql://localhost:3306/ticket_event_schema"; // put
-																				// database
-
+	private final String DB_URL = "jdbc:mysql://localhost:3306/ticket_event_schema?characterEncoding=UTF-8"; 
 	private final String DB_USERNAME = "root";
 
 	private final String HIBERNATE_DIALECT = "org.hibernate.dialect.MySQL5Dialect";
 
 	private final String HIBERNATE_SHOW_SQL = "true";
 
-	private final String ENTITYMANAGER_PACKAGES_TO_SCAN = "pnv.intern.pyco.ticketevent"; // put packages to
-																// scan
+	private final String ENTITYMANAGER_PACKAGES_TO_SCAN = "pnv.intern.pyco.ticketevent"; // put packages to scan
 
 	@Bean
 	public DataSource dataSource() {
