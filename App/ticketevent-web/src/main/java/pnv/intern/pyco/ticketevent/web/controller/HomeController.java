@@ -68,25 +68,25 @@ public class HomeController {
 		return accountService.findUser(username);
 	}
 	
-	@RequestMapping(value = "/view-event", method = RequestMethod.GET)
+	@RequestMapping(value = "/view-event-theme-music", method = RequestMethod.GET)
 	public String viewEvent(Model model) {
-		return "event_detail_theme_music";
+		return "event-theme/music/event_detail_theme_music";
 	}
 	
 	@RequestMapping(value = "/view-event-theme-study", method = RequestMethod.GET)
 	public String viewEventThemeStudy(Model model) {
-		return "event_detail_theme_study";
+		return "event-theme/study/event_detail_theme_study";
 	}
 	
 	@RequestMapping(value = "/view-event-theme-activity", method = RequestMethod.GET)
 	public String viewEventThemeActivity(Model model) {
-		return "event_detail_theme_activity";
+		return "event-theme/activity/event_detail_theme_activity";
 	}
 	
-	@RequestMapping(value = "/create-event-theme-activity", method = RequestMethod.GET)
+	@RequestMapping(value = "/create-event", method = RequestMethod.GET)
 	public String createEventThemeActivity(Model model) {
 		model.addAttribute("layout", "none");
-		return "create_theme_activity";
+		return "event-theme/create_event";
 	}
 	
 	@RequestMapping(value = "/register", method= RequestMethod.POST)
@@ -185,14 +185,16 @@ public class HomeController {
         
 	}
 
-	@RequestMapping(value = "/create-event-theme-activity", method = RequestMethod.POST)
+	@RequestMapping(value = "/create-event-upload-image", method = RequestMethod.POST)
 	public String createEventThemeActivityPost(String layout, Model model, HttpServletResponse response) {
 		if ("free".equals(layout)) {
-			return "create_theme_free_style";
+			return "event-theme/free/create_theme_free";
 		}else if ("music".equals(layout)) {
-			return "create_theme_music";
+			return "event-theme/music/create_theme_music";
 		}else if ("study".equals(layout)) {
-			return "create_theme_study";
+			return "event-theme/study/create_theme_study";
+		}else if ("activity".equals(layout)) {
+			return "event-theme/activity/create_theme_activity";
 		}
 		response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 		return "";

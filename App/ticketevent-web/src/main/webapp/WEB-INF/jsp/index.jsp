@@ -1,4 +1,7 @@
-<%@ include file="./include_tag_lib.jsp" %>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="pnv.intern.pyco/tags" prefix="layout"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
        request.setCharacterEncoding("UTF-8");
@@ -6,21 +9,20 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<title>Welcome</title> 
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/common.css" />
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/index.css" />
-	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/footer.css" />
-	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/header_style.css">
-	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/datepicker.css">
-	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.min.js"></script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.1/ui-bootstrap-tpls.min.js"></script>
-<title>Welcome</title> 
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/lib/datepicker.css">
 </head>
 <body ng-app="myApp" ng-controller = "MainCtrl">
 
-	<layout:header></layout:header>
+	<layout:user_header></layout:user_header>
+	
 	<section id="myCarousel" class="carousel slide" data-ride="carousel">
 		<ol class="carousel-indicators">
 			<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -188,11 +190,14 @@
 			</div>
 		</div>
 	</section>
-	<layout:footer></layout:footer>
+	
+	<layout:user_footer></layout:user_footer>
 
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.1/ui-bootstrap-tpls.min.js"></script>
 	<script	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-	<script src="<%=request.getContextPath()%>/resources/js/header.js"></script>
 	<script	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/js/header.js"></script>
 	<script src="<%=request.getContextPath()%>/resources/js/boostrap-datepicker.js"></script>
 	
 </body>
