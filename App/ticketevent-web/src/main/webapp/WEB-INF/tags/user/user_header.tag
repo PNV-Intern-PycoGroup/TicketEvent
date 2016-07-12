@@ -205,7 +205,7 @@
 								<form:form class="text-center" action="editProfile" method="post" enctype="multipart/form-data" id= "submitForm">
 									<input type="hidden" name = "id" value="${account.id}">
 									<input type="hidden" name ="avatar" id="imageBase64"/>
-									<input type="file" id="avataUpload"/>
+									<input type="file" name="filenameAvatar" id="avataUpload"/>
 									<div class="kv-avatar">
 										<table>
 											<tr>

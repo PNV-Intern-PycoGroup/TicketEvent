@@ -10,9 +10,10 @@ public class AccountUserInfoModel {
 	//private Gender gender;
 	private String birthday;
 	private String avatar;
+	private String filenameAvatar;
 	
 	public AccountUserInfoModel(Long id, String username, String name, String email, String address,
-			String phone, String birthday, String avatar) {
+			String phone, String birthday, String avatar, String filenameAvatar) {
 		this.id = id;
 		this.username = username;
 		this.name = name;
@@ -22,6 +23,13 @@ public class AccountUserInfoModel {
 		//this.gender = gender;
 		this.birthday = birthday;
 		this.avatar = avatar;
+		this.filenameAvatar = filenameAvatar;
+	}
+	public String getFilenameAvatar() {
+		return filenameAvatar;
+	}
+	public void setFilenameAvatar(String filenameAvatar) {
+		this.filenameAvatar = filenameAvatar;
 	}
 	public AccountUserInfoModel() {
 	}

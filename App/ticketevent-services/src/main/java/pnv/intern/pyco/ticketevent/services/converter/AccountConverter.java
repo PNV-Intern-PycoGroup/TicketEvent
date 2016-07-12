@@ -10,8 +10,12 @@ public class AccountConverter {
 
 	public AccountUserInfoModel convertFromAccountEntity(AccountEntity account) {
 		AccountUserInfoModel accountInfo = new AccountUserInfoModel();
-		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-		String birtday = df.format(account.getUserInfor().getDateOfBirth());
+		if(account.getUserInfor().getDateOfBirth() != null){
+			DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+			String birtday = df.format(account.getUserInfor().getDateOfBirth());
+			accountInfo.setBirthday(birtday);
+		}
+		
 		
 		accountInfo.setId(account.getId());
 		accountInfo.setEmail(account.getEmail());
@@ -19,7 +23,7 @@ public class AccountConverter {
 		accountInfo.setName(account.getUserInfor().getName());
 		accountInfo.setAddress(account.getUserInfor().getAddress());
 		accountInfo.setPhone(account.getUserInfor().getPhone());
-		accountInfo.setBirthday(birtday);
+		
 		accountInfo.setAvatar(account.getUserInfor().getAvatar());
 		return accountInfo;
 	}

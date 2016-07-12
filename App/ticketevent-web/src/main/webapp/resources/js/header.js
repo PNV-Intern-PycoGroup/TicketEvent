@@ -170,19 +170,21 @@ $(document).ready(function() {
 		        delete data["undefined"];
 		    });
         $.ajax({
-            contentType : 'application/json; charset=utf-8',
+            contentType : 'application/json',
             type: "POST",
             url: frm.attr('action'),
             dataType : 'json',
             data : JSON.stringify(data),
             success:  function() {
-				debugger;
+            	window.location.replace('');
+				
 			},
             error: function (callback) {
-                console.log(callback);
+            	console.log(callback);
             }
         });
 		});
+		
 	});
 
 
