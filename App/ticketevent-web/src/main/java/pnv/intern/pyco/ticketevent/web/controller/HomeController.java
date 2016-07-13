@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -69,12 +68,6 @@ public class HomeController {
 		return "event-theme/activity/event_detail_theme_activity";
 	}
 	
-	@RequestMapping(value = "/create-event", method = RequestMethod.GET)
-	public String createEventThemeActivity(Model model) {
-		model.addAttribute("layout", "none");
-		return "event-theme/create_event";
-	}
-	
 	@RequestMapping(value = "/register", method= RequestMethod.POST)
 	public String register(@Valid AccountEntity accountEntity, BindingResult result, 
 			final RedirectAttributes redirectAttributes){
@@ -91,38 +84,6 @@ public class HomeController {
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String Register(){
 		return "index";
-	}
-	
-	@RequestMapping(value = "/upload-file", method = RequestMethod.POST)
-	public void createUploadFile(String file) {
-		
-		if (file == null) {
-			return;
-		}
-
-		String base64Img = file.split(",")[1];
-		String filePath = request.getServletContext().getRealPath("/resources/");
-		String expectPath = filePath + "/images";
-		
-        String fullPath = FileUtil.getRealPath(expectPath);
-		FileUtil.saveImageOndisk(base64Img, fullPath);
-	}
-	
-	@ResponseBody
-	@RequestMapping(value = "/upload-file-free-style", method = RequestMethod.POST)
-	public String createUploadFileFreeStyle(String file) {
-		
-		if (file == null) {
-			return "error";
-		}
-		
-		String base64Img = file.split(",")[1];
-		String filePath = request.getServletContext().getRealPath("/resources");
-		String expectPath = filePath + "/images";
-        String fullPath = FileUtil.getRealPath(expectPath);
-		FileUtil.saveImageOndisk(base64Img, fullPath);
-		
-		return "http://localhost:8080/ticketevent-web" + fullPath.split("ticketevent-web")[1];
 	}
 	
 	@RequestMapping(value = "/editProfile", method = RequestMethod.POST, headers ="content-type=application/json")
@@ -146,20 +107,5 @@ public class HomeController {
            }
         userInfoService.saveUserInfor(userInfor);
 		return "updateSuccess";
-	}
-
-	@RequestMapping(value = "/create-event-upload-image", method = RequestMethod.POST)
-	public String createEventThemeActivityPost(String layout, Model model, HttpServletResponse response) {
-		if ("free".equals(layout)) {
-			return "event-theme/free/create_theme_free";
-		}else if ("music".equals(layout)) {
-			return "event-theme/music/create_theme_music";
-		}else if ("study".equals(layout)) {
-			return "event-theme/study/create_theme_study";
-		}else if ("activity".equals(layout)) {
-			return "event-theme/activity/create_theme_activity";
-		}
-		response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-		return "";
 	}
 }
