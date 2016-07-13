@@ -9,7 +9,7 @@ import java.nio.file.Paths;
 import java.util.Base64;
 
 public class FileUtil {
-	public static void saveImageOndisk(String base64Img, String filePath) {
+	public static void saveImageOnServerBase64(String base64Img, String filePath) {
 		byte[] data = Base64.getDecoder().decode(base64Img);
 		
 		try (
@@ -17,6 +17,15 @@ public class FileUtil {
 		    stream.write(data);
 		} catch (IOException e) {
 		}
+	}
+	
+	public static String createPath(String path) {
+		Path pathCreate = Paths.get(path);
+        try {
+            Files.createDirectories(pathCreate);
+        } catch (IOException e) {
+        }
+        return path.toString().replace("\\", "/") + "/";
 	}
 	
 	public static String getRealPathUploadProfile(String filePath, String nameFile) {
@@ -41,7 +50,7 @@ public class FileUtil {
         return path.toString().replace("\\", "/") + "/" + fileCount + ".jpg";
 	}
 	
-	public static String getFilePath(String realPath){
+	public static String getFileNameFromRealPath(String realPath){
 		String filePath = (String) realPath.subSequence(realPath.lastIndexOf("/")+1, realPath.length());
 		return filePath;
 	}

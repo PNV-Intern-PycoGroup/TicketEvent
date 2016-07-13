@@ -214,7 +214,7 @@
 												    	<div id="fileupload" tabindex="-1">
 												    		<c:choose>
 												    			<c:when test="${account.avatar != null}">
-												    			<img id="avatar" src="<c:url value="/resources/images/${account.avatar}"/>" alt="Your Avatar" style="width: 160px; height: 160px;"/>
+												    			<img id="avatar" src="<c:url value="/resources/images/avatar/${account.avatar}"/>" alt="Your Avatar" style="width: 160px; height: 160px;"/>
 												    			</c:when>
 												    			<c:otherwise>
 												    				<img id="avatar" src="http://plugins.krajee.com/uploads/default_avatar_male.jpg" alt="Your Avatar" style="width: 160px; height: 160px;"/>

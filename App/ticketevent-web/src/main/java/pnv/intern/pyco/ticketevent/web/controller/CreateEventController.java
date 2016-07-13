@@ -37,7 +37,7 @@ public class CreateEventController {
 		String expectPath = filePath + "/images";
 		
         String fullPath = FileUtil.getRealPath(expectPath);
-		FileUtil.saveImageOndisk(base64Img, fullPath);
+		FileUtil.saveImageOnServerBase64(base64Img, fullPath);
 	}
 	
 	@ResponseBody
@@ -54,7 +54,7 @@ public class CreateEventController {
 		String filePath = request.getServletContext().getRealPath("/resources");
 		String expectPath = filePath + "/images";
         String fullPath = FileUtil.getRealPath(expectPath);
-		FileUtil.saveImageOndisk(base64Img, fullPath);
+		FileUtil.saveImageOnServerBase64(base64Img, fullPath);
 		
 		return "http://localhost:8080/ticketevent-web" + fullPath.split("ticketevent-web")[1];
 	}

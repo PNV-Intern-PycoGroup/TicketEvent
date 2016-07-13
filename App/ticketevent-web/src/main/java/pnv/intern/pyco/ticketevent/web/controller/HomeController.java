@@ -97,12 +97,12 @@ public class HomeController {
         	String image = account.getAvatar().split(",")[1];
         	HttpSession session = request.getSession();
     		ServletContext sc = session.getServletContext();
-    		String imagePath = sc.getRealPath("/") + "resources/images/";
     		
-    		//String path = FileUtil.getRealPath(imagePath);
-    		String path = FileUtil.getRealPathUploadProfile(imagePath, account.getFilenameAvatar());
-    		FileUtil.saveImageOndisk(image, path);
-               userInfor.setAvatar(FileUtil.getFilePath(path));
+    		String nameImage = userInfor.getName() + ".jpg";
+    		String imagePath = FileUtil.createPath(sc.getRealPath("/") + "resources/images/avatar/") + nameImage;
+    		
+    		FileUtil.saveImageOnServerBase64(image, imagePath);
+               userInfor.setAvatar(nameImage);
         	}
            }
         userInfoService.saveUserInfor(userInfor);
