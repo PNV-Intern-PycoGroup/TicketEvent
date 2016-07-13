@@ -169,15 +169,15 @@ $(document).ready(function() {
 		        data[input.attr("name")] = input.val();
 		        delete data["undefined"];
 		    });
+		    console.log(data);
         $.ajax({
             contentType : 'application/json',
             type: "POST",
             url: frm.attr('action'),
-            dataType : 'json',
+            dataType : 'text',
             data : JSON.stringify(data),
             success:  function() {
             	window.location.replace('');
-				
 			},
             error: function (callback) {
             	console.log(callback);
