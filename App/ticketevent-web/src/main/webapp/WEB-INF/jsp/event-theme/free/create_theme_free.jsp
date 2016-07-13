@@ -4,6 +4,8 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/event-theme/free/create_theme_free.css">
+
 <h1>Tạo sự kiện theo cách của bạn</h1>
 <div>
 	<div class="upload-contain">

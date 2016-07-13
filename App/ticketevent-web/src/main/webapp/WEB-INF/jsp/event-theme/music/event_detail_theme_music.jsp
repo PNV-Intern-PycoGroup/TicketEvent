@@ -15,9 +15,9 @@
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/common.css">
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/event-theme/music/event_detail_theme_music.css">
 </head>
-<body>
+<body data-spy="scroll" data-target="#scroll-page" data-offset="100">
 	<header>
-		<nav class="navbar navbar-default navbar-fixed-top">
+		<nav class="navbar navbar-default navbar-fixed-top"  id="scroll-page">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed"

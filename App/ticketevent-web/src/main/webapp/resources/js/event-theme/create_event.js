@@ -55,21 +55,18 @@ $('.contain-radio').on('click', function(e) {
 	$(this).find('input[type=radio]').prop('checked', true);
 });
 
-$('.choose-layout').click(function(e) {
-	var data = $('.select-layout:not(.btn-group)').val() == "" ? "none" : $('.select-layout:not(.btn-group)').val();
-	
+var createEventStepTwo = (function(outputLayout) {
 	var sendInfo = {
-		layout : data
+		file : "abc"
 	};
 	$.ajax({
 	    type: 'POST',
-	    url: "create-event-upload-image",
+	    url: "create-event-step-two",
 	    data : sendInfo
-    })
-    .done(function(data) {
-    	$('.output-layout').hide().html(data).fadeIn(1000);
-	})
-    .fail(function() {
-    	$('.create-theme-make-error').hide().text("Hãy chọn một giao diện cho sự kiện của bạn").fadeIn(800);
+ }).done(function(data) {
+		outputLayout.html(data);
+	}).fail(function() {
 	});
 });
+
+createEventStepTwo($('#ticket-layout'));

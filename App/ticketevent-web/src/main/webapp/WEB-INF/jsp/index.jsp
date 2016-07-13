@@ -197,8 +197,8 @@
 	<script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.1/ui-bootstrap-tpls.min.js"></script>
 	<script	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 	<script	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/js/lib/boostrap-datepicker.js"></script>
 	<script src="<%=request.getContextPath()%>/resources/js/header.js"></script>
-	<script src="<%=request.getContextPath()%>/resources/js/boostrap-datepicker.js"></script>
 	
 </body>
 </html>

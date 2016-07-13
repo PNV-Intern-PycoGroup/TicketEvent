@@ -7,7 +7,7 @@ tinymce.init({
              ],
 	a_plugin_option: true,
 	language: lang,
-	language_url: '/ticketevent-web/resources/js/vi_VN.js',
+	language_url: '/ticketevent-web/resources/js/lib/vi_VN.js',
 	a_configuration_option: 400,
 	height: 600,
 	toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify '
@@ -68,9 +68,9 @@ var postImageFunctionCreateThemeFreeStyle = (function(base64, outputImage) {
 			copyToClipboard($(this).parent().find('.url'));
 		});
 	})
- .fail(function() {
+ .fail(function(error) {
  	outputUrlImage.css('color', 'red');
- 	outputUrlImage.text("Tải lên thất bại. Vì dung lượng ảnh tải lên vượt quá 2MB!");
+ 	outputUrlImage.text(error);
 		btnCopyUrl.click(function(e) {
 			e.preventDefault();
 		});
