@@ -1,13 +1,10 @@
 package pnv.intern.pyco.ticketevent.web.controller;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -17,20 +14,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import pnv.intern.pyco.ticketevent.repository.entity.AccountEntity;
 import pnv.intern.pyco.ticketevent.repository.entity.UserInformationEntity;
 import pnv.intern.pyco.ticketevent.services.AccountService;
 import pnv.intern.pyco.ticketevent.services.UserInformationService;
-import pnv.intern.pyco.ticketevent.services.model.AccountUserInfor;
+import pnv.intern.pyco.ticketevent.services.model.AccountUserInfoModel;
+import pnv.intern.pyco.ticketevent.web.util.FileUtil;
 
 @Controller
 public class HomeController {
@@ -47,16 +43,8 @@ public class HomeController {
 	public String test(ModelMap model) {
 		AccountEntity account = accountService.getAccountbyUserName(SecurityContextHolder.getContext().getAuthentication().getName());
 		if(account != null){
-		AccountUserInfor acc = new AccountUserInfor();
-		acc.setId(account.getId());
-		acc.setEmail(account.getEmail());
-		acc.setUsername(account.getUserName());
-		acc.setName(account.getUserInfor().getName());
-		acc.setAddress(account.getUserInfor().getAddress());
-		acc.setPhone(account.getUserInfor().getPhone());
-		//acc.setBirthday(account.getUserInfor().getDateOfBirth().toString());
-		acc.setAvatar(account.getUserInfor().getAvatar());		
-		model.put("account", acc);
+			AccountUserInfoModel acc = accountService.getAccInfor(account.getId());
+			model.put("account", acc);
 		}
 		return "index";
 	}
@@ -81,6 +69,12 @@ public class HomeController {
 		return "event-theme/activity/event_detail_theme_activity";
 	}
 	
+	@RequestMapping(value = "/create-event", method = RequestMethod.GET)
+	public String createEventThemeActivity(Model model) {
+		model.addAttribute("layout", "none");
+		return "event-theme/create_event";
+	}
+	
 	@RequestMapping(value = "/register", method= RequestMethod.POST)
 	public String register(@Valid AccountEntity accountEntity, BindingResult result, 
 			final RedirectAttributes redirectAttributes){
@@ -99,49 +93,73 @@ public class HomeController {
 		return "index";
 	}
 	
-	@RequestMapping(value = "/editProfile", method = RequestMethod.POST)
-	public String editProfile(@ModelAttribute("account") AccountUserInfor account, Model model, @RequestParam("file") MultipartFile file) throws IOException{
+	@RequestMapping(value = "/upload-file", method = RequestMethod.POST)
+	public void createUploadFile(String file) {
+		
+		if (file == null) {
+			return;
+		}
 
+		String base64Img = file.split(",")[1];
+		String filePath = request.getServletContext().getRealPath("/resources/");
+		String expectPath = filePath + "/images";
+		
+        String fullPath = FileUtil.getRealPath(expectPath);
+		FileUtil.saveImageOndisk(base64Img, fullPath);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/upload-file-free-style", method = RequestMethod.POST)
+	public String createUploadFileFreeStyle(String file) {
+		
+		if (file == null) {
+			return "error";
+		}
+		
+		String base64Img = file.split(",")[1];
+		String filePath = request.getServletContext().getRealPath("/resources");
+		String expectPath = filePath + "/images";
+        String fullPath = FileUtil.getRealPath(expectPath);
+		FileUtil.saveImageOndisk(base64Img, fullPath);
+		
+		return "http://localhost:8080/ticketevent-web" + fullPath.split("ticketevent-web")[1];
+	}
+	
+	@RequestMapping(value = "/editProfile", method = RequestMethod.POST, headers ="content-type=application/json")
+	public @ResponseBody String editProfile(@RequestBody AccountUserInfoModel account, Model model,  HttpServletRequest request) throws IOException{
+
+		
 		UserInformationEntity userInfor = userInfoService.handleBeforeEditProfile(account);
-        if (!file.isEmpty()) {
-            HttpSession session = request.getSession();
-            ServletContext sc = session.getServletContext();
-            String imagePath = sc.getRealPath("/") + "resources/images/";
-
-            File theDir = new File(imagePath);
-            if (!theDir.exists()) {
-                boolean isCreated = false;
-
-                try {
-                    theDir.mkdir();
-                    isCreated = true;
-                } catch (SecurityException se) {
-                }
-                if (isCreated) {
-                }
-            }
-            InputStream inputStream = null;
-            OutputStream outputStream = null;
-            if (file.getSize() > 0) {
-                inputStream = file.getInputStream();
-                File newFile = new File(imagePath + file.getOriginalFilename());
-                if (!newFile.exists()) {
-                    newFile.createNewFile();
-                }
-                outputStream = new FileOutputStream(imagePath
-                        + file.getOriginalFilename());
-                int readBytes = 0;
-                byte[] buffer = new byte[8192];
-                while ((readBytes = inputStream.read(buffer, 0, 8192)) != -1) {
-                    outputStream.write(buffer, 0, readBytes);
-                }
-                outputStream.close();
-                inputStream.close();
-                userInfor.setAvatar(file.getOriginalFilename());
-            }
-        }
+		
+        if (!account.getAvatar().isEmpty()) {
+        	if(!account.getFilenameAvatar().isEmpty()){
+        	String image = account.getAvatar().split(",")[1];
+        	HttpSession session = request.getSession();
+    		ServletContext sc = session.getServletContext();
+    		String imagePath = sc.getRealPath("/") + "resources/images/";
+    		
+    		//String path = FileUtil.getRealPath(imagePath);
+    		String path = FileUtil.getRealPathUploadProfile(imagePath, account.getFilenameAvatar());
+    		FileUtil.saveImageOndisk(image, path);
+               userInfor.setAvatar(FileUtil.getFilePath(path));
+        	}
+           }
         userInfoService.saveUserInfor(userInfor);
-		return "index";
-        
+		return "updateSuccess";
+	}
+
+	@RequestMapping(value = "/create-event-upload-image", method = RequestMethod.POST)
+	public String createEventThemeActivityPost(String layout, Model model, HttpServletResponse response) {
+		if ("free".equals(layout)) {
+			return "event-theme/free/create_theme_free";
+		}else if ("music".equals(layout)) {
+			return "event-theme/music/create_theme_music";
+		}else if ("study".equals(layout)) {
+			return "event-theme/study/create_theme_study";
+		}else if ("activity".equals(layout)) {
+			return "event-theme/activity/create_theme_activity";
+		}
+		response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+		return "";
 	}
 }
