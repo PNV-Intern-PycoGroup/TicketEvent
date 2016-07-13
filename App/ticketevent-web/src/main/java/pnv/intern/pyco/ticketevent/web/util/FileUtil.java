@@ -19,6 +19,16 @@ public class FileUtil {
 		}
 	}
 	
+	public static String getRealPathUploadProfile(String filePath, String nameFile) {
+		Path path = Paths.get(filePath);
+        try {
+            Files.createDirectories(path);
+        } catch (IOException e) {
+        }
+        String fileName = (String) nameFile.subSequence(nameFile.lastIndexOf("\\")+1, nameFile.length());
+        return path.toString().replace("\\", "/") + "/" + fileName;
+	}
+	
 	public static String getRealPath(String filePath) {
 		long fileCount = 0;
 		Path path = Paths.get(filePath);
@@ -29,5 +39,10 @@ public class FileUtil {
         }
         
         return path.toString().replace("\\", "/") + "/" + fileCount + ".jpg";
+	}
+	
+	public static String getFilePath(String realPath){
+		String filePath = (String) realPath.subSequence(realPath.lastIndexOf("/")+1, realPath.length());
+		return filePath;
 	}
 }

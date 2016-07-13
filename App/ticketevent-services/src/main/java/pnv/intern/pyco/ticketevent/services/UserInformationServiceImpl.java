@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import pnv.intern.pyco.ticketevent.repository.UserInformationReponsitory;
 import pnv.intern.pyco.ticketevent.repository.entity.AccountEntity;
 import pnv.intern.pyco.ticketevent.repository.entity.UserInformationEntity;
-import pnv.intern.pyco.ticketevent.services.model.AccountUserInfor;
+import pnv.intern.pyco.ticketevent.services.model.AccountUserInfoModel;
 
 @Service
 public class UserInformationServiceImpl implements UserInformationService{
@@ -33,7 +33,7 @@ public class UserInformationServiceImpl implements UserInformationService{
 	}
 
 	@Override
-	public UserInformationEntity handleBeforeEditProfile(AccountUserInfor account) {
+	public UserInformationEntity handleBeforeEditProfile(AccountUserInfoModel account) {
 		AccountEntity accountEntity = accountService.getAccount(account.getId());
 		UserInformationEntity userInfo = null;
 		if(accountEntity != null){

@@ -73,17 +73,32 @@ $(document).ready(function(){
 function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
+       
         
         reader.onload = function (e) {
             $('#avatar').attr('src', e.target.result);
+            $('#imageBase64').val(e.target.result);
         }
         
         reader.readAsDataURL(input.files[0]);
+        
     }
 }
 
 $("#avataUpload").change(function(){
-    readURL(this);
+ 	   var ext = this.value.match(/\.(.+)$/)[1];
+ 	    switch(ext)
+ 	    {
+ 	        case 'jpg':
+ 	        case 'bmp':
+ 	        case 'png':
+ 	        case 'tif':
+ 	        	readURL(this);
+ 	            break;
+ 	        default:
+ 	            alert('This file is not true format');
+ 	            this.value='';
+  }
 });
 ///////////////////////////////////////
 
@@ -133,5 +148,43 @@ $(document).ready(function () {
 	})
 })
 
+//////////// Ajax Edit Profile
+var token = $("meta[name='_csrf']").attr("content");
+var header = $("meta[name='_csrf_header']").attr("content");
+$(document).ajaxSend(function(e, xhr, options) {
+ xhr.setRequestHeader(header, token);
+});
+$(document).ready(function() {
+
+		$('#submitForm').submit(function(e) {
+			var frm = $('#submitForm');
+			e.preventDefault();
+
+		    var data = {}
+		    var Form = this;
+//
+//		    //Gather Data also remove undefined keys(buttons)
+		    $.each(this, function(i, v){
+		            var input = $(v);
+		        data[input.attr("name")] = input.val();
+		        delete data["undefined"];
+		    });
+        $.ajax({
+            contentType : 'application/json',
+            type: "POST",
+            url: frm.attr('action'),
+            dataType : 'json',
+            data : JSON.stringify(data),
+            success:  function() {
+            	window.location.replace('');
+				
+			},
+            error: function (callback) {
+            	console.log(callback);
+            }
+        });
+		});
+		
+	});
 
 
