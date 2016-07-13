@@ -98,7 +98,7 @@ public class HomeController {
         	HttpSession session = request.getSession();
     		ServletContext sc = session.getServletContext();
     		
-    		String nameImage = userInfor.getName() + ".jpg";
+    		String nameImage = userInfor.getAccount().getUserName() + ".jpg";
     		String imagePath = FileUtil.createPath(sc.getRealPath("/") + "resources/images/avatar/") + nameImage;
     		
     		FileUtil.saveImageOnServerBase64(image, imagePath);
