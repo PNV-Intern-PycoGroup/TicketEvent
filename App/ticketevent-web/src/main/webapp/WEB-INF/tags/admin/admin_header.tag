@@ -48,23 +48,27 @@
 					<!-- User Account Menu -->
 					<li class="dropdown user user-menu">
 						<!-- Menu Toggle Button --> <a href="#" class="dropdown-toggle"
-						data-toggle="dropdown"> <!-- The user image in the navbar--> <img
-							src="resources/icon/user2-160x160.jpg" class="user-image"
-							alt="User Image" /> <!-- hidden-xs hides the username on small devices so only the image appears. -->
-							<span class="hidden-xs">Y Pham</span>
+						data-toggle="dropdown"> 
+							<c:choose>
+							<c:when test="${account.avatar != null}">
+								<img src="<c:url value="/resources/images/avatar/${account.avatar}"/>" class="user-image" alt="Your avatar" />
+							</c:when>
+							<c:otherwise>
+								<img src="http://plugins.krajee.com/uploads/default_avatar_male.jpg" class="user-image" alt="Your avatar"/>
+							</c:otherwise>
+						</c:choose>
+							<span class="hidden-xs"><c:out value="${account.name}"></c:out></span>
 					</a>
 						<ul class="dropdown-menu">
 							<!-- The user image in the menu -->
-							<li class="user-header"><img
-								src="resources/icon/user2-160x160.jpg" class="img-circle"
-								alt="User Image" />
+							<li class="user-header"><img src="#" class="img-circle userAvatar"	alt="User Image" />
 								<p>
-									Y Pham - Web Developer <small>Member since Nov. 2012</small>
+									<c:out value="${account.name}"></c:out> - TicketEvent Administrator
 								</p></li>
 							<!-- Menu Footer-->
 							<li class="user-footer">
 								<div class="pull-right">
-									<a href="#" class="btn btn-default btn-flat">Sign out</a>
+									<a href="logout" class="btn btn-default btn-flat">Sign out</a>
 								</div>
 							</li>
 						</ul>
@@ -85,13 +89,10 @@
 			<!-- Sidebar user panel (optional) -->
 			<div class="user-panel">
 				<div class="pull-left image">
-					<img src="resources/icon/user2-160x160.jpg" class="img-circle"
-						alt="User Image" />
+					<img src="#" class="img-circle userAvatar" alt="Your avatar" />
 				</div>
 				<div class="pull-left info">
-					<p>Y Pham</p>
-					<!-- Status -->
-					<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+					<p><c:out value="${account.name}"></c:out></p>
 				</div>
 			</div>
 
@@ -113,16 +114,13 @@
 			<ul class="sidebar-menu">
 				<li class="header">Dashboard</li>
 				<!-- Optionally, you can add icons to the links -->
-				<li class="active"><a href="admin-page"><i
+				<li class="active"><a href="<%=request.getContextPath()%>/admin-page"><i
 						class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
 				<li><a href="#"><i class="fa fa-leaf"></i> <span>Events</span></a></li>
-				<li><a href="user-management"><i class="fa fa-users"></i> <span>Users</span></a></li>
+				<li><a href="<%=request.getContextPath()%>/user-management"><i class="fa fa-users"></i> <span>Users</span></a></li>
 				<li><a href="#"><i class="fa fa-pie-chart"></i> <span>Chart</span></a></li>
-				<li><a href="admin-comment-manage"><i class="fa fa-comment"></i>
+				<li><a href="<%=request.getContextPath()%>/admin-comment-manage"><i class="fa fa-comment"></i>
 						<span>New Comments</span><small class="label pull-right bg-blue">12</small></a></li>
-				<li><a href="mail-inbox"><i class="fa fa-envelope"></i> <span>Mail
-							Inbox</span> <i class="fa fa-angle-left pull-right"></i><small
-						class="label pull-right bg-green">12</small></a></li>
 			</ul>
 			<!-- /.sidebar-menu -->
 		</section>

@@ -1,5 +1,7 @@
 package pnv.intern.pyco.ticketevent.services.model;
 
+import java.util.Date;
+
 public class AccountUserInfoModel {
 	private Long id;
 	private String username;
@@ -11,9 +13,11 @@ public class AccountUserInfoModel {
 	private String birthday;
 	private String avatar;
 	private String filenameAvatar;
+	private int isActive;
+	private Date activeDate;
 	
 	public AccountUserInfoModel(Long id, String username, String name, String email, String address,
-			String phone, String birthday, String avatar, String filenameAvatar) {
+			String phone, String birthday, String avatar, String filenameAvatar, int isActive, Date activeDate) {
 		this.id = id;
 		this.username = username;
 		this.name = name;
@@ -24,6 +28,8 @@ public class AccountUserInfoModel {
 		this.birthday = birthday;
 		this.avatar = avatar;
 		this.filenameAvatar = filenameAvatar;
+		this.isActive = isActive;
+		this.activeDate = activeDate;
 	}
 	public String getFilenameAvatar() {
 		return filenameAvatar;
@@ -89,8 +95,18 @@ public class AccountUserInfoModel {
 	}
 	public void setAvatar(String avatar) {
 		this.avatar = avatar;
-	}	
-	
-	
+	}
+	public int getIsActive() {
+		return isActive;
+	}
+	public void setIsActive(int isActive) {
+		this.isActive = isActive;
+	}
+	public Date getActiveDate() {
+		return activeDate;
+	}
+	public void setActiveDate(Date activeDate) {
+		this.activeDate = activeDate;
+	}
 	
 }

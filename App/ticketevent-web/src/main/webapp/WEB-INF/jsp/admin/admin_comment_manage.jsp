@@ -3,6 +3,10 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="pnv.intern.pyco/tags" prefix="layout"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<c:url var="firstUrl" value="/user-management/1" />
+<c:url var="lastUrl" value="/user-management/${page.totalPages}" />
+<c:url var="prevUrl" value="/user-management/${currentIndex - 1}" />
+<c:url var="nextUrl" value="/user-management/${currentIndex + 1}" />
 
 <!DOCTYPE html>
 <html>
@@ -43,7 +47,6 @@
 							<table class="table table-bordered">
 								<tr>
 									<th><input type="checkbox" id="selectAll"></th>
-									<th>Comment ID</th>
 									<th>By User</th>
 									<th>Content</th>
 									<th>Date</th>
@@ -51,6 +54,7 @@
 									<th>Status</th>
 									<td>Action</td>
 								</tr>
+								<c:forEach items="${listAllComment}" var="commentItem">
 								<tr>
 									<td><input type="checkbox" class="selectID" value="abc"
 										name="commentID"></td>
@@ -62,47 +66,50 @@
 									<td>abc</td>
 									<td>delete</td>
 								</tr>
-								<tr>
-									<td><input type="checkbox" class="selectID"></td>
-									<td>1.</td>
-									<td>Update software</td>
-									<td>Có bao nhiêu loại vé ad ?</td>
-									<td>20/6/2016</td>
-									<td>Music</td>
-									<td>abc</td>
-									<td>delete</td>
-								</tr>
-								<tr>
-									<td><input type="checkbox" class="selectID"></td>
-									<td>1.</td>
-									<td>Update software</td>
-									<td>Có bao nhiêu loại vé ad ?</td>
-									<td>20/6/2016</td>
-									<td>Music</td>
-									<td>abc</td>
-									<td>delete</td>
-								</tr>
-								<tr>
-									<td><input type="checkbox" class="selectID"></td>
-									<td>1.</td>
-									<td>Update software</td>
-									<td>Có bao nhiêu loại vé ad ?</td>
-									<td>20/6/2016</td>
-									<td>Music</td>
-									<td>abc</td>
-									<td>delete</td>
-								</tr>
+								</c:forEach>
 							</table>
 						</div>
 						<!-- /.box-body -->
 						<div class="box-footer clearfix">
-							<ul class="pagination pagination-sm no-margin pull-right">
-								<li><a href="#">&laquo;</a></li>
-								<li><a href="#">1</a></li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#">&raquo;</a></li>
-							</ul>
+							<nav>
+							  <ul class="pagination pagination-sm no-margin pull-right">
+							  
+							  	<c:choose>
+							       <c:when test="${currentIndex == 1}">
+							          <li class="disabled"><a class="page-link" href="#" aria-label="Previous">
+							                	<span aria-hidden="true">First</span>
+							        			<span class="sr-only">Previous</span></a></li>
+							                <li class="disabled"><a class="page-link" href="#">&lt;</a></li>
+							            </c:when>
+							            <c:otherwise>
+							                <li><a href="${firstUrl}">First</a></li>
+							                <li><a href="${prevUrl}">&lt;</a></li>
+							            </c:otherwise>
+							   </c:choose>
+							   <c:forEach var="i" begin="${beginIndex}" end="${endIndex}">
+							            <c:url var="pageUrl" value="/user-management/${i}" />
+							            <c:choose>
+							                <c:when test="${i == currentIndex}">
+							                    <li class="page-item active"><a class="page-link" href="${pageUrl}"><c:out value="${i}" /></a></li>
+							                </c:when>
+							                <c:otherwise>
+							                    <li class="page-item" ><a class="page-link" href="${pageUrl}"><c:out value="${i}" /></a></li>
+							                </c:otherwise>
+							            </c:choose>
+							   </c:forEach>
+							   <c:choose>
+							            <c:when test="${currentIndex == page.totalPages}">
+							                <li class="page-item disabled"><a class="page-link" aria-label="Next" href="#"><span aria-hidden="true">&gt;</span>
+							        <span class="sr-only">Next</span></a></li>
+							                <li class="page-item disabled"><a class="page-link" aria-label="Last" href="#">Last</a></li>
+							            </c:when>
+							            <c:otherwise>
+							                <li class="page-item"><a href="${nextUrl}">&gt;</a></li>
+							                <li class="page-item"><a href="${lastUrl}">Last</a></li>
+							            </c:otherwise>
+							        </c:choose>
+							  </ul>
+							</nav>
 						</div>
 					</div>
 					<!-- /.box -->

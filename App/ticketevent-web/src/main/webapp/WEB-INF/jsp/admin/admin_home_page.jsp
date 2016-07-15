@@ -82,7 +82,7 @@
 							class="ion ion-ios-people-outline"></i></span>
 						<div class="info-box-content">
 							<span class="info-box-text">All Members</span> <span
-								class="info-box-number">2,000</span>
+								class="info-box-number"><c:out value="${listAllAccount.size()}"></c:out></span>
 						</div>
 						<!-- /.info-box-content -->
 					</div>
@@ -245,6 +245,7 @@
 
 	<script src="<%=request.getContextPath()%>/resources/js/lib/jQuery-2.1.4.min.js"></script>
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/js/admin.js"></script>
 	<script src="<%=request.getContextPath()%>/resources/js/lib/app.min.js"></script>
 </body>
 </html>

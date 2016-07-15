@@ -1,6 +1,5 @@
 package pnv.intern.pyco.ticketevent.services;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -38,7 +37,6 @@ public class UserInformationServiceImpl implements UserInformationService{
 		UserInformationEntity userInfo = null;
 		if(accountEntity != null){
 			accountEntity.setEmail(account.getEmail());
-			//accountService.updateAccount(accountEntity);
 			userInfo = accountEntity.getUserInfor();
 			if(userInfo != null){
 				userInfo.setAddress(account.getAddress());

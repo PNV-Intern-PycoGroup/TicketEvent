@@ -75,7 +75,7 @@
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">
 						<c:choose>
-						<c:when test="${account.username == null || account.username.equals('')}">
+						<c:when test="${account.name == null || account.name.equals('')}">
 							<c:out value="${account.username}"/>
 						</c:when>
 						<c:otherwise>

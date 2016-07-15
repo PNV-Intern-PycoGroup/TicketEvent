@@ -15,6 +15,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import pnv.intern.pyco.ticketevent.repository.util.DatabaseConstantUtil;
 
 @Entity
@@ -42,6 +44,7 @@ public class AccountEntity{
 	@Column(name = DatabaseConstantUtil.ACCOUNT_FIELD_IS_ACTIVE)
 	private int isActive;
 	
+	@DateTimeFormat(pattern="dd.MM.yyyy hh:mm")
 	@Column(name = DatabaseConstantUtil.ACCOUNT_FIELD_ACTIVE_DATE)
 	private Date activeDate;
 

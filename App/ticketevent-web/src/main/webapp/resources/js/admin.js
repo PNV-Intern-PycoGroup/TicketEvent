@@ -30,3 +30,79 @@ $(document).ready(function() {
 		}
 	});
 });
+
+
+$(document).ready(function(){
+	$('.activeToggle').each(function () {
+		if( $(this).attr('name') == 1){
+			$(this).prop("checked", true);
+		}else{
+			$(this).prop("checked", false);
+		}
+	})
+	
+	
+	
+	var type = 0;
+	$('.activeToggle').click(function () {
+		var tar_id = $(this).attr("id");
+		if($(this).is(":checked")){
+			type = 1;
+			$.ajax({
+	            contentType : 'application/json',
+	            type: "GET",
+	            url: '/ticketevent-web/setAccountActive/' + tar_id+'/'+type,
+	            dataType : 'text',
+	            async: true,
+	            
+	            success:  function() {
+	            	window.location.replace('');
+				},
+	            error: function (callback) {
+	            	console.log(callback);
+	            }
+	        });
+		}else{
+			type = 0;
+			$.ajax({
+	            contentType : 'application/json',
+	            type: "GET",
+	            url: '/ticketevent-web/setAccountActive/' + tar_id+'/'+type,
+	            dataType : 'text',
+	            async: true,
+	            
+	            success:  function() {
+	            	window.location.replace('');
+				},
+	            error: function (callback) {
+	            	console.log(callback);
+	            }
+	        });
+		}
+	})
+})
+
+
+//Set Image Avatar for Admin Page
+$(document).ready(function () {
+	var abc = $('.user-image')[0].src;
+	$('.userAvatar').attr('src', abc);
+});
+
+//	$(".table-hover tr").not(':first').tooltip(
+//			  function () {
+//				  var tar_id = $(this).attr("id");
+//				  var image = $('#'+tar_id+' #avatar')[0].src;
+//				  //$('.table-hover #'+tar_id).tooltip({ content: '<img src="'+image+'" />' });
+//				  $(this).tooltip({
+//					    items: "tr",
+//					    content: "My content :)"
+//					});
+//				  alert(image);
+//			  }, 
+//			  function () {
+//				  
+//			  });
+
+
+
