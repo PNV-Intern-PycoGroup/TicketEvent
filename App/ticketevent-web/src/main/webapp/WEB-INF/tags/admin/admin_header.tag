@@ -117,9 +117,9 @@
 				<li class="active"><a href="<%=request.getContextPath()%>/admin-page"><i
 						class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
 				<li><a href="#"><i class="fa fa-leaf"></i> <span>Events</span></a></li>
-				<li><a href="<%=request.getContextPath()%>/user-management"><i class="fa fa-users"></i> <span>Users</span></a></li>
+				<li><a href="<%=request.getContextPath()%>/user-management?page=1&type=2"><i class="fa fa-users"></i> <span>Users</span></a></li>
 				<li><a href="#"><i class="fa fa-pie-chart"></i> <span>Chart</span></a></li>
-				<li><a href="<%=request.getContextPath()%>/admin-comment-manage"><i class="fa fa-comment"></i>
+				<li><a href="<%=request.getContextPath()%>/admin-comment-manage?page=1"><i class="fa fa-comment"></i>
 						<span>New Comments</span><small class="label pull-right bg-blue">12</small></a></li>
 			</ul>
 			<!-- /.sidebar-menu -->

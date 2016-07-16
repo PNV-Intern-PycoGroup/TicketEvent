@@ -103,6 +103,21 @@ $(document).ready(function () {
 //			  function () {
 //				  
 //			  });
-
-
+$(document).ready(function () {
+	var windowlink = window.location.href;
+	var dk = windowlink.lastIndexOf('=');
+	var num = windowlink.substring(dk + 1, windowlink.length);
+	if(num == 1 || num == 2){
+	if(num == $('#sel1').val()){
+		$('#sel1').val(2);
+	}else {
+		$('#sel1').val(1);
+	}}else{
+		$('#sel1').val(2);
+	}
+	$('#sel1').change(function () {
+	    var str = $( this ).val();
+	    window.location.href="user-management?page=1&type="+str;
+	});
+});
 

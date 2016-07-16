@@ -35,10 +35,10 @@ private static final int PAGE_SIZE = 5;
 	}
 	
 	@Override
-	public Page<AccountEntity> getDeploymentLog(Integer pageNumber) {
+	public Page<AccountEntity> getAllAccount(Long accountType, Integer pageNumber) {
         PageRequest request =
             new PageRequest(pageNumber - 1, PAGE_SIZE, Sort.Direction.DESC, "id");
-        return accountReponsitoty.getAllUserNotAdmin(request);
+        return accountReponsitoty.getAllUserNotAdmin(accountType, request);
     }
 	
 	
@@ -87,7 +87,7 @@ private static final int PAGE_SIZE = 5;
 		}else{
 			acc.setIsActive(1);
 		}
-		accountReponsitoty.saveAndFlush(acc);
+		updateAccount(acc);
 	}
 	
 	@Override
@@ -102,8 +102,8 @@ private static final int PAGE_SIZE = 5;
 	}
 	
 	@Override
-	public List<AccountUserInfoModel> getAllAccountUserInfo(){
-		return accountConverter.convertAllAccount(getAllAccountNotAdmin());
+	public List<AccountUserInfoModel> getAllAccountUserInfoModel(List<AccountEntity> listAccountEntity){
+		return accountConverter.convertAllAccount(listAccountEntity);
 	}
 	
 }

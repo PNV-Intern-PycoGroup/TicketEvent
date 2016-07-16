@@ -11,7 +11,7 @@ import pnv.intern.pyco.ticketevent.services.model.AccountUserInfoModel;
 public interface AccountService {
 	
 	
-	public Page<AccountEntity> getDeploymentLog(Integer pageNumber);
+	public Page<AccountEntity> getAllAccount(Long accountType, Integer pageNumber);
 	
 	
 	
@@ -33,6 +33,6 @@ public interface AccountService {
 	
 	public AccountUserInfoModel getAccInfor(Long id);
 	
-	public List<AccountUserInfoModel> getAllAccountUserInfo();
+	public List<AccountUserInfoModel> getAllAccountUserInfoModel(List<AccountEntity> listAccountEntity);
 	
 }

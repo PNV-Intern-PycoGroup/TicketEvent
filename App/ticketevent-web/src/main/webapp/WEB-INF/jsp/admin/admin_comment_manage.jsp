@@ -2,11 +2,12 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="pnv.intern.pyco/tags" prefix="layout"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<c:url var="firstUrl" value="/user-management/1" />
-<c:url var="lastUrl" value="/user-management/${page.totalPages}" />
-<c:url var="prevUrl" value="/user-management/${currentIndex - 1}" />
-<c:url var="nextUrl" value="/user-management/${currentIndex + 1}" />
+<c:url var="firstUrl" value="/admin-comment-manage?page=1" />
+<c:url var="lastUrl" value="/admin-comment-manage?page=${page.totalPages}" />
+<c:url var="prevUrl" value="/admin-comment-manage?page=${currentIndex - 1}" />
+<c:url var="nextUrl" value="/admin-comment-manage?page=${currentIndex + 1}" />
 
 <!DOCTYPE html>
 <html>
@@ -25,7 +26,7 @@
 		<!-- Content Header (Page header) -->
 		<section class="content-header">
 			<h1>
-				Dashboard <small>Version 2.0</small>
+				Quản Lí Bình Luận
 			</h1>
 			<ol class="breadcrumb">
 				<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -39,32 +40,40 @@
 				<div class="col-xs-12">
 					<div class="box">
 						<div class="box-header">
-							<h3 class="box-title">New Comments</h3>
+							<h3 class="box-title">Bảng Thông Tin Bình Luận</h3>
+							<div class="box-tools">
+			                    <div class="input-group" style="width: 150px;">
+			                      <input type="text" name="table_search" class="form-control input-sm pull-right" placeholder="Search" />
+			                      <div class="input-group-btn">
+			                        <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
+			                      </div>
+			                    </div>
+			                </div>
 						</div>
 						<!-- /.box-header -->
 						<div class="box-body">
-							<button id="delete">Delete</button>
+							<button id="delete">Xóa</button>
 							<table class="table table-bordered">
 								<tr>
 									<th><input type="checkbox" id="selectAll"></th>
-									<th>By User</th>
-									<th>Content</th>
-									<th>Date</th>
-									<th>Event</th>
-									<th>Status</th>
-									<td>Action</td>
+									<th>Bởi Tài Khoản</th>
+									<th>Nội dung</th>
+									<th>Thời gian</th>
+									<th>Tên sự kiện</th>
+									<th>Loại sự kiện</th>
+									<th>Tác vụ</th>
 								</tr>
 								<c:forEach items="${listAllComment}" var="commentItem">
 								<tr>
 									<td><input type="checkbox" class="selectID" value="abc"
 										name="commentID"></td>
-									<td>1.</td>
-									<td>Update software</td>
-									<td>Có bao nhiêu loại vé ad ?</td>
-									<td>20/6/2016</td>
-									<td>Music</td>
-									<td>abc</td>
-									<td>delete</td>
+									<td><c:out value="${commentItem.account.userName}"></c:out></td>
+									<td><c:out value="${commentItem.content}"></c:out></td>
+									<fmt:formatDate value="${commentItem.commentDate}" pattern="dd/MM/yyyy - hh:mm:ss" var="commentDate"/>
+									<td><c:out value="${commentDate}"></c:out></td>
+									<td><c:out value="${commentItem.event.name}"></c:out></td>
+									<td><c:out value="${commentItem.event.eventType.name}"></c:out></td>
+									<td><p class="btn btn-primary btn-xs">Delete</p></td>
 								</tr>
 								</c:forEach>
 							</table>
@@ -87,7 +96,7 @@
 							            </c:otherwise>
 							   </c:choose>
 							   <c:forEach var="i" begin="${beginIndex}" end="${endIndex}">
-							            <c:url var="pageUrl" value="/user-management/${i}" />
+							            <c:url var="pageUrl" value="/admin-comment-manage?page=/${i}" />
 							            <c:choose>
 							                <c:when test="${i == currentIndex}">
 							                    <li class="page-item active"><a class="page-link" href="${pageUrl}"><c:out value="${i}" /></a></li>

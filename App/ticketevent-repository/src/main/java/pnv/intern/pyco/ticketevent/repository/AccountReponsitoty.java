@@ -18,6 +18,6 @@ public interface AccountReponsitoty extends JpaRepository<AccountEntity, Long>{
 	 @Query("SELECT u FROM AccountEntity u WHERE u.userRole.id = 2")
 	 List<AccountEntity> getAllUser();
 	 
-	 @Query("SELECT u FROM AccountEntity u WHERE u.userRole.id = 2 order by u.activeDate DESC")
-	 Page<AccountEntity> getAllUserNotAdmin(Pageable pageable);
+	 @Query("SELECT u FROM AccountEntity u WHERE u.userRole.id = ?1")
+	 Page<AccountEntity> getAllUserNotAdmin(final Long type, Pageable pageable);
 }
