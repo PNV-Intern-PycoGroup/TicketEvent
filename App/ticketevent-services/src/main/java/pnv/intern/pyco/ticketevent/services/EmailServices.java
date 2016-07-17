@@ -9,14 +9,9 @@ import pnv.intern.pyco.ticketevent.services.util.EmailConstant;
 @Service
 public class EmailServices {
 	
-	private EmailServices emailService;
 	private Email email;
 	
 	public EmailServices(){};
-	
-	public EmailServices(EmailServices emailService) {
-		this.emailService = emailService;
-	}
 	
 	public void sentEmailCreateEvent(String emailTo){
 		try {

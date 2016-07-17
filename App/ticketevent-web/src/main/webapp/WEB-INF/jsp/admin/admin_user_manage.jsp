@@ -8,21 +8,10 @@
 <c:set var="typeUser" value="2" scope="page"></c:set>
 <c:set var="typeAdmin" value="1" scope="page"></c:set>
 
-<c:choose>
-	<c:when test="${param.permision.equals('Người dùng')}">
-		<c:set var="yes" value="${typeUser}" scope="page"></c:set>
-		<c:url var="firstUrl" value="/user-management?page=1&type=${typeUser}" />
-		<c:url var="lastUrl" value="/user-management?page=${page.totalPages}&type=${typeUser}" />
-		<c:url var="prevUrl" value="/user-management?page=${currentIndex - 1}&type=${typeUser}" />
-		<c:url var="nextUrl" value="/user-management?page=${currentIndex + 1}&type=${typeUser}" />	
-	</c:when>
-	<c:otherwise>
-		<c:url var="firstUrl" value="/user-management?page=1&type=${typeAdmin}" />
-		<c:url var="lastUrl" value="/user-management?page=${page.totalPages}&type=${typeAdmin}" />
-		<c:url var="prevUrl" value="/user-management?page=${currentIndex - 1}&type=${typeAdmin}" />
-		<c:url var="nextUrl" value="/user-management?page=${currentIndex + 1}&type=${typeAdmin}" />
-	</c:otherwise>
-</c:choose>
+<c:url var="firstUrl" value="/user-management?page=1&type=" />
+<c:url var="lastUrl" value="/user-management?page=${page.totalPages}&type=" />
+<c:url var="prevUrl" value="/user-management?page=${currentIndex - 1}&type=" />
+<c:url var="nextUrl" value="/user-management?page=${currentIndex + 1}&type=" />	
 
 <!DOCTYPE html>
 <html>
@@ -46,7 +35,6 @@
 	<layout:admin_header></layout:admin_header>
 
 	<div class="content-wrapper">
-		<!-- Content Header (Page header) -->
 		<section class="content-header">
 			<h1>Quản Lí Người Dùng</h1>
 			<ol class="breadcrumb">
@@ -55,7 +43,6 @@
 			</ol>
 		</section>
 
-		<!-- Main content -->
 		<section class="content">
 			<nav class="pagination pagination-sm">
 					<select class="form-control" id="sel1" name="permision">
@@ -69,7 +56,6 @@
 					<div class="box">
 						<div class="box-header">
 							<h3 class="box-title">Tất cả tài khoản người dùng</h3>
-							<a href="${yes}"> abc</a>
 							<div class="box-tools">
 								<div class="input-group" style="width: 150px;">
 									<input type="text" name="table_search"
@@ -82,7 +68,6 @@
 								</div>
 							</div>
 						</div>
-						<!-- /.box-header -->
 						<div class="box-body table-responsive no-padding">
 							<table id="myDatatable" class="table table-hover">
 								<tr>
@@ -143,28 +128,28 @@
 									<c:choose>
 										<c:when test="${currentIndex == 1}">
 											<li class="disabled"><a class="page-link" href="#"
-												aria-label="Previous"> <span aria-hidden="true">First</span>
+												aria-label="First"> <span aria-hidden="true">First</span>
 													<span class="sr-only">Previous</span></a></li>
-											<li class="disabled"><a class="page-link" href="#">&lt;</a></li>
+											<li class="disabled"><a class="page-link" href="#" aria-label="Previous">&lt;</a></li>
 										</c:when>
 										<c:otherwise>
-											<li><a href="${firstUrl}">First</a></li>
-											<li><a href="${prevUrl}">&lt;</a></li>
+											<li><a id="firstPage" href="${firstUrl}">First</a></li>
+											<li><a id="prevPage" href="${prevUrl}">&lt;</a></li>
 										</c:otherwise>
 									</c:choose>
 									<c:forEach var="i" begin="${beginIndex}" end="${endIndex}">
 									
 										
-												<c:url var="pageUrl" value="/user-management?page=${i}&type=${yes}" />
+										<c:url var="pageUrl" value="/user-management?page=${i}&type=" />
 											
 									
 										<c:choose>
 											<c:when test="${i == currentIndex}">
-												<li class="page-item active"><a class="page-link"
-													href="${pageUrl}"><c:out value="${i}" /></a></li>
+												<li id="curentPage" class="page-item active"><a
+													href="user-management?page=${i}&type=2"><c:out value="${i}" /></a></li>
 											</c:when>
 											<c:otherwise>
-												<li class="page-item"><a class="page-link"
+												<li class="page-item"><a id="curentPage${i}" class="page-link"
 													href="${pageUrl}"><c:out value="${i}" /></a></li>
 											</c:otherwise>
 										</c:choose>
@@ -178,8 +163,8 @@
 												aria-label="Last" href="#">Last</a></li>
 										</c:when>
 										<c:otherwise>
-											<li class="page-item"><a href="${nextUrl}">&gt;</a></li>
-											<li class="page-item"><a href="${lastUrl}">Last</a></li>
+											<li class="page-item"><a id="nextPage" href="${nextUrl}">&gt;</a></li>
+											<li class="page-item"><a id="lastPage" href="${lastUrl}">Last</a></li>
 										</c:otherwise>
 									</c:choose>
 								</ul>

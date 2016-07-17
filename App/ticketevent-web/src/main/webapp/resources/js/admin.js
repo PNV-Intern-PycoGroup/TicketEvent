@@ -106,10 +106,29 @@ $(document).ready(function () {
 $(document).ready(function () {
 	var windowlink = window.location.href;
 	var dk = windowlink.lastIndexOf('=');
+	var firstPage = $('#firstPage').attr('href');
+	var prevPage = $('#prevPage').attr('href');
+	var nextPage = $('#nextPage').attr('href');
+	var lastPage = $('#lastPage').attr('href');
+	var curentPage = $('#curentPage a').attr('href');
+	var curent2 = curentPage.lastIndexOf('g');
+	var curent3 = curentPage.substring(0, curent2+3);
 	var num = windowlink.substring(dk + 1, windowlink.length);
 	if(num == 1 || num == 2){
 	if(num == $('#sel1').val()){
 		$('#sel1').val(2);
+		$('#firstPage').attr('href',firstPage+2);
+		$('#prevPage').attr('href', prevPage+2);
+		$('#nextPage').attr('href', nextPage+2);
+		$('#lastPage').attr('href', lastPage+2);
+		$('.page-link').mouseenter(function(){
+			curentPage = $(this).attr('href');
+			var index = $(this).text();
+			$(this).attr('href',curentPage+index );
+		});
+		$('.page-link').mouseleave(function(){
+			$(this).attr('href',curent3);
+		});
 	}else {
 		$('#sel1').val(1);
 	}}else{
@@ -120,4 +139,3 @@ $(document).ready(function () {
 	    window.location.href="user-management?page=1&type="+str;
 	});
 });
-

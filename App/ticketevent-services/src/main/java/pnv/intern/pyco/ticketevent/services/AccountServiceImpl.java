@@ -17,7 +17,7 @@ import pnv.intern.pyco.ticketevent.services.model.AccountUserInfoModel;
 
 @Service
 public class AccountServiceImpl implements AccountService{
-private static final int PAGE_SIZE = 5;
+private static final int PAGE_SIZE = 1;
 	
 	@Autowired
 	private AccountReponsitoty accountReponsitoty;
