@@ -1,4 +1,3 @@
-
 $('.choose-layout').click(function(e) {
 	var data = $('.select-layout:not(.btn-group)').val() == "" ? "none" : $('.select-layout:not(.btn-group)').val();
 	
@@ -11,9 +10,15 @@ $('.choose-layout').click(function(e) {
 	    data : sendInfo
     })
     .done(function(data) {
-    	$('.output-layout').hide().html(data).fadeIn(1000);
+    	if (data === 'error') {
+    		showDialogMessage('Giao diện bạn chọn không đúng.');
+    	}else {
+    		$('#ticket-layout').hide().html(data).fadeIn(500);
+    	}
 	})
     .fail(function() {
-    	$('.create-theme-make-error').hide().text("Hãy chọn một giao diện cho sự kiện của bạn").fadeIn(800);
+    	$('.create-theme-make-error').hide().text("Hãy chọn một giao diện cho sự kiện của bạn").slideDown("slow");
 	});
 });
+
+$('.selectpicker').selectpicker('refresh');

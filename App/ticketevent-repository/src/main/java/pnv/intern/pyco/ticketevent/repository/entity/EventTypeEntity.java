@@ -24,7 +24,7 @@ public class EventTypeEntity {
 	private String name;
 	
 	@OneToMany(mappedBy = "eventType")
-	private Set<EventsEntity> listEvent;
+	private Set<EventEntity> listEvent;
 
 	public EventTypeEntity() {
 		super();

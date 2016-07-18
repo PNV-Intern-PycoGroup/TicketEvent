@@ -1,3 +1,7 @@
+if (tinyMCE.get('create-event-free-style') != null) {
+	tinyMCE.get('create-event-free-style').remove();
+}
+
 tinymce.init({
 	selector: '#create-event-free-style',
 	plugins: [
@@ -68,9 +72,9 @@ var postImageFunctionCreateThemeFreeStyle = (function(base64, outputImage) {
 			copyToClipboard($(this).parent().find('.url'));
 		});
 	})
- .fail(function(error) {
+ .fail(function() {
  	outputUrlImage.css('color', 'red');
- 	outputUrlImage.text(error);
+ 	outputUrlImage.text("Tải lên thất bại. Vì dung lượng ảnh tải lên vượt quá 2MB!");
 		btnCopyUrl.click(function(e) {
 			e.preventDefault();
 		});
@@ -96,7 +100,7 @@ var createDisplayHTMLOutputImageUpload = function() {
 		$outputImage.append($image); // outputImage > image
 	
 		var $infoLinkImage = $('<div>');
-		$infoLinkImage.addClass('col-md-6 info-link-image');
+		$infoLinkImage.addClass('col-md-6 info-image');
 		
 		$outputImage.append($infoLinkImage); // outputImage > infoLinkImage
 		

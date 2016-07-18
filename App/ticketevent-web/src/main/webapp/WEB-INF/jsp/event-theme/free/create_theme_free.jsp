@@ -11,7 +11,7 @@
 	<div class="upload-contain">
 		<div class="output-image">
 			<img class="col-md-6" alt="Image upload" src="" />
-			<div class="col-md-6 info-link-image">
+			<div class="col-md-6 info-image">
 				<span class="col-md-12">
 					<label>Link:</label> <span class="url">Đang tải ảnh lên ...</span>
 				</span>
@@ -30,10 +30,11 @@
 	</div>
 	
 	<p>Để chèn được ảnh từ máy tính của bạn vào khung thiết kế giao diện. Hãy tải ảnh của bạn lên (giới hạn 2Mb). Trang web sẽ cung cấp cho bạn một đường dẫn để copy.</p>
-
-	<form method="post">
+	
+	<div class="cus-input-group-padding">
 		<textarea id="create-event-free-style"></textarea>
-	</form>
+	</div>
+	
 </div>
 
 <script src="<%=request.getContextPath()%>/resources/js/event-theme/free/create_theme_free.js"></script>

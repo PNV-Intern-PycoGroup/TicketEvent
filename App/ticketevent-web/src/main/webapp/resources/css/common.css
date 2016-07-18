@@ -127,7 +127,7 @@ header .clear {
 }
 
 .clear {
-	clear: inherit;
+	clear: both;
 }
 
 .center {

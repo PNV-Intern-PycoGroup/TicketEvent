@@ -53,7 +53,7 @@ public class AccountEntity{
 	private UserInformationEntity userInfor;
 	
 	@OneToMany(mappedBy = "account")
-	private Set<EventsEntity> listEvent;
+	private Set<EventEntity> listEvent;
 
 	public AccountEntity() {
 		super();

@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import pnv.intern.pyco.ticketevent.repository.entity.EventsEntity;
+import pnv.intern.pyco.ticketevent.repository.entity.EventEntity;
 import pnv.intern.pyco.ticketevent.repository.util.DatabaseConstantUtil;
 
 @Entity
@@ -49,8 +49,8 @@ public class FreeLayoutEntity {
 
 	//TODO
 	// - Need change this function to get exactly Event
-	public EventsEntity getEvent() {
-		return new EventsEntity();
+	public EventEntity getEvent() {
+		return new EventEntity();
 	}
 
 	public Long getId() {

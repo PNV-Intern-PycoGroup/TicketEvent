@@ -5,9 +5,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <div>
-	<input type="hidden" value="<%=request.getContextPath()%>" id="context-path">
 	<span class="label label-danger create-theme-make-error"></span>
-	<div class="input-group col-md-12 cus-input-group-col-md">
+	<div class="input-group col-md-12 cus-input-group cus-input-group-padding">
 		<span class="input-group-addon cus-input-group-addon-create-event">Giao diện sự kiện của bạn</span>
 		<select class="selectpicker form-control select-layout" title="Chọn cách tạo giao diện">
 			<option value="free">Tự tạo giao diện</option>
@@ -15,7 +14,9 @@
 		</select>
 	</div>
 </div>
-<button class="btn btn-default choose-layout">Xác nhận</button>
+<div class="contain-btn-create-event-step">
+	<button class="btn btn-default btn-ticket btn-create-event-step choose-layout">Lưu hoặc tiếp tục <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></button>
+</div>
 <div>
 	<h2>Giao diện demo của các theme có sẵn</h2>
 	<img class="col-md-6" alt="theme-activity" src="https://az810058.vo.msecnd.net/static-page/img/quest-2016-cover.jpg?v1" title="theme-activity">

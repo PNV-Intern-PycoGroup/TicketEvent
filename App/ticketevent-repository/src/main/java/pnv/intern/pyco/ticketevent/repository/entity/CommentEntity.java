@@ -23,7 +23,7 @@ public class CommentEntity {
 	
 	@ManyToOne
 	@JoinColumn(name = DatabaseConstantUtil.COMMENT_FIELD_EVENT_ID)
-	private EventsEntity event;
+	private EventEntity event;
 	
 	@ManyToOne
 	@JoinColumn(name = DatabaseConstantUtil.COMMENT_FIELD_ACCOUNT_ID)
@@ -39,7 +39,7 @@ public class CommentEntity {
 		super();
 	}
 
-	public CommentEntity(EventsEntity event, AccountEntity account,
+	public CommentEntity(EventEntity event, AccountEntity account,
 			String content, Date commentDate) {
 		super();
 		this.event = event;
@@ -48,7 +48,7 @@ public class CommentEntity {
 		this.commentDate = commentDate;
 	}
 
-	public CommentEntity(Long id, EventsEntity event, AccountEntity account,
+	public CommentEntity(Long id, EventEntity event, AccountEntity account,
 			String content, Date commentDate) {
 		super();
 		this.id = id;
@@ -66,11 +66,11 @@ public class CommentEntity {
 		this.id = id;
 	}
 
-	public EventsEntity getEvent() {
+	public EventEntity getEvent() {
 		return event;
 	}
 
-	public void setEvent(EventsEntity event) {
+	public void setEvent(EventEntity event) {
 		this.event = event;
 	}
 

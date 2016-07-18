@@ -12,8 +12,13 @@
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/common.css">
 </head>
 <body>
-
-
+	
+	<article>
+		<section class="content render-content">
+			<!-- Free layout's content will be rendered at here -->
+		</section>
+	</article>
+	
 	<script src="<%=request.getContextPath()%>/resources/js/event-theme/free/event_detail_theme_free.js"></script>
 </body>
 </html>

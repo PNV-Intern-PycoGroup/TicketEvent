@@ -19,15 +19,16 @@
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/common.css">
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/event-theme/create_event.css">
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/lib/cropper.min.css">
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/lib/datepicker.css">
 </head>
 <body>
 	<article>
 		<header>
 			<nav class="navbar navbar-default navbar-fixed-top">
-				<ul class="nav nav-pills" role="tablist">
-					<li role="presentation" class="active"><a class="a-header" href="#ticket-info" aria-controls="ticket-info" role="tab" data-toggle="tab">Thông tin sự kiện</a></li>
-					<li role="presentation"><a class="a-header" href="#ticket-layout" aria-controls="ticket-layout" role="tab" data-toggle="tab">Bố cục trang web</a></li>
-					<li role="presentation"><a class="a-header" href="#ticket-setting" aria-controls="ticket-setting" role="tab" data-toggle="tab">Cài đặt</a></li>
+				<ul class="nav nav-pills header-control-step" role="tablist">
+					<li class="active"><a class="a-header" href="#ticket-info" aria-controls="ticket-info" role="tab" data-toggle="tab">Thông tin sự kiện</a></li>
+					<li><a class="a-header" href="#ticket-layout" aria-controls="ticket-layout" role="tab" data-toggle="tab">Bố cục trang web</a></li>
+					<li><a class="a-header" href="#ticket-setting" aria-controls="ticket-setting" role="tab" data-toggle="tab">Cài đặt</a></li>
 				</ul>
 				<div>
 					<div class="dropdown navbar-right language"><a href="#" class="dropdown-toggle a-header"
@@ -46,77 +47,30 @@
 					</div>
 				</div>
 			</nav>
+			<!-- Modal -->
+			<div class="modal fade" id="inform-modal" role="dialog" aria-labelledby="modalLabel" tabindex="-1">
+			    <div class="modal-dialog modal-lg" role="document">
+			    	<div class="modal-content">
+			      		<div class="modal-header">
+			        		<button type="button" class="close crop-none" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        		<h4 class="modal-title" id="modalLabel">Thông báo!</h4>
+			      		</div>
+			      		<div class="modal-body">
+			        		<p class="message"></p>
+			      		</div>
+			      		<div class="modal-footer">
+					        <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+			      		</div>
+			    	</div>
+			  	</div>
+			</div>
 			<div class="clear"></div>
 		</header>
 		<section class="banner tab-content content">
 			<div role="tabpanel" class="tab-pane fade in active" id="ticket-info">
-				<form action="" method="post">
-					<h2>Về sự kiện <span class="require">*</span></h2>
-					<div class="input-group col-md-6 cus-input-group-col-md">
-						<span class="input-group-addon cus-input-group-addon-create-event">Tên sự kiện</span> <input
-							class="form-control" type="text" placeholder="Nhập tên sự kiện" />
-					</div>
-					<div class="input-group col-md-6 cus-input-group-col-md">
-						<span class="input-group-addon cus-input-group-addon-create-event">Loại sự kiện</span> 
-						<select class="selectpicker form-control type-event" multiple title="Chọn thể loại sự kiện">
-							<optgroup label="Thể loại" data-max-options="1">
-								<option>Âm nhạc</option>
-								<option>Khóa Học</option>
-								<option>Hoạt động</option>
-							</optgroup>
-							<optgroup id="place-event" label="Nơi tổ chức" data-max-options="1" disabled>
-								<option>Ngoài trời</option>
-								<option>Trong nhà</option>
-								<option>Sân vận động</option>
-								<option>Bãi biển</option>
-								<option>Đường phố</option>
-								<option>Núi</option>
-							</optgroup>
-						</select>
-					</div>
-					<div class="input-group col-md-12 cus-input-group-col-md">
-						<span class="input-group-addon cus-input-group-addon-create-event">Nơi tổ chức</span>
-						<input class="form-control" type="text" placeholder="Nhập địa chỉ" />
-						<select class="selectpicker input-group-addon cus-input-group-addon province-select" title="Chọn tỉnh/thành phố">
-							<option>Hà Nội</option>
-							<option>Hải Phòng</option>
-							<option>Đà Nẵng</option>
-							<option>Quảng Nam</option>
-							<option>Huế</option>
-							<option>Tp Hồ Chí Minh</option>
-							<option>Cần Thơ</option>
-						</select>
-					</div>
-					<div class="event-info">
-						<span class="label-event-info cus-input-group-addon-create-event">Giới thiệu hoặc mô tả đôi nét về sự kiện</span>
-						<textarea rows="10" class="textarea-event-info"></textarea>
-					</div>
-					
-					<h2>Nhà tổ chức <span class="require">*</span></h2>
-					<div class="upload-file-bg">
-						<a href=""><input class="hidden-file logo-file-organization" type="file"></a>
-					</div>
-					<div class="input-group col-md-12 cus-input-group-col-md">
-						<span class="input-group-addon cus-input-group-addon-create-event">Tên nhà tổ chức</span>
-						<input class="form-control" type="text" placeholder="Nhập tên nhà tổ chức" />
-					</div>
-					<div class="event-info">
-						<span class="label-event-info cus-input-group-addon-create-event">Thông tin nhà tổ chức</span>
-						<textarea rows="10" class="textarea-event-info"></textarea>
-					</div>
-					
-					<h2>Thông tin liên lạc <span class="require">*</span></h2>
-					<div class="input-group col-md-6 cus-input-group-col-md">
-						<span class="input-group-addon"><i class="fa fa-phone cus-input-group-addon-create-event" aria-hidden="true"></i></span>
-						<input class="form-control" type="text" placeholder="Eg: (+84) xxx-xxx-xxx(x)" />
-					</div>
-					<div class="input-group col-md-6 cus-input-group-col-md">
-						<span class="input-group-addon"><i class="fa fa-envelope-o cus-input-group-addon-create-event" aria-hidden="true"></i></span>
-						<input class="form-control" type="text" placeholder="Eg: xxx@xxx.xxx" />
-					</div>
-				</form>
+				<!-- Layout of step one here -->
 			</div>
-			<div role="tabpanel" class="tab-pane fade in output-layout" id="ticket-layout">
+			<div role="tabpanel" class="tab-pane fade in" id="ticket-layout">
 				<!-- Layout of step two here -->
 			</div>
 			<div role="tabpanel" class="tab-pane fade in" id="ticket-setting">
@@ -130,6 +84,8 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/js/lib/boostrap-datepicker.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/js/lib/bootstrap-notify.min.js"></script>
 	<script src="<%=request.getContextPath()%>/resources/js/event-theme/create_event.js"></script>
 	<script src="<%=request.getContextPath()%>/resources/js/lib/cropper.min.js"></script>
 </body>

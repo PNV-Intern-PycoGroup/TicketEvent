@@ -1,5 +1,6 @@
 package pnv.intern.pyco.ticketevent.repository.entity;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Set;
 
@@ -13,11 +14,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import pnv.intern.pyco.ticketevent.repository.util.DatabaseConstantUtil;
+import pnv.intern.pyco.ticketevent.repository.util.TimeUtil;
 
 @Entity
 @Table(name = DatabaseConstantUtil.EVENT_TABLE)
-public class EventsEntity {
+public class EventEntity {
 	@Id
 	@Column(name = DatabaseConstantUtil.EVENT_FIELD_ID)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,6 +29,9 @@ public class EventsEntity {
 	
 	@Column(name = DatabaseConstantUtil.EVENT_FIELD_NAME)
 	private String name;
+	
+	@Column(name = DatabaseConstantUtil.EVENT_FIELD_INTRODUCTION)
+	private String introduction;
 	
 	@ManyToOne
 	@JoinColumn(name = DatabaseConstantUtil.EVENT_FIELD_TYPE_ID)
@@ -77,11 +84,11 @@ public class EventsEntity {
 	@OneToMany(mappedBy = "event")
 	private Set<CommentEntity> listComment;
 
-	public EventsEntity() {
+	public EventEntity() {
 		super();
 	}
 
-	public EventsEntity(String name, EventTypeEntity eventType,
+	public EventEntity(String name, EventTypeEntity eventType,
 			AccountEntity account, EventLayoutEntity eventLayout,
 			Date createDate, Date startDate, Date endDate, String place,
 			String organizeName, String email, String phoneNumber,
@@ -105,7 +112,7 @@ public class EventsEntity {
 		this.imageThumbnail = imageThumbnail;
 	}
 
-	public EventsEntity(Long id, String name, EventTypeEntity eventType,
+	public EventEntity(Long id, String name, EventTypeEntity eventType,
 			AccountEntity account, EventLayoutEntity eventLayout,
 			Date createDate, Date startDate, Date endDate, String place,
 			String organizeName, String email, String phoneNumber,
@@ -146,6 +153,14 @@ public class EventsEntity {
 		this.name = name;
 	}
 
+	public String getIntroduction() {
+		return introduction;
+	}
+
+	public void setIntroduction(String introduction) {
+		this.introduction = introduction;
+	}
+
 	public EventTypeEntity getEventType() {
 		return eventType;
 	}
@@ -182,12 +197,50 @@ public class EventsEntity {
 		return startDate;
 	}
 
+	@JsonIgnore
+	public String getDateStartDate() {
+		Calendar instantStartDate = TimeUtil.convertDateToCalendar(startDate);
+		int date = instantStartDate.get(Calendar.DATE);
+		int month = (instantStartDate.get(Calendar.MONTH) + 1);
+		int year = instantStartDate.get(Calendar.YEAR);
+		String dateStartDate = date + "/" + month + "/" + year;
+		return dateStartDate;
+	}
+
+	@JsonIgnore
+	public String getHoursStartDate() {
+		Calendar instantStartDate = TimeUtil.convertDateToCalendar(startDate);
+		int hour = instantStartDate.get(Calendar.HOUR_OF_DAY);
+		int minute = instantStartDate.get(Calendar.MINUTE);
+		String hoursStartDate = (hour < 10 ? "0" : "") + hour + ":" + minute ;
+		return hoursStartDate;
+	}
+
 	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
 
 	public Date getEndDate() {
 		return endDate;
+	}
+	
+	@JsonIgnore
+	public String getDateEndDate() {
+		Calendar instantEndDate = TimeUtil.convertDateToCalendar(endDate);
+		int date = instantEndDate.get(Calendar.DATE);
+		int month = (instantEndDate.get(Calendar.MONTH) + 1);
+		int year = instantEndDate.get(Calendar.YEAR);
+		String dateEndDate = date + "/" + month + "/" + year;
+		return dateEndDate;
+	}
+
+	@JsonIgnore
+	public String getHoursEndDate() {
+		Calendar instantEndDate = TimeUtil.convertDateToCalendar(endDate);
+		int hour = instantEndDate.get(Calendar.HOUR_OF_DAY);
+		int minute = instantEndDate.get(Calendar.MINUTE);
+		String hoursEndDate = (hour < 10 ? "0" : "") + hour + ":" + minute ;
+		return hoursEndDate;
 	}
 
 	public void setEndDate(Date endDate) {
@@ -196,6 +249,18 @@ public class EventsEntity {
 
 	public String getPlace() {
 		return place;
+	}
+
+	@JsonIgnore
+	public String getAddress() {
+		String address = place.substring(0, place.lastIndexOf(","));
+		return address;
+	}
+
+	@JsonIgnore
+	public String getCity() {
+		String city = place.substring(place.lastIndexOf(",") + 2);
+		return city;
 	}
 
 	public void setPlace(String place) {
@@ -256,6 +321,22 @@ public class EventsEntity {
 
 	public void setImageThumbnail(String imageThumbnail) {
 		this.imageThumbnail = imageThumbnail;
+	}
+
+	public Set<TicketEntity> getListTicket() {
+		return listTicket;
+	}
+
+	public void setListTicket(Set<TicketEntity> listTicket) {
+		this.listTicket = listTicket;
+	}
+
+	public Set<CommentEntity> getListComment() {
+		return listComment;
+	}
+
+	public void setListComment(Set<CommentEntity> listComment) {
+		this.listComment = listComment;
 	}
 	
 }

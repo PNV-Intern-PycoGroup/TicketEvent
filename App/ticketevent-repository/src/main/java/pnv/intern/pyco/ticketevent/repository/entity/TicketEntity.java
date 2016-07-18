@@ -24,7 +24,7 @@ public class TicketEntity {
 	
 	@ManyToOne
 	@JoinColumn(name = DatabaseConstantUtil.TICKET_FIELD_EVENT_ID)
-	private EventsEntity event;
+	private EventEntity event;
 	
 	@Column(name = DatabaseConstantUtil.TICKET_FIELD_PRICE)
 	private float price;
@@ -42,7 +42,7 @@ public class TicketEntity {
 		super();
 	}
 
-	public TicketEntity(EventsEntity event, float price, String name,
+	public TicketEntity(EventEntity event, float price, String name,
 			String description) {
 		super();
 		this.event = event;
@@ -51,7 +51,7 @@ public class TicketEntity {
 		this.description = description;
 	}
 
-	public TicketEntity(Long id, EventsEntity event, float price, String name,
+	public TicketEntity(Long id, EventEntity event, float price, String name,
 			String description) {
 		super();
 		this.id = id;
@@ -69,11 +69,11 @@ public class TicketEntity {
 		this.id = id;
 	}
 
-	public EventsEntity getEvent() {
+	public EventEntity getEvent() {
 		return event;
 	}
 
-	public void setEvent(EventsEntity event) {
+	public void setEvent(EventEntity event) {
 		this.event = event;
 	}
 
