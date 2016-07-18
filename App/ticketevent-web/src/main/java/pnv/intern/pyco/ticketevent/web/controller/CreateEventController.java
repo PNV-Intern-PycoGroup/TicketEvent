@@ -1,7 +1,6 @@
 package pnv.intern.pyco.ticketevent.web.controller;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,9 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import pnv.intern.pyco.ticketevent.repository.entity.EventEntity;
-import pnv.intern.pyco.ticketevent.repository.entity.EventTypeEntity;
+import pnv.intern.pyco.ticketevent.services.EventService;
+import pnv.intern.pyco.ticketevent.services.EventTypeService;
 import pnv.intern.pyco.ticketevent.services.model.EventModel;
+import pnv.intern.pyco.ticketevent.services.model.EventTypeModel;
 import pnv.intern.pyco.ticketevent.web.util.FileUtil;
 import pnv.intern.pyco.ticketevent.web.util.NonDataConstantUtil;
 
@@ -25,6 +25,12 @@ public class CreateEventController {
 
 	@Autowired
     private HttpServletRequest request;
+
+	@Autowired
+	private EventService eventService;
+	
+	@Autowired
+	private EventTypeService eventTypeService;
 
 	@RequestMapping(value = "/create-event", method = RequestMethod.GET)
 	public String createEventThemeActivity(Model model) {
@@ -83,15 +89,8 @@ public class CreateEventController {
 
 	@RequestMapping(value = "/create-event-step-one", method = RequestMethod.GET)
 	public String createEventStepOne(Model model) {
-		@SuppressWarnings("deprecation")
-		EventEntity event = new EventEntity(1l, "abc", new EventTypeEntity(1l, "no"), null, null, new Date(116, 11, 11, 10, 0),
-				new Date(116, 10, 12, 9, 30), new Date(116, 11, 25, 15, 30), "47 Nguyễn Văn Đậu, Bình Thạnh, TP Hồ Chí Minh",
-				"", "", "", "", 1, 0, "");
-		model.addAttribute("event", event);
-		ArrayList<EventTypeEntity> listEventType = new ArrayList<EventTypeEntity>();
-		listEventType.add(new EventTypeEntity(1l, "no"));
-		listEventType.add(new EventTypeEntity(2l, "no1"));
-		listEventType.add(new EventTypeEntity(3l, "no2"));
+		
+		ArrayList<EventTypeModel> listEventType = eventTypeService.getAllEventType();
 		model.addAttribute("listEventType", listEventType);
 		model.addAttribute("listCityInVietNam", NonDataConstantUtil.LIST_CITY_VIETNAM);
 		model.addAttribute("listHours", NonDataConstantUtil.LIST_HOURS);
@@ -99,16 +98,16 @@ public class CreateEventController {
 		return "event-theme/create_event_step_one";
 	}
 
-	@RequestMapping(value = "/create-event-step-two", method = RequestMethod.POST, headers ="content-type=application/json")
-	public String createEventStepTwoPost(@RequestBody EventModel eventModel, Model model) {
-		System.out.println(eventModel.getName());
-//		System.out.println(event.getIntroduction());
-//		System.out.println(event.getEndDate());
-//		System.out.println(event.getStartDate());
-//		System.out.println(event.getIntroduction());
-//		System.out.println(event.getPlace());
-//		System.out.println(event.getEventType());
-//		System.out.println(event.getImageThumbnail());
+	@RequestMapping(value = "/create-event-step-two", method = RequestMethod.POST)
+	public String createEventStepTwoPost(@RequestBody EventModel event, Model model) {
+//		if (eventService.isExitEvent(event.getId(), SecurityContextHolder.getContext().getAuthentication().)) {
+//			
+//		}
+		if (event.getId() == null) {
+			eventService.saveEvent(event);
+		}else{
+			eventService.updateEvent(event);
+		}
 		return "event-theme/create_event_step_two";
 	}
 

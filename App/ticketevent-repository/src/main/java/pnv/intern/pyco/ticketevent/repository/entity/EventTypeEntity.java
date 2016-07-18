@@ -56,5 +56,13 @@ public class EventTypeEntity {
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	public Set<EventEntity> getListEvent() {
+		return listEvent;
+	}
+
+	public void setListEvent(Set<EventEntity> listEvent) {
+		this.listEvent = listEvent;
+	}
 	
 }

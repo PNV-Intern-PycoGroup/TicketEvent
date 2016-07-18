@@ -81,7 +81,7 @@ public class TicketEntity {
 		return price;
 	}
 
-	public void setPrices(float price) {
+	public void setPrice(float price) {
 		this.price = price;
 	}
 
@@ -99,6 +99,14 @@ public class TicketEntity {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public Set<TicketBuyerEntity> getListTicketBuyer() {
+		return listTicketBuyer;
+	}
+
+	public void setListTicketBuyer(Set<TicketBuyerEntity> listTicketBuyer) {
+		this.listTicketBuyer = listTicketBuyer;
 	}
 	
 }

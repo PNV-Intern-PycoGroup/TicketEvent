@@ -6,13 +6,6 @@
 
 <input id="is-exist-event-info" type="hidden" value='<c:out value="${event }"></c:out>'/>
 <input id="event-id" type="hidden" value='<c:out value="${event.id }"></c:out>'/>
-<input id="event-account" type="hidden" value='<c:out value="${event.account }"></c:out>'/>
-<input id="event-event-layout" type="hidden" value='<c:out value="${event.eventLayout }"></c:out>'/>
-<input id="event-create-date" type="hidden" value='<c:out value="${event.createDate }"></c:out>'/>
-<input id="event-is-public" type="hidden" value='<c:out value="${event.isPublic }"></c:out>'/>
-<input id="event-is-accept" type="hidden" value='<c:out value="${event.isAccept }"></c:out>'/>
-<input id="event-list-ticket" type="hidden" value='<c:out value="${event.listTicket }"></c:out>'/>
-<input id="event-list-comment" type="hidden" value='<c:out value="${event.listComment }"></c:out>'/>
 <h2>Về sự kiện <span class="require">*</span></h2>
 <div  class="col-md-6">
 	<div class="input-group cus-input-group cus-input-group-vertical-padding">

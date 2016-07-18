@@ -199,6 +199,13 @@ public class EventModel {
 	public void setListComment(Set<CommentModel> listComment) {
 		this.listComment = listComment;
 	}
+	
+	public boolean isFullInfo() {
+		boolean result = id != null && name != null && introduction != null && eventType != null && startDate != null
+				&& endDate != null && place != null && organizeName != null && organizeInfo != null && email != null
+				&& phoneNumber != null;
+		return result;
+	}
 
 	@JsonIgnore
 	public String getAddress() {

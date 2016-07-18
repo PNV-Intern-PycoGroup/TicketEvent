@@ -6,13 +6,6 @@ $stepOne.click(function(e) {
 $(function() {
 	var isExistEventInfo = $('#is-exist-event-info');
 	var eventId = $('#event-id');
-	var eventAccount = $('#event-account');
-	var eventEventLayout = $('#event-event-layout');
-	var eventCreateDate = $('#event-create-date');
-	var eventIsPublic = $('#event-is-public');
-	var eventIsAccept = $('#event-is-accept');
-	var eventListTicket = $('#event-list-ticket');
-	var eventListComment = $('#event-list-comment');
 	var eventName = $('#event-name');
 	var eventType = $('#event-type');
 	var eventAddress = $('#event-address');
@@ -46,13 +39,10 @@ $(function() {
 	var dateEndDate = new Date(formatDDMMYYYYToMMDDYYY(eventEndDate.val()) + ' ' + eventEndHours.val() + ':00');
 	
 	var event = {
-		id: parseInt(eventId.val()),
+		id: eventId.val(),
 		name: eventName.val(),
 		introduction: eventInfo.text(),
-		eventType: {id: parseInt(eventType.val()), name: eventType.find('option[selected]').text()},
-		account: eventAccount.val() === '' ? null : eventAccount.val(),
-		eventLayout: eventEventLayout.val() === '' ? null : eventEventLayout.val(),
-		createDate: null, //eventCreateDate.val(),
+		eventType: {id: eventType.val(), name: eventType.find('option[selected]').text()},
 		startDate: null, //dateStartDate.toString(),
 		endDate: null, //dateEndDate.toString(),
 		place: eventAddress.val() + ', ' + eventCity.find('option[selected]').val(),
@@ -60,24 +50,15 @@ $(function() {
 		email: eventOrganizeEmail.val(),
 		phoneNumber: eventOrganizePhoneNumber.val(),
 		organizeInfo: eventOrganizeInfo.text(),
-		isPublic: parseInt(eventIsPublic.val()),
-		isAccept: parseInt(eventIsAccept.val()),
-		imageThumbnail: '',
-		listTicket: eventListTicket.val() === '' ? null : eventListTicket.val(),
-		listComment: eventListComment.val() === '' ? null : eventListComment.val()
+		imageThumbnail: ''
 	};
-	
-	console.log(event);
 	var createEventStepOne = (function() {
-		var fullData = {
-			event: event
-		};
 		$.ajax({
 		    type: 'POST',
 		    url: "create-event-step-two",
 		    contentType : 'application/json; charset=utf-8',
 	     	dataType : 'text',
-            data : JSON.stringify(fullData)
+            data : JSON.stringify(event)
 		})
 		.done(function(data) {
 		 	if (data === 'error') {
