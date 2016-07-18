@@ -82,7 +82,7 @@
 							class="ion ion-ios-people-outline"></i></span>
 						<div class="info-box-content">
 							<span class="info-box-text">All Members</span> <span
-								class="info-box-number"><c:out value="${listAllAccount.size()}"></c:out></span>
+								class="info-box-number"><c:out value="${listAllUser.size()}"></c:out></span>
 						</div>
 						<!-- /.info-box-content -->
 					</div>

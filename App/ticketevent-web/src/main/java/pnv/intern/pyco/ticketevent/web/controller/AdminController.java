@@ -17,7 +17,7 @@ import pnv.intern.pyco.ticketevent.repository.entity.AccountEntity;
 import pnv.intern.pyco.ticketevent.repository.entity.CommentEntity;
 import pnv.intern.pyco.ticketevent.services.AccountService;
 import pnv.intern.pyco.ticketevent.services.CommentService;
-import pnv.intern.pyco.ticketevent.services.model.AccountUserInfoModel;
+import pnv.intern.pyco.ticketevent.services.model.AccountModel;
 
 @Controller
 public class AdminController {
@@ -26,19 +26,17 @@ public class AdminController {
 	@Autowired
 	private CommentService commentService;
 	
-	private List<AccountEntity> listAllAccountNotAdmin;
-	private AccountEntity account;
-	private AccountUserInfoModel accountModel;
+	private List<AccountModel> listAllUser;
+	private AccountModel account;
 	
 	@RequestMapping(value = "admin-page", method= RequestMethod.GET)
 	public String displayAdminPage(ModelMap model){
-		account = accountService.getAccountbyUserName(SecurityContextHolder.getContext().getAuthentication().getName());
-		listAllAccountNotAdmin = accountService.getAllAccountNotAdmin();
-		List<AccountUserInfoModel> listAllAccountUserInfo = accountService.getAllAccountUserInfoModel(listAllAccountNotAdmin);
+		account = accountService.getAccountModelbyUserName(SecurityContextHolder.getContext().getAuthentication().getName());
+		
 		if(account != null){
-			accountModel = accountService.getAccInfor(account.getId());
-			model.put("account", accountModel);
-			model.put("listAllAccount", listAllAccountUserInfo);
+			listAllUser = accountService.getAllAccountModelUser();
+			model.put("account", account);
+			model.put("listAllUser", listAllUser);
 		}
 		return "admin/admin_home_page";
 	}
@@ -46,9 +44,8 @@ public class AdminController {
 	
 	@RequestMapping(value = "admin-comment-manage", method= RequestMethod.GET)
 	public String commentAdmin(@RequestParam("page") Integer pageNumber, ModelMap model){
-		account = accountService.getAccountbyUserName(SecurityContextHolder.getContext().getAuthentication().getName());
+		account = accountService.getAccountModelbyUserName(SecurityContextHolder.getContext().getAuthentication().getName());
 		if(account != null){
-			accountModel = accountService.getAccInfor(account.getId());
 			Page<CommentEntity> page = commentService.getAllCommentPaging(pageNumber);
 		    int current = page.getNumber() + 1;
 		    int begin = Math.max(1, current - 5);
@@ -59,7 +56,7 @@ public class AdminController {
 		    model.put("beginIndex", begin);
 		    model.put("endIndex", end);
 		    model.put("currentIndex", current);
-			model.put("account", accountModel);
+			model.put("account", account);
 		}
 		return "admin/admin_comment_manage";
 	}
@@ -73,20 +70,20 @@ public class AdminController {
 	
 	@RequestMapping(value = "user-management", method = RequestMethod.GET)
 	public String getRunbookPage(@RequestParam("page") Integer pageNumber, @RequestParam("type") Long type, ModelMap model) {
-		account = accountService.getAccountbyUserName(SecurityContextHolder.getContext().getAuthentication().getName());
+		account = accountService.getAccountModelbyUserName(SecurityContextHolder.getContext().getAuthentication().getName());
 		if(account != null){
 	    Page<AccountEntity> page = accountService.getAllAccount(type, pageNumber);
 	    int current = page.getNumber() + 1;
 	    int begin = Math.max(1, current - 5);
 	    int end = Math.min(begin + 10, page.getTotalPages());
-	    List<AccountUserInfoModel> listAccount = accountService.getAllAccountUserInfoModel(page.getContent());
+	    List<AccountModel> listAccount = accountService.getAllAccount(page.getContent());
 
 	    model.put("listAllAccount", listAccount);
 	    model.put("page", page);
 	    model.put("beginIndex", begin);
 	    model.put("endIndex", end);
 	    model.put("currentIndex", current);
-	    model.put("account", accountModel);
+	    model.put("account", account);
 		}
 	    return "admin/admin_user_manage";
 	}

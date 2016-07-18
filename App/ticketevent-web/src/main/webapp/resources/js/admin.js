@@ -89,20 +89,7 @@ $(document).ready(function () {
 	$('.userAvatar').attr('src', abc);
 });
 
-//	$(".table-hover tr").not(':first').tooltip(
-//			  function () {
-//				  var tar_id = $(this).attr("id");
-//				  var image = $('#'+tar_id+' #avatar')[0].src;
-//				  //$('.table-hover #'+tar_id).tooltip({ content: '<img src="'+image+'" />' });
-//				  $(this).tooltip({
-//					    items: "tr",
-//					    content: "My content :)"
-//					});
-//				  alert(image);
-//			  }, 
-//			  function () {
-//				  
-//			  });
+
 $(document).ready(function () {
 	var windowlink = window.location.href;
 	var dk = windowlink.lastIndexOf('=');
@@ -111,8 +98,8 @@ $(document).ready(function () {
 	var nextPage = $('#nextPage').attr('href');
 	var lastPage = $('#lastPage').attr('href');
 	var curentPage = $('#curentPage a').attr('href');
-	var curent2 = curentPage.lastIndexOf('g');
-	var curent3 = curentPage.substring(0, curent2+3);
+	var curentPage2 = $('#curentPage a').attr('href');
+	
 	var num = windowlink.substring(dk + 1, windowlink.length);
 	if(num == 1 || num == 2){
 	if(num == $('#sel1').val()){
@@ -121,16 +108,39 @@ $(document).ready(function () {
 		$('#prevPage').attr('href', prevPage+2);
 		$('#nextPage').attr('href', nextPage+2);
 		$('#lastPage').attr('href', lastPage+2);
+		
 		$('.page-link').mouseenter(function(){
 			curentPage = $(this).attr('href');
-			var index = $(this).text();
-			$(this).attr('href',curentPage+index );
+			curentHoverpage = curentPage+2;
+			$(this).attr('href',curentHoverpage);
+			
 		});
 		$('.page-link').mouseleave(function(){
-			$(this).attr('href',curent3);
+			$(this).attr('href',curentPage);
+		});
+		
+		$('#curentPage a').hover(function () {
+			$(this).attr('href', curentPage2+'&type=2')
 		});
 	}else {
 		$('#sel1').val(1);
+		$('#firstPage').attr('href',firstPage+1);
+		$('#prevPage').attr('href', prevPage+1);
+		$('#nextPage').attr('href', nextPage+1);
+		$('#lastPage').attr('href', lastPage+1);
+		$('.page-link').mouseenter(function(){
+			curentPage = $(this).attr('href');
+			curentHoverpage = curentPage+1;
+			$(this).attr('href',curentHoverpage);
+			
+		});
+		$('.page-link').mouseleave(function(){
+			$(this).attr('href',curentPage);
+		});
+		
+		$('#curentPage a').hover(function () {
+			$(this).attr('href', curentPage2+'&type=1')
+		});
 	}}else{
 		$('#sel1').val(2);
 	}

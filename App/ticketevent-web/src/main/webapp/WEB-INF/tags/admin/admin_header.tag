@@ -41,19 +41,19 @@
 						<a href="#" class="dropdown-toggle"
 						data-toggle="dropdown"> 
 							<c:choose>
-							<c:when test="${account.avatar != null}">
-								<img src="<c:url value="/resources/images/avatar/${account.avatar}"/>" class="user-image" alt="Your avatar" />
+							<c:when test="${account.userInfor.avatar != null}">
+								<img src="<c:url value="/resources/images/avatar/${account.userInfor.avatar}"/>" class="user-image" alt="Your avatar" />
 							</c:when>
 							<c:otherwise>
 								<img src="http://plugins.krajee.com/uploads/default_avatar_male.jpg" class="user-image" alt="Your avatar"/>
 							</c:otherwise>
 						</c:choose>
-							<span class="hidden-xs"><c:out value="${account.name}"></c:out></span>
+							<span class="hidden-xs"><c:out value="${account.userName}"></c:out></span>
 					</a>
 						<ul class="dropdown-menu">
 							<li class="user-header"><img src="#" class="img-circle userAvatar"	alt="User Image" />
 								<p>
-									<c:out value="${account.name}"></c:out> - TicketEvent Administrator
+									<c:out value="${account.userName}"></c:out> - TicketEvent Administrator
 								</p></li>
 							<!-- Menu Footer-->
 							<li class="user-footer">
@@ -78,7 +78,7 @@
 					<img src="#" class="img-circle userAvatar" alt="Your avatar" />
 				</div>
 				<div class="pull-left info">
-					<p><c:out value="${account.name}"></c:out></p>
+					<p><c:out value="${account.userName}"></c:out></p>
 				</div>
 			</div>
 

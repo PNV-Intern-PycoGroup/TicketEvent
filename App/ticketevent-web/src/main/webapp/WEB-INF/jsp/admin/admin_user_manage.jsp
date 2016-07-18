@@ -80,10 +80,10 @@
 								</tr>
 								<c:forEach items="${listAllAccount}" var="userItem">
 									<tr>
-										<td><c:out value="${userItem.username}" /></td>
+										<td><c:out value="${userItem.userName}" /></td>
 										<c:choose>
-											<c:when test="${userItem.name != null}">
-												<td><c:out value="${userItem.name}" /></td>
+											<c:when test="${userItem.userInfor.name != null}">
+												<td><c:out value="${userItem.userInfor.name}" /></td>
 											</c:when>
 											<c:otherwise>
 												<td><span class="label label-default">Not set</span></td>
@@ -105,7 +105,7 @@
 										<td><c:out value="${userItem.email}" /></td>
 										<td>
 											<c:choose>
-												<c:when test="${!accountLoged.username.equals(userItem.username)}">
+												<c:when test="${!accountLoged.userName.equals(userItem.userName)}">
 													<input id="${userItem.id}"	name="${userItem.isActive}" class="activeToggle" type="checkbox">
 												</c:when>
 												<c:otherwise>
@@ -125,48 +125,31 @@
 							<nav>
 								<ul class="pagination pagination-sm no-margin pull-right">
 
-									<c:choose>
-										<c:when test="${currentIndex == 1}">
-											<li class="disabled"><a class="page-link" href="#"
-												aria-label="First"> <span aria-hidden="true">First</span>
-													<span class="sr-only">Previous</span></a></li>
-											<li class="disabled"><a class="page-link" href="#" aria-label="Previous">&lt;</a></li>
-										</c:when>
-										<c:otherwise>
+									
+										<c:if test="${currentIndex != 1}">
 											<li><a id="firstPage" href="${firstUrl}">First</a></li>
 											<li><a id="prevPage" href="${prevUrl}">&lt;</a></li>
-										</c:otherwise>
-									</c:choose>
+										</c:if>
+									
 									<c:forEach var="i" begin="${beginIndex}" end="${endIndex}">
-									
-										
 										<c:url var="pageUrl" value="/user-management?page=${i}&type=" />
-											
-									
 										<c:choose>
 											<c:when test="${i == currentIndex}">
 												<li id="curentPage" class="page-item active"><a
-													href="user-management?page=${i}&type=2"><c:out value="${i}" /></a></li>
+													href="user-management?page=${i}"><c:out value="${i}" /></a></li>
 											</c:when>
 											<c:otherwise>
-												<li class="page-item"><a id="curentPage${i}" class="page-link"
+												<li class="page-item"><a class="page-link"
 													href="${pageUrl}"><c:out value="${i}" /></a></li>
 											</c:otherwise>
 										</c:choose>
 									</c:forEach>
-									<c:choose>
-										<c:when test="${currentIndex == page.totalPages}">
-											<li class="page-item disabled"><a class="page-link"
-												aria-label="Next" href="#"><span aria-hidden="true">&gt;</span>
-													<span class="sr-only">Next</span></a></li>
-											<li class="page-item disabled"><a class="page-link"
-												aria-label="Last" href="#">Last</a></li>
-										</c:when>
-										<c:otherwise>
+									
+										<c:if test="${currentIndex != page.totalPages}">
 											<li class="page-item"><a id="nextPage" href="${nextUrl}">&gt;</a></li>
 											<li class="page-item"><a id="lastPage" href="${lastUrl}">Last</a></li>
-										</c:otherwise>
-									</c:choose>
+										</c:if>
+									
 								</ul>
 							</nav>
 						</div>

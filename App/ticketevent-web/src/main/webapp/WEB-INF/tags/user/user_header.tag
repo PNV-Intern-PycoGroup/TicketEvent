@@ -117,7 +117,7 @@
 		        	<!-- Tab panes -->
 					<div class="tab-content login-logout-content">
 					    <div role="tabpanel" class="tab-pane fade in active" id="login">
-					    	<form action="login" method="post">
+					    	<form action="" method="post">
 					    		<c:if test="${param.error ne null}">
 									<div class="alert-danger login-fail">Invalid username and password.</div>
 								</c:if>

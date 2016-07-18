@@ -33,7 +33,7 @@ public class UserInformationServiceImpl implements UserInformationService{
 
 	@Override
 	public UserInformationEntity handleBeforeEditProfile(AccountUserInfoModel account) {
-		AccountEntity accountEntity = accountService.getAccount(account.getId());
+		AccountEntity accountEntity = accountService.getAccountEntityByID(account.getId());
 		UserInformationEntity userInfo = null;
 		if(accountEntity != null){
 			accountEntity.setEmail(account.getEmail());

@@ -1,5 +1,6 @@
 package pnv.intern.pyco.ticketevent.services.model;
 
+import java.util.Date;
 import java.util.Set;
 
 public class AccountModel{
@@ -16,7 +17,7 @@ public class AccountModel{
 	
 	private int isActive;
 	
-	private String activeDate;
+	private Date activeDate;
 
 	private UserInformationModel userInfor;
 	
@@ -74,11 +75,11 @@ public class AccountModel{
 		this.isActive = isActive;
 	}
 
-	public String getActiveDate() {
+	public Date getActiveDate() {
 		return activeDate;
 	}
 
-	public void setActiveDate(String activeDate) {
+	public void setActiveDate(Date activeDate) {
 		this.activeDate = activeDate;
 	}
 

@@ -24,6 +24,7 @@ import pnv.intern.pyco.ticketevent.repository.entity.AccountEntity;
 import pnv.intern.pyco.ticketevent.repository.entity.UserInformationEntity;
 import pnv.intern.pyco.ticketevent.services.AccountService;
 import pnv.intern.pyco.ticketevent.services.UserInformationService;
+import pnv.intern.pyco.ticketevent.services.model.AccountModel;
 import pnv.intern.pyco.ticketevent.services.model.AccountUserInfoModel;
 import pnv.intern.pyco.ticketevent.web.util.FileUtil;
 
@@ -40,7 +41,7 @@ public class HomeController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String test(ModelMap model) {
-		AccountEntity account = accountService.getAccountbyUserName(SecurityContextHolder.getContext().getAuthentication().getName());
+		AccountModel account = accountService.getAccountModelbyUserName(SecurityContextHolder.getContext().getAuthentication().getName());
 		if(account != null){
 			AccountUserInfoModel acc = accountService.getAccInfor(account.getId());
 			model.put("account", acc);
@@ -50,7 +51,7 @@ public class HomeController {
 	
 	@RequestMapping(value = "/api/{name}", method = RequestMethod.GET)
 	public @ResponseBody boolean getAll(@PathVariable("name") String username){
-		return accountService.findUser(username);
+		return accountService.checkExitsUser(username);
 	}
 	
 	@RequestMapping(value = "/view-event-theme-music", method = RequestMethod.GET)

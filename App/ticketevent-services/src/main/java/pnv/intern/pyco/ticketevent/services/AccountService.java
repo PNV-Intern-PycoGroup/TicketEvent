@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 
 import pnv.intern.pyco.ticketevent.repository.entity.AccountEntity;
+import pnv.intern.pyco.ticketevent.services.model.AccountModel;
 import pnv.intern.pyco.ticketevent.services.model.AccountUserInfoModel;
 
 
@@ -15,15 +16,15 @@ public interface AccountService {
 	
 	
 	
-	public AccountEntity getAccount(long id);
+	public AccountModel getAccountModelByID(long id);
 	
-	public AccountEntity getAccountbyUserName(String userName);
+	public AccountModel getAccountModelbyUserName(String userName);
 	
-	public List<AccountEntity> getAllAccount();
+	public List<AccountModel> getAllAccountModel();
 	
-	public List<AccountEntity> getAllAccountNotAdmin();
+	public List<AccountModel> getAllAccountModelUser();
 	
-	public boolean findUser(String username);
+	public boolean checkExitsUser(String username);
 	
 	public void Save(AccountEntity account);
 	
@@ -33,6 +34,8 @@ public interface AccountService {
 	
 	public AccountUserInfoModel getAccInfor(Long id);
 	
-	public List<AccountUserInfoModel> getAllAccountUserInfoModel(List<AccountEntity> listAccountEntity);
+	public List<AccountModel> getAllAccount(List<AccountEntity> listAccountEntity);
+	
+	public AccountEntity getAccountEntityByID(long id);
 	
 }

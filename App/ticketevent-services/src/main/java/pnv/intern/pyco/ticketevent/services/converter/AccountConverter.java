@@ -8,30 +8,32 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 
 import pnv.intern.pyco.ticketevent.repository.entity.AccountEntity;
+import pnv.intern.pyco.ticketevent.repository.entity.UserInformationEntity;
 import pnv.intern.pyco.ticketevent.services.model.AccountModel;
 import pnv.intern.pyco.ticketevent.services.model.AccountUserInfoModel;
 
 @Component
 public class AccountConverter {
+	public static boolean IS_CONVERT;
 
 	public AccountConverter() {
-		// TODO Auto-generated constructor stub
 	}
-	
-	public AccountUserInfoModel convertFromAccountEntity(AccountEntity account) {
+
+	public static AccountUserInfoModel convertFromAccountEntity(AccountEntity account) {
 		AccountUserInfoModel accountInfo = new AccountUserInfoModel();
-		if(account.getUserInfor() != null){
-		if(account.getUserInfor().getDateOfBirth() != null){
-			DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-			String birtday = df.format(account.getUserInfor().getDateOfBirth());
-			accountInfo.setBirthday(birtday);
+		if (account.getUserInfor() != null) {
+			if (account.getUserInfor().getDateOfBirth() != null) {
+				DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+				String birtday = df.format(account.getUserInfor()
+						.getDateOfBirth());
+				accountInfo.setBirthday(birtday);
+			}
+			accountInfo.setName(account.getUserInfor().getName());
+			accountInfo.setAddress(account.getUserInfor().getAddress());
+			accountInfo.setPhone(account.getUserInfor().getPhone());
+			accountInfo.setAvatar(account.getUserInfor().getAvatar());
 		}
-		accountInfo.setName(account.getUserInfor().getName());
-		accountInfo.setAddress(account.getUserInfor().getAddress());
-		accountInfo.setPhone(account.getUserInfor().getPhone());
-		accountInfo.setAvatar(account.getUserInfor().getAvatar());
-		}
-		
+
 		accountInfo.setId(account.getId());
 		accountInfo.setEmail(account.getEmail());
 		accountInfo.setUsername(account.getUserName());
@@ -39,30 +41,44 @@ public class AccountConverter {
 		accountInfo.setActiveDate(account.getActiveDate());
 		return accountInfo;
 	}
-	
-	public List<AccountUserInfoModel> convertAllAccount(List<AccountEntity> listAccountEntity){
+
+	public static List<AccountUserInfoModel> convertAllAccountToAccountUserInfoModel(
+			List<AccountEntity> listAccountEntity) {
 		List<AccountUserInfoModel> listAccountUserInfor = new ArrayList<>();
-		for(AccountEntity acEntity : listAccountEntity){
+		for (AccountEntity acEntity : listAccountEntity) {
 			listAccountUserInfor.add(convertFromAccountEntity(acEntity));
 		}
 		return listAccountUserInfor;
 	}
-	
-	public AccountModel convertAccountEntityToAccountModel(AccountEntity accountEntity) {
-		AccountModel accountModel = new AccountModel();
-		
-		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-		
-		accountModel.setId(accountEntity.getId());
-		accountModel.setActiveDate(df.format(accountEntity.getActiveDate()));
-		accountModel.setEmail(accountEntity.getEmail());
-		accountModel.setIsActive(accountEntity.getIsActive());
-		accountModel.setPassword(accountEntity.getPassword());
-		accountModel.setUserName(accountEntity.getUserName());
-//		accountModel.setUserRole(accountEntity.getUserRole());
-//		accountModel.setUserInfor(accountEntity.getUserInfor());
-//		accountModel.setListEvent(accountEntity.getListEvent());
-		
+
+	public static AccountModel convertAccountEntityToAccountModel(AccountEntity accountEntity) {
+		IS_CONVERT = true;
+		AccountModel accountModel = null;
+		if (accountEntity != null) {
+			UserInformationEntity uInformationEntity = accountEntity.getUserInfor();
+			accountModel = new AccountModel();
+			accountModel.setId(accountEntity.getId());
+			accountModel.setActiveDate(accountEntity.getActiveDate());
+			accountModel.setEmail(accountEntity.getEmail());
+			accountModel.setIsActive(accountEntity.getIsActive());
+			// accountModel.setPassword(accountEntity.getPassword());
+			accountModel.setUserName(accountEntity.getUserName());
+			//accountModel.setUserRole(uConverter.convertFromUserRoleEntity(accountEntity.getUserRole()));
+			if(!AccountUserInfoConverter.IS_CONVERT && uInformationEntity != null){
+				accountModel.setUserInfor(AccountUserInfoConverter.convertFromUserInforEntity(uInformationEntity));
+			}
+			
+			// accountModel.setListEvent(accountEntity.getListEvent());
+		}
+		IS_CONVERT = false;
 		return accountModel;
+	}
+	
+	public static List<AccountModel> convertAllAccountEntityToAccountModel(List<AccountEntity> accountEntities){
+		List<AccountModel> accountModels = new ArrayList<>();
+		for(AccountEntity accountEntity : accountEntities){
+			accountModels.add(convertAccountEntityToAccountModel(accountEntity));
+		}
+		return accountModels;
 	}
 }

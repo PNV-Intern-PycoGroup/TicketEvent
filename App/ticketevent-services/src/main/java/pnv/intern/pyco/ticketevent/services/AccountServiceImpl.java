@@ -13,6 +13,7 @@ import pnv.intern.pyco.ticketevent.repository.AccountReponsitoty;
 import pnv.intern.pyco.ticketevent.repository.entity.AccountEntity;
 import pnv.intern.pyco.ticketevent.repository.entity.UserRoleEntity;
 import pnv.intern.pyco.ticketevent.services.converter.AccountConverter;
+import pnv.intern.pyco.ticketevent.services.model.AccountModel;
 import pnv.intern.pyco.ticketevent.services.model.AccountUserInfoModel;
 
 @Service
@@ -21,9 +22,6 @@ private static final int PAGE_SIZE = 1;
 	
 	@Autowired
 	private AccountReponsitoty accountReponsitoty;
-	
-	@Autowired
-	private AccountConverter accountConverter;
 	
 	@Autowired
 	private EmailServices emailService;
@@ -43,28 +41,33 @@ private static final int PAGE_SIZE = 1;
 	
 	
 	@Override
-	public AccountEntity getAccount(long id){
-		return accountReponsitoty.findOne(id);
+	public AccountModel getAccountModelByID(long id){
+		AccountEntity accountEntity = accountReponsitoty.findOne(id);
+		return AccountConverter.convertAccountEntityToAccountModel(accountEntity);
 	}
 	
 	@Override
-	public AccountEntity getAccountbyUserName(String userName){
-		return accountReponsitoty.findAccountByUserName(userName);
+	public AccountModel getAccountModelbyUserName(String userName){
+		AccountEntity accountEntity = accountReponsitoty.findAccountByUserName(userName);
+		AccountModel accountModel = AccountConverter.convertAccountEntityToAccountModel(accountEntity);
+		return accountModel;
 	}
 	
 	@Override
-	public List<AccountEntity> getAllAccount(){
-		return accountReponsitoty.findAll();
+	public List<AccountModel> getAllAccountModel(){
+		List<AccountEntity> accountEntities = accountReponsitoty.findAll();
+		return AccountConverter.convertAllAccountEntityToAccountModel(accountEntities);
 	}
 	
 	@Override
-	public List<AccountEntity> getAllAccountNotAdmin(){
-		return accountReponsitoty.getAllUser();
+	public List<AccountModel> getAllAccountModelUser(){
+		List<AccountEntity> accountEntities = accountReponsitoty.getAllUser();
+		return AccountConverter.convertAllAccountEntityToAccountModel(accountEntities);
 	}
 	
 	@Override
-	public boolean findUser(String username){
-		if(getAccountbyUserName(username) != null){
+	public boolean checkExitsUser(String username){
+		if(getAccountModelbyUserName(username) != null){
 			return false; 
 		}else
 			return true;
@@ -81,13 +84,13 @@ private static final int PAGE_SIZE = 1;
 	
 	@Override
 	public void setActive(long accountId, int typeActive){
-		AccountEntity acc = getAccount(accountId);
+		AccountEntity accountEntity = accountReponsitoty.findOne(accountId);
 		if(typeActive == 0){
-			acc.setIsActive(0);
+			accountEntity.setIsActive(0);
 		}else{
-			acc.setIsActive(1);
+			accountEntity.setIsActive(1);
 		}
-		updateAccount(acc);
+		updateAccount(accountEntity);
 	}
 	
 	@Override
@@ -97,13 +100,18 @@ private static final int PAGE_SIZE = 1;
 	
 	@Override
 	public AccountUserInfoModel getAccInfor(Long id){
-		AccountUserInfoModel acc = accountConverter.convertFromAccountEntity(getAccount(id));
+		AccountUserInfoModel acc = AccountConverter.convertFromAccountEntity(accountReponsitoty.findOne(id));
 		return acc;
 	}
 	
 	@Override
-	public List<AccountUserInfoModel> getAllAccountUserInfoModel(List<AccountEntity> listAccountEntity){
-		return accountConverter.convertAllAccount(listAccountEntity);
+	public List<AccountModel> getAllAccount(List<AccountEntity> listAccountEntity){
+		return AccountConverter.convertAllAccountEntityToAccountModel(listAccountEntity);
+	}
+
+	@Override
+	public AccountEntity getAccountEntityByID(long id) {
+		return accountReponsitoty.findOne(id);
 	}
 	
 }
