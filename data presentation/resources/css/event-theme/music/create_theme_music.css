@@ -1,0 +1,81 @@
+.conteiner-music-theme{
+	width: 80%;
+	margin: 0px auto;
+}
+.upload-file-music {
+	margin: 15px;
+}
+
+.upload-file-music > a {
+	position: relative;
+	padding: 15px 30px 15px 30px;
+}
+
+.input-image {
+	float: left;
+	position: absolute;
+	top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.add-famous-person {
+	margin: 20px auto;
+}
+
+.add-famous-person > a {
+	padding: 15px 30px 15px 30px;
+}
+
+.divider {
+	margin: 0;
+	border-top: 2px solid white;
+}
+
+.cus-input-group-addon-theme-music {
+	width: 20%;
+}
+
+.cus-form-control-theme-music {
+	width: 80%;
+}
+
+.cus-event-info-theme-music,
+.cus-input-group-theme-music {
+	padding-top: 10px;
+	width: 100%;
+}
+
+.img-container-1500x500 {
+  width: 540px;
+  height: 180px;
+  margin: auto;
+}
+
+.img-container-1500x500 img {
+  width: 100%;
+  height: 100%;
+}
+
+.img-container-1500x600 {
+  width: 550px;
+  height: 220px;
+  margin: auto;
+}
+
+.img-container-1500x600 img {
+  width: 100%;
+  height: 100%;
+}
+
+#output-famous-person-image {
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+}
+
+#contain-famous-person-image {
+	height: 250px;
+	padding: 20px 15px 10px 15px;
+}

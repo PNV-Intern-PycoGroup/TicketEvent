@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Implementation-Title: ticketevent-web
+Implementation-Version: 1.0
+Built-By: son.huynh
+Implementation-Vendor-Id: pnv.intern.pyco
+Build-Jdk: 1.8.0_91
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+
